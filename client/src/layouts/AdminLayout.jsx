@@ -3,8 +3,8 @@ import { Outlet } from "react-router-dom"
 
 const AdminLayout = () => {
   return (
-    <div>
-        
+    <div className="">
+       
     <main>
         <Outlet/>
     </main>

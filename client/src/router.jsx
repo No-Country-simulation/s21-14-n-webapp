@@ -41,7 +41,7 @@ export const router = createBrowserRouter([
 
             },
             {
-                path: "/crearInmueble",
+                path: "crearInmueble",
                 element: <PropertiesForm/>
             }
         ]
