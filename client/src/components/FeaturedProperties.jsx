@@ -10,7 +10,7 @@ export const FeaturedProperties = () => {
     ]
 
     return (
-        <main className='flex flex-col items-center h-full xl:h-full pt-20 xl:pt-32 pb:20 xl:pb-32 bg-[#333]'>
+        <div className='flex flex-col items-center h-full xl:h-full pt-20 xl:pt-32 pb:20 xl:pb-32 bg-[#333]'>
             <h2 className='text-3xl font-semibold text-amber-300'>Propiedades Destacadas</h2>
             <div className='flex h-full px-3 xl:px-20 mt-20 xl:mt-32'>
                 {featurePropeties.map((image, index)=>{
@@ -21,6 +21,6 @@ export const FeaturedProperties = () => {
                     </div>)
                 })}
             </div>
-        </main>
+        </div>
     )
 }
