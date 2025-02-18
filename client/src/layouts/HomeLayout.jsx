@@ -1,7 +1,8 @@
 import React from "react";
-import { Outlet } from 'react-router-dom'
-import { NavBar } from "../components/NavBar";
-import { Footer } from "../components/Footer";
+import { NavBar } from "../components/Shared/NavBar";
+import { Outlet } from "react-router-dom";
+import { Footer } from "../components/Shared/Footer";
+
 const HomeLayout = () => {
   return (
     <div>

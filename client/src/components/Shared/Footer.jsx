@@ -1,8 +1,9 @@
 import React from 'react'
-import { Logo } from './Logo'
+
 import { PiFacebookLogoLight } from "react-icons/pi";
 import { PiInstagramLogoLight } from "react-icons/pi";
 import { PiWhatsappLogoLight } from "react-icons/pi";
+import { Logo } from './Logo';
 
 export const Footer = () => {
   return (
