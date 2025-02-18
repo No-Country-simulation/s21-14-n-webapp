@@ -1,5 +1,5 @@
 import CardProperties from "../components/CardProperties"
-
+import React from 'react'
 
 const ListOfProperties = () => {
   return (
