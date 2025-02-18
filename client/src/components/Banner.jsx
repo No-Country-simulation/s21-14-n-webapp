@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const Header = () => {
+export const Banner = () => {
     return (
         <header 
             className='h-[300px] lg:h-[750px] relative flex flex-col'
