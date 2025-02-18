@@ -1,7 +1,7 @@
 import React from 'react'
-import { Banner } from '../components/Banner'
-import { FeaturedProperties } from '../components/FeaturedProperties'
-import { ForSale } from '../components/ForSale'
+import { Banner } from '../components/Home/Banner'
+import { FeaturedProperties } from '../components/Home/FeaturedProperties'
+import { ForSale } from '../components/Home/ForSale'
 
 const Home = () => {
     return (
