@@ -3,7 +3,7 @@ import React from 'react';
 export const Banner = () => {
     return (
         <header 
-            className='h-[300px] lg:h-[750px] relative flex flex-col'
+            className='h-[300px] lg:h-screen relative flex flex-col'
             style={{
                 backgroundImage: "url('/src/img/pexels-binyaminmellish-186077.jpg')", 
                 backgroundSize: 'cover', 

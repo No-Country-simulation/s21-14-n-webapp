@@ -1,5 +1,6 @@
 import React from 'react'
 import { Banner } from '../components/Banner'
+import { FeaturedProperties } from '../components/FeaturedProperties'
 
 const Home = () => {
     return (
@@ -8,7 +9,7 @@ const Home = () => {
                 <Banner/>
             </header>
             <main>
-                
+                <FeaturedProperties/>
             </main>
         </>
     
