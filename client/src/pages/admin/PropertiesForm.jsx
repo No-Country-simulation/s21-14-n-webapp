@@ -1,8 +1,8 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
-import Error from "../ui/ErrorMessage";
-import { PropertieSchema } from "../schemas";
+import Error from "../../ui/ErrorMessage";
+import { PropertieSchema } from "../../schemas";
 
 
 const PropertiesForm = () => {
