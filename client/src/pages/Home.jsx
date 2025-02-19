@@ -6,7 +6,7 @@ import { ForSale } from '../components/Home/ForSale'
 
 const Home = () => {
     return (
-        < >
+        <div className='max-w-screen bg-[#333]' >
             <header>
                 <Banner/>
             </header>
@@ -18,7 +18,7 @@ const Home = () => {
                     <ForSale/>
                 </div>
             </main>
-        </>
+        </div>
     
 
 )
