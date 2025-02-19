@@ -3,7 +3,7 @@ import { createBrowserRouter } from "react-router-dom";
 import HomeLayout from "./layouts/HomeLayout";
 import Home from "./pages/Home";
 import ListOfProperties from "./pages/ListOfProperties";
-import PropertiePage from "./pages/PropertiePage";
+import PropertiePage from "./pages/PropertyPage/PropertyPage";
 import AdminLayout from "./layouts/AdminLayout";
 import PropertiesForm from "./pages/PropertiesForm";
 //Home Templates
@@ -11,23 +11,23 @@ import PropertiesForm from "./pages/PropertiesForm";
 export const router = createBrowserRouter([
     //Home 
     {
-    path: "/",
-    element: (
-        <HomeLayout/>
-    ),
-    children: [
-        {
-            index: true,
-            element: <Home/>
-        },
-        {
-            path: "/inmuebles",
-            element: <ListOfProperties/>
-        },
-        {
-            path: "/inmueble",
-            element: <PropertiePage/>
-        }
+        path: "/",
+        element: (
+            <HomeLayout/>
+        ),
+        children: [
+            {
+                index: true,
+                element: <Home/>
+            },
+            {
+                path: "/inmuebles",
+                element: <ListOfProperties/>
+            },
+            {
+                path: "/inmueble",
+                element: <PropertiePage/>
+            }
     ],
     },
     {
@@ -41,7 +41,7 @@ export const router = createBrowserRouter([
 
             },
             {
-                path: "/crearInmueble",
+                path: "crearInmueble",
                 element: <PropertiesForm/>
             }
         ]
