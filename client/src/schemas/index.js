@@ -3,7 +3,7 @@ import * as yup from "yup"
 export const PropertieSchema = yup.object().shape({
   titulo: yup
     .string()
-    .min(5, "Mínimo 5 caracteres")
+    .min(3, "Mínimo 5 caracteres")
     .max(100, "Máximo 100 caracteres")
     .required("El título es necesario"),
   descripcion: yup
