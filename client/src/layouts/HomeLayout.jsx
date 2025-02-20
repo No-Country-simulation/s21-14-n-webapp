@@ -1,20 +1,12 @@
-import React from "react";
-import { NavBar } from "../components/Shared/NavBar";
-import { Outlet } from "react-router-dom";
-import { Footer } from "../components/Shared/Footer";
+import { Outlet } from 'react-router-dom'
 
 const HomeLayout = () => {
   return (
     <div>
-        <header>
-            <NavBar/>
-        </header>
-        <main>
-            <Outlet/>
-        </main>
-        <footer>
-            <Footer/>
-        </footer>
+
+    <main>
+        <Outlet/>
+    </main>
     </div>
   )
 }
