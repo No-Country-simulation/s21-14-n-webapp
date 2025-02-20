@@ -2,14 +2,13 @@ import React from 'react'
 
 
 
-
 function PropertyDetails({ details, children }) 
 {
   return (
     <>
         <span className='text-xl'>Código: {details.codigo}</span>
         <hr className='border-t w-1/4 mt-2 opacity-95 border-grey-50'/>
-        <div className="py-4 grid grid-cols-2 grid-rows-2">
+        <div className="py-4 grid lg:grid-cols-2 lg:grid-rows-2">
             {Object.entries(details)
                 .filter(([key]) => key !== 'codigo' && key !== 'costo')
                 .map(([key, value]) => (

@@ -1,6 +1,6 @@
 import PropertyCard from "../components/PropertyCard";
-import ThemeProvider from '../components/ThemeProvider';
-import ThemeSelect from '../components/ThemeSelect';
+import ThemeProvider from '../components/shared/dark-theme/ThemeProvider';
+import ThemeSelect from '../components/shared/dark-theme/ThemeSelect';
 
 
 const propertyImages = [
@@ -45,10 +45,7 @@ const propertyImages = [
     imgSrc: "https://images.pexels.com/photos/2380247/pexels-photo-2380247.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
     imgAlt: "Inside view of a log house showing a window, branches outside, curtains, an old sofa chair and a lamp on top of a small furniture."
 
-  }
-
-
-  
+  }  
 ];
 
 
@@ -57,10 +54,10 @@ const ListOfProperties = () => {
 
    
     <ThemeProvider>
-      <div className="pt-20  bg-white dark:bg-bg-color dark:text-white transition-colors duration-500 ease-in-out">
+      <div className="pt-20 bg-white dark:bg-bg-color dark:text-white transition-colors duration-500 ease-in-out">
         <ThemeSelect/>
         <h1 className="text-4xl font-semibold text-center text-text-color">Propiedades</h1>
-        <form action="" className="mt-8 px-20 flex justify-around">
+        <form action="" className="mt-8 px-10 md:px-28 flex flex-col lg:flex-row justify-center items-center md:justify-between gap-6">
           <div className="flex items-center gap-2 ">
             <label htmlFor="code">Busqueda por código</label>
             <input type="text" name="code" id="code" className="p-1 px-2 bg-white border border-black rounded-sm dark:text-black" placeholder="Código"/>
@@ -76,8 +73,8 @@ const ListOfProperties = () => {
           </div>
 
           <div className="flex items-center gap-2">
-          <label htmlFor="filter">Categoría:</label>
-            <select name="filter" id="filter" className="p-1 px-2 bg-white border border-black rounded-sm dark:text-black">
+          <label htmlFor="category">Categoría:</label>
+            <select name="category" id="category" className="p-1 px-2 bg-white border border-black rounded-sm dark:text-black">
             <optgroup label="Tipo de Propiedad">
                 <option value="house">Casas</option>
                 <option value="apartment">Departamentos</option>
@@ -97,7 +94,7 @@ const ListOfProperties = () => {
         </form>
 
 
-        <div className=" py-10 px-28 grid grid-cols-4 gap-x-8 gap-y-8">
+        <div className=" py-10 px-10 md:px-28 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 grid lg:grid-cols-4 gap-x-8 gap-y-8">
           {propertyImages.map((image, index) => (
             <PropertyCard key={index} imgSrc={image.imgSrc}/>
           ))}

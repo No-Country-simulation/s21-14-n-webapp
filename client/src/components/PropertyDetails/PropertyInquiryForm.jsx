@@ -1,7 +1,8 @@
 
 import { yupResolver } from "@hookform/resolvers/yup";
-import Error from "../ui/ErrorMessage";
-import { InquirySchema } from "../schemas/InquirySchema";
+import Error from "../../ui/ErrorMessage";
+Error
+import { InquirySchema } from "../../schemas/InquirySchema";
 import { useForm } from "react-hook-form";
 
 const PropertyInquiryForm = () => 

@@ -1,12 +1,12 @@
 import { useState } from 'react';
-import SocialIcons from '../components/SocialIcons';
-import GalleryItem from '../components/GalleryItem';
-import AccordionItem from '../components/AccordionItem';
-import PropertyFeatures from '../components/PropertyFeatures';
-import PropertyInquiryForm from '../components/PropertyInquiryForm';
-import PropertyDetails from '../components/PropertyDetails';
-import ThemeProvider from '../components/ThemeProvider';
-import ThemeSelect from '../components/ThemeSelect';
+import SocialIcons from '../components/PropertyDetails/SocialIcons';
+import GalleryItem from '../components/shared/GalleryItem';
+import AccordionItem from '../components/shared/AccordionItem';
+import PropertyFeatures from '../components/PropertyDetails/PropertyFeatures';
+import PropertyInquiryForm from '../components/PropertyDetails/PropertyInquiryForm';
+import PropertyDetails from '../components/PropertyDetails/PropertyDetails';
+import ThemeProvider from '../components/shared/dark-theme/ThemeProvider';
+import ThemeSelect from '../components/shared/dark-theme/ThemeSelect';
 
 
 const mainImage = [
@@ -14,7 +14,6 @@ const mainImage = [
     imgSrc: "https://media-cdn.tripadvisor.com/media/photo-s/18/43/ad/61/nieve-en-cabanas-huitan.jpg",
     imgAlt: "Log house covered in snow next to a lake surrounded by snowy mountains."
   }
-  
 ];
 
 const propertyImages = [
@@ -38,10 +37,7 @@ const propertyImages = [
     imgSrc: "https://images.pexels.com/photos/2380247/pexels-photo-2380247.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
     imgAlt: "Inside view of a log house showing a window, branches outside, curtains, an old sofa chair and a lamp on top of a small furniture."
 
-  }
-
-
-  
+  } 
 ];
 
 
@@ -132,10 +128,10 @@ const PropertyPage = () =>
         " target="_blank">
           <svg className="h-6 w-6 fill-current text-white"  viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M6.014 8.006c.114-.904 1.289-2.132 2.22-1.996V6.01c.907.172 1.625 1.734 2.03 2.436.286.509.1 1.025-.167 1.243-.361.29-.926.692-.808 1.095C9.5 11.5 12 14 13.23 14.711c.466.269.804-.44 1.092-.804.21-.28.726-.447 1.234-.171.759.442 1.474.956 2.135 1.534.33.276.408.684.179 1.115-.403.76-1.569 1.76-2.415 1.557C13.976 17.587 8 15.27 6.08 8.558c-.108-.318-.08-.438-.066-.552Z" /><path fillRule="evenodd" clipRule="evenodd" d="M12 23c-1.224 0-1.9-.131-3-.5l-2.106 1.053A2 2 0 0 1 4 21.763V19.5c-2.153-2.008-3-4.323-3-7.5C1 5.925 5.925 1 12 1s11 4.925 11 11-4.925 11-11 11Zm-6-4.37-.636-.593C3.691 16.477 3 14.733 3 12a9 9 0 1 1 9 9c-.986 0-1.448-.089-2.364-.396l-.788-.264L6 21.764V18.63Z"/></svg>
         </a>
-      <h1 className="mt-28 text-center text-3xl font-light text-text-color">CABAÑA TIERRA VIVA CERCA AL LAGO EN ALQUILER</h1>
-      <main className=" flex mt-8 px-16">
+      <h1 className="mt-28 text-center text-xl md:text-3xl font-light text-text-color">CABAÑA TIERRA VIVA CERCA AL LAGO EN ALQUILER</h1>
+      <main className=" flex flex-col md:flex-row mt-8 px-0 sm:px-16">
              
-        <section className="basis-2/4 p-8 ">
+        <section className="basis-2/4 p-2 sm:p-8 ">
           <GalleryItem width={"w-full"} height={"h-full"} imageSrc={mainImage.at(0).imgSrc} imgAlt={mainImage.at(0).imgAlt}/>
           <AccordionItem
             title={"Características"}
@@ -173,7 +169,7 @@ const PropertyPage = () =>
         </section>
       </main>
 
-      <div className=" py-10 px-28 grid grid-cols-3 gap-x-4 gap-y-8">
+      <div className=" py-10 px-4 sm:px-28 grid grid-cols-1 md:grid-cols-3 gap-x-4 gap-y-8">
           {propertyImages.map((image, index) => (
             <GalleryItem key={index} imageSrc={image.imgSrc} imgAlt={image.imgAlt}/>
           ))}
@@ -181,8 +177,8 @@ const PropertyPage = () =>
 
       <PropertyInquiryForm/>
 
-      <button type='button' className='w-full flex justify-end'>
-        <a href="/" className='w-1/12 mx-4 my-8 flex items-center gap-1 bg-text-color p-2 rounded-md cursor-pointer text-white' >
+      <button type='button' className='w-full flex justify-end '>
+        <a href="/" className='w-3/12 sm:w-1/12 mx-8 my-8 flex items-center gap-1 bg-text-color p-2 rounded-md cursor-pointer text-white text-center' >
           <svg viewBox="0 0 24 24" className="mt-0.5 h-4 w-4 fill-current" fill="none" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" clipRule="evenodd" d="M11.707 4.293a1 1 0 0 1 0 1.414L6.414 11H20a1 1 0 1 1 0 2H6.414l5.293 5.293a1 1 0 0 1-1.414 1.414l-7-7a1 1 0 0 1 0-1.414l7-7a1 1 0 0 1 1.414 0Z"/></svg>
           <span>Regresar</span>
         </a>
