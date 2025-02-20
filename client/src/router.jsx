@@ -3,9 +3,9 @@ import { createBrowserRouter } from "react-router-dom";
 import HomeLayout from "./layouts/HomeLayout";
 import Home from "./pages/Home";
 import ListOfProperties from "./pages/ListOfProperties";
-import PropertiePage from "./pages/PropertyPage/PropertyPage";
 import AdminLayout from "./layouts/AdminLayout";
 import PropertiesForm from "./pages/PropertiesForm";
+import PropertyPage from "./pages/PropertyPage";
 //Home Templates
 
 export const router = createBrowserRouter([
@@ -26,7 +26,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: "/inmueble",
-                element: <PropertiePage/>
+                element: <PropertyPage/>
             }
     ],
     },

@@ -2,14 +2,14 @@ import React from 'react'
 
 const AccordionItem = ({ title, children, isOpen, onToggle }) => {
   return (
-    <section className='mt-8 border rounded-md '>
-        <div className={`flex items-center gap-4 bg-neutral-200 
+    <section className='mt-8 border rounded-md text-sm'>
+        <div className={`flex items-center gap-4 
             ${isOpen? 'rounded-t-md' : 'rounded-md'}  cursor-pointer border-b `} 
             onClick={onToggle}
         >
           <figure className="h-10 px-4 border-r flex justify-center items-center">
             <div className={`transition-transform duration-500 ease-in-out ${isOpen ? "rotate-180" : "rotate-0"}`}>
-              <svg className="h-5 w-5 fill-current stroke-black stroke-2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <svg className="h-5 w-5 fill-current stroke-text-color stroke-2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
                     d={isOpen? "M6 12h12" : "M6 12h12m-6-6v12"}
                     strokeLinecap="round" 
@@ -18,7 +18,7 @@ const AccordionItem = ({ title, children, isOpen, onToggle }) => {
               </svg>
             </div>
           </figure>
-          <h3 className='font-bold text-lg'>{title}</h3>
+          <h3 className='font-bold text-lg text-text-color '>{title}</h3>
         </div>
 
         <div
