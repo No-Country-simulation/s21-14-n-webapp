@@ -1,7 +1,7 @@
 import React from 'react'
 import { Banner } from '../components/Home/Banner'
-import { FeaturedProperties } from '../components/Home/FeaturedProperties'
 import { ForSale } from '../components/Home/ForSale'
+const FeaturedProperties = React.lazy(() => import('../components/Home/FeaturedProperties'));
 
 
 const Home = () => {

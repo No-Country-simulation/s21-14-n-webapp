@@ -18,14 +18,14 @@ export const ForSale = () => {
 
             {/* Contenedor de texto con animación */}
             <motion.div 
-                className='xl:text-4xl xl:mr-48 xl:ml-52 font-semibold text-amber-300'
+                className='xl:text-4xl xl:mr-48 xl:ml-52 font-semibold text-amber-300 flex flex-col items-center justify-center'
                 initial={{ opacity: 0, x: 50 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
                 viewport={{ once: true, amount: 0.3 }}
             >
-                <h3 className='mb-10 xl:mb-32'>¿Tienes una propiedad para vender?</h3>
-                <p className='leading-relaxed'>
+                <h3 className='mb-10 xl:mb-32  w-80 lg:w-full'>¿Tienes una propiedad para vender?</h3>
+                <p className='leading-relaxed w-80 lg:w-full'>
                     Déjalo en manos de especialistas, contáctenos y lo asesoraremos para que obtenga la mejor rentabilidad de su inversión inmobiliaria.
                 </p>
             </motion.div>

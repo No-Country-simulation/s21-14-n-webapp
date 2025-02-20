@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { motion } from "motion/react"
 
 
@@ -7,21 +8,25 @@ const AnimatedText = ({ text }) => {
         <>
             {text.split('').map((letter, index) => (
                 <motion.span
-                    key={index}
-                    initial={{ y: -50, opacity: 0 }} 
-                    animate={{ y: 0, opacity: 1 }} 
-                    transition={{
-                        type: 'spring',
-                        stiffness: 100,
-                        damping: 12,
-                        delay: index * 0.05, 
-                    }}
+                key={index}
+                initial={{ y: -50, opacity: 0 }} 
+                animate={{ y: 0, opacity: 1 }} 
+                transition={{
+                    type: 'spring',
+                    stiffness: 100,
+                    damping: 12,
+                    delay: index * 0.05, 
+                }}
                 >
                     {letter === ' ' ? '\u00A0' : letter} 
                 </motion.span>
             ))}
         </>
     );
+};
+
+AnimatedText.propTypes = {
+    text: PropTypes.string.isRequired,
 };
 
 export const Banner = () => {
@@ -44,7 +49,7 @@ export const Banner = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5, duration: 0.8, ease: 'easeOut' }}
             >
-                <h1 className='text-3xl lg:text-7xl text-white z-10 font-bold mb-1 lg:mb-8 bg-white/5 backdrop-blur-sm px-10 py-3'>
+                <h1 className='text-xl lg:text-7xl text-white z-10 font-bold mb-1 lg:mb-8 bg-white/5 backdrop-blur-sm px-10 py-3'>
                     <AnimatedText text="Viviendas de lujo a tu alcance" />
                 </h1>
             </motion.div>
