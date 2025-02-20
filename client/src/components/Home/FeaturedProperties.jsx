@@ -77,11 +77,12 @@ export default function FeaturedProperties() {
 
                             {/*imagen de la propiedad */}
                             <motion.img
-                                className='w-96 h-70 xl:h-full xl:w-[500px] object-cover  cursor-pointer'
+                                className='w-96 h-70 xl:h-full xl:w-[500px] object-cover cursor-pointer'
                                 src={image}
                                 alt=""
-                                
+                                whileTap={{ scale: 0.95 }}
                             />
+
 
                             {/*titulo de la propiedad */}
                             <motion.div

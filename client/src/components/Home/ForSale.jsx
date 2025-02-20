@@ -26,7 +26,7 @@ export const ForSale = () => {
             >
                 <h3 className='mb-10 xl:mb-32  w-80 lg:w-full'>¿Tienes una propiedad para vender?</h3>
                 <p className='leading-relaxed w-80 lg:w-full'>
-                    Déjalo en manos de especialistas, contáctenos y lo asesoraremos para que obtenga la mejor rentabilidad de su inversión inmobiliaria.
+                    Déjelo en manos de especialistas, contáctenos y lo asesoraremos para que obtenga la mejor rentabilidad de su inversión inmobiliaria.
                 </p>
             </motion.div>
 

@@ -34,7 +34,7 @@ export const Banner = () => {
         <motion.header
             className='h-[300px] lg:h-screen relative flex flex-col'
             style={{
-                backgroundImage: "url('/src/img/pexels-binyaminmellish-186077.jpg')",
+                backgroundImage: "url('/src/img/banner.webp')",
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
             }}
