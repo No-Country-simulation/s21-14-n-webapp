@@ -1,14 +1,14 @@
-
+import React from 'react'
 import { createBrowserRouter } from "react-router-dom";
 import HomeLayout from "./layouts/HomeLayout";
 import Home from "./pages/Home";
 import ListOfProperties from "./pages/ListOfProperties";
 import PropertiePage from "./pages/PropertiePage";
 import AdminLayout from "./layouts/AdminLayout";
+
 import PropertiesForm from "./pages/admin/PropertiesForm";
 
 //Home Templates
-
 export const router = createBrowserRouter([
     //Home 
     {
@@ -22,11 +22,11 @@ export const router = createBrowserRouter([
             element: <Home/>
         },
         {
-            path: "/inmuebles",
+            path: "inmuebles",
             element: <ListOfProperties/>
         },
         {
-            path: "/inmueble",
+            path: "inmueble",
             element: <PropertiePage/>
         }
     ],
