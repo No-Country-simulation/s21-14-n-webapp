@@ -1,4 +1,4 @@
-import PropertyCard from "../components/PropertyCard";
+import PropertyCard from "../components/shared/PropertyCard";
 import ThemeProvider from '../components/shared/dark-theme/ThemeProvider';
 import ThemeSelect from '../components/shared/dark-theme/ThemeSelect';
 

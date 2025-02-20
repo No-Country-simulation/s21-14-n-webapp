@@ -122,7 +122,7 @@ const PropertyPage = () =>
   return (
     <ThemeProvider>
       <div className="bg-white dark:bg-bg-color dark:text-white transition-colors duration-500 ease-in-out">
-        <ThemeSelect displayType='icons'/>
+        <ThemeSelect displayType='toggle'/>
         <a href="" className="fixed bottom-20 right-10 bg-emerald-400 h-12 w-12  rounded-full flex items-center justify-center
         dark:bg-neutral-400 dark:hover:bg-emerald-500 transition-all duration-300
         " target="_blank">
