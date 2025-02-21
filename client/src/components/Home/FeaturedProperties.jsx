@@ -109,7 +109,7 @@ export default function FeaturedProperties() {
                             {/* Div condicional */}
                             {hovered === index && (
                                 <motion.div
-                                    className={`bg-gray-950 h-full lg:h-[50%] ml-10 lg:w-72 text-black p-4 space-y-6 absolute flex flex-col justify-center z-50 ${
+                                    className={`bg-gray-950 h-full xl:h-[50%] ml-10 lg:w-72 text-black p-4 space-y-6 absolute flex flex-col justify-center z-50 ${
                                         isLastImage ? "-left-10 lg:left-20 -translate-x-full" : " right-1 lg:right-20 translate-x-full"
                                     }`}
                                     initial={{ opacity: 0, y: 20 }}
@@ -117,7 +117,7 @@ export default function FeaturedProperties() {
                                     exit={{ opacity: 0, y: 20 }}
                                     transition={transition}
                                 >
-                                    <div className='text-xs lg:text-xl flex flex-col gap-2 lg:gap-5  [&_p]:text-white   [&_span]:text-amber-300  font-semibold'>
+                                    <div className='text-xs lg:text-xl flex flex-col gap-2 lg:gap-5  [&_p]:text-white   [&_span]:text-amber-300  [&_span]:font-semibold'>
                                         <p>
                                             <span>Precio:</span> ${infoProperties[index].precio.toLocaleString('es-ES')}
                                         </p>
