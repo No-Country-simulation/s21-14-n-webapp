@@ -1,22 +1,10 @@
-import React from "react";
-import { NavBar } from "../components/shared/NavBar";
-import { Outlet } from "react-router-dom";
-import { Footer } from "../components/shared/Footer";
 
-const HomeLayout = () => {
+const Home = () => {
   return (
-    <div>
-        <header>
-            <NavBar/>
-        </header>
-        <main>
-            <Outlet/>
-        </main>
-        <footer>
-            <Footer/>
-        </footer>
-    </div>
-  )
+    <div className='text-black text-3xl'>Desde el Home</div>
+  
+
+)
 }
 
-export default HomeLayout
+export default Home
