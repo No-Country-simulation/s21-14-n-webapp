@@ -5,7 +5,7 @@ import Home from "./pages/Home";
 import ListOfProperties from "./pages/ListOfProperties";
 import PropertiePage from "./pages/PropertiePage";
 import AdminLayout from "./layouts/AdminLayout";
-import PropertiesForm from "./pages/PropertiesForm";
+import PropertiesForm from "./pages/admin/PropertiesForm";
 //Home Templates
 
 export const router = createBrowserRouter([
@@ -41,7 +41,7 @@ export const router = createBrowserRouter([
 
             },
             {
-                path: "/crearInmueble",
+                path: "crearInmueble",
                 element: <PropertiesForm/>
             }
         ]
