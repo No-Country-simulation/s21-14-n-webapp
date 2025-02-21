@@ -77,7 +77,7 @@ export default function FeaturedProperties() {
 
                             {/*imagen de la propiedad */}
                             <motion.img
-                                className='w-96 h-70 xl:h-full xl:w-[500px] object-cover cursor-pointer'
+                                className='w-96 h-70 lg:h-96 xl:h-full xl:w-[500px] object-cover cursor-pointer'
                                 src={image}
                                 alt=""
                                 whileTap={{ scale: 0.95 }}
@@ -86,7 +86,7 @@ export default function FeaturedProperties() {
 
                             {/*titulo de la propiedad */}
                             <motion.div
-                                className='bg-white/30 backdrop-blur-xl h-20 xl:h-10 z-10 absolute p-2 xl:p-0 xl:text-3xl mt-[160px] lg:mt-[650px] text-white brightness-110 flex justify-center items-center w-full'
+                                className='bg-white/30 backdrop-blur-xl h-20 lg:h-10 z-10 absolute p-2 xl:p-0 xl:text-3xl mt-[160px] lg:mt-[290px] xl:mt-[650px] text-black font-semibold brightness-110 flex justify-center items-center w-full'
                                 initial={{ y: 20, opacity: 1 }}
                                 animate={{
                                     y: hovered === index ? 0 : 20,
@@ -117,7 +117,7 @@ export default function FeaturedProperties() {
                                     exit={{ opacity: 0, y: 20 }}
                                     transition={transition}
                                 >
-                                    <div className='text-xs lg:text-xl flex flex-col gap-2 lg:gap-5   [&_span]:text-amber-300  font-semibold'>
+                                    <div className='text-xs lg:text-xl flex flex-col gap-2 lg:gap-5  [&_p]:text-white   [&_span]:text-amber-300  font-semibold'>
                                         <p>
                                             <span>Precio:</span> ${infoProperties[index].precio.toLocaleString('es-ES')}
                                         </p>
