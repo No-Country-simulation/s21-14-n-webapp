@@ -143,6 +143,3 @@ export default function FeaturedProperties() {
         </div>
     );
 };
-
-
-
