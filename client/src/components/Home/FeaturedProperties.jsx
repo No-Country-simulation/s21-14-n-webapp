@@ -80,7 +80,7 @@ export default function FeaturedProperties() {
                                 className='w-96 h-70 lg:h-96 xl:h-full xl:w-[500px] object-cover cursor-pointer'
                                 src={image}
                                 alt=""
-                                whileTap={{ scale: 0.95 }}
+                                whileTap={{ scale: 0.95, borderRadius: "50px" }}
                             />
 
 
