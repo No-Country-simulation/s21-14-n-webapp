@@ -5,10 +5,10 @@ export default function FeaturedProperties() {
     const [hovered, setHovered] = useState(null);
 
     const featurePropeties = [
-        '/src/img/feature-properties/pexels-30nudos-adicora-164429726-13907871.jpg',
-        '/src/img/feature-properties/pexels-kate-filatova-1861817299-30707539.jpg',
-        '/src/img/feature-properties/pexels-rgsk97-1717272.jpg',
-        '/src/img/feature-properties/pexels-scottwebb-430216.jpg'
+        '/public/img/feature-properties/pexels-30nudos-adicora-164429726-13907871.jpg',
+        '/public/img/feature-properties/pexels-kate-filatova-1861817299-30707539.jpg',
+        '/public/img/feature-properties/pexels-rgsk97-1717272.jpg',
+        '/public/img/feature-properties/pexels-scottwebb-430216.jpg'
     ];
 
     const titlesProperties = [
@@ -58,8 +58,8 @@ export default function FeaturedProperties() {
 
 
     return (
-        <div className='flex flex-col items-center h-full xl:h-full pt-20 xl:pt-32 pb:20 xl:pb-32 bg-[#333]'>
-            <h2 className='text-3xl font-semibold text-amber-300'>Propiedades Destacadas</h2>
+        <div className='flex flex-col items-center h-full xl:h-full pt-20 xl:pt-32 pb:20 xl:pb-32'>
+            <h2 className='text-5xl font-semibold text-secundary'>Propiedades Destacadas</h2>
             <div className='flex h-full px-3 xl:px-20 mt-20 xl:mt-32'>
                 {featurePropeties.map((image, index) => {
                     const isLastImage = index === featurePropeties.length - 1; 
@@ -86,7 +86,7 @@ export default function FeaturedProperties() {
 
                             {/*titulo de la propiedad */}
                             <motion.div
-                                className='bg-white/30 backdrop-blur-xl h-20 lg:h-10 z-10 absolute p-2 xl:p-0 xl:text-3xl mt-[160px] lg:mt-[290px] xl:mt-[650px] text-black font-semibold brightness-110 flex justify-center items-center w-full'
+                                className='bg-primary/30 backdrop-blur-xl h-20 lg:h-10 z-10 absolute p-2 xl:p-0 xl:text-3xl mt-[160px] lg:mt-[290px] xl:mt-[650px] text-tertiary font-semibold brightness-110 flex justify-center items-center w-full'
                                 initial={{ y: 20, opacity: 1 }}
                                 animate={{
                                     y: hovered === index ? 0 : 20,
@@ -109,7 +109,7 @@ export default function FeaturedProperties() {
                             {/* Div condicional */}
                             {hovered === index && (
                                 <motion.div
-                                    className={`bg-gray-950 h-full xl:h-[50%] ml-10 lg:w-72 text-black p-4 space-y-6 absolute flex flex-col justify-center z-50 ${
+                                    className={`bg-primary border-4 rounded-sm shadow-xl shadow-primary border-secundary h-full xl:h-[50%] ml-10 lg:w-72 text-black p-4 space-y-6 absolute flex flex-col justify-center z-50 ${
                                         isLastImage ? "-left-10 lg:left-20 -translate-x-full" : " right-1 lg:right-20 translate-x-full"
                                     }`}
                                     initial={{ opacity: 0, y: 20 }}
@@ -117,7 +117,7 @@ export default function FeaturedProperties() {
                                     exit={{ opacity: 0, y: 20 }}
                                     transition={transition}
                                 >
-                                    <div className='text-xs lg:text-xl flex flex-col gap-2 lg:gap-5  [&_p]:text-white   [&_span]:text-amber-300  [&_span]:font-semibold'>
+                                    <div className='text-xs lg:text-xl flex flex-col gap-2 lg:gap-5  [&_p]:text-tertiary   [&_span]:text-secundary [&_span]:font-semibold'>
                                         <p>
                                             <span>Precio:</span> ${infoProperties[index].precio.toLocaleString('es-ES')}
                                         </p>
