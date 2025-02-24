@@ -96,7 +96,7 @@ const PropertyPage = () =>
         <h1 className="mt-8 text-center text-xl md:text-2xl font-bold text-secundary capitalize">Hermosa Casa en Alquiler - Córdoba</h1>
         <main className=" flex flex-col mt-4 sm:mt-10">
               
-          <section className="mt-4 sm:mt-0 flex flex-col md:flex-row justify-center items-center gap-4 sm:px-10 md:px-20">
+          <section className="mt-4 pb-4 sm:mt-0 flex flex-col md:flex-row justify-center items-center gap-4 sm:px-10 md:px-20">
             <div className="md:basis-8/12 lg:basis-6/12">
               <GalleryItem width={"w-full"} height={"h-full"} imageSrc={mainImage.at(0).imgSrc} imgAlt={mainImage.at(0).imgAlt}/>
 
@@ -106,7 +106,7 @@ const PropertyPage = () =>
             </div>
           </section> 
 
-          <section className="mt-4 px-8 sm:mt-0 sm:px-32">       
+          <section className="mt-4 px-8 sm:mt-0 sm:px-32 dark:bg-white dark:text-black">       
             <ul className='py-6 px-4 space-y-4'>
               {propertyData.caracteristicas.map((caracteristica, index) => (
                 <li key={index} className=''>- {caracteristica}</li>
