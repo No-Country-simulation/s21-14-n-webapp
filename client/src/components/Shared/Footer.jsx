@@ -14,8 +14,8 @@ export const Footer = () => {
             <div className="flex  items-center gap-10 lg:gap-[560px]">
                 <span className=' text-xs lg:text-lg xl:text-2xl  flex '>Copyright &copy; 2025 Urbania. </span>
                 <div>
-                    <img src="/public/logo_Urbania-04.png" className="w-12 hidden xl:flex" alt="" />
-                    <img src="/public/logo_Urbania-03.png" className="w-42 flex xl:hidden  " alt="" />
+                    <img src="/logo_Urbania-04.png" className="w-12 hidden xl:flex" alt="" />
+                    <img src="/logo_Urbania-03.png" className="w-42 flex xl:hidden  " alt="" />
                 </div>
 
             </div>

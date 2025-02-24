@@ -54,9 +54,9 @@ const ListOfProperties = () => {
 
    
     <ThemeProvider>
-      <div className="pt-20 bg-white dark:bg-bg-color dark:text-white transition-colors duration-500 ease-in-out">
+      <div className=" bg-white dark:bg-primary dark:text-white transition-colors duration-500 ease-in-out">
         <ThemeSelect/>
-        <h1 className="text-4xl font-semibold text-center text-text-color">Propiedades</h1>
+        <h1 className="text-4xl font-semibold text-center text-secundary">Propiedades</h1>
         <form action="" className="mt-8 px-10 md:px-28 flex flex-col lg:flex-row justify-center items-center md:justify-between gap-6">
           <div className="flex items-center gap-2 ">
             <label htmlFor="code">Busqueda por código</label>
@@ -94,7 +94,7 @@ const ListOfProperties = () => {
         </form>
 
 
-        <div className=" py-10 px-10 md:px-28 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 grid lg:grid-cols-4 gap-x-8 gap-y-8">
+        <div className=" py-10 px-10 md:px-28 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 grid lg:grid-cols-4 gap-x-16 gap-y-8">
           {propertyImages.map((image, index) => (
             <PropertyCard key={index} imgSrc={image.imgSrc}/>
           ))}
