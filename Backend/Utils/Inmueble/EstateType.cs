@@ -1,4 +1,4 @@
-﻿namespace UrbaniaBackend.Utils
+﻿namespace UrbaniaBackend.Utils.Inmueble
 {
     public enum EstateType
     {
