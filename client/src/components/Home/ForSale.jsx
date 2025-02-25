@@ -2,6 +2,9 @@
 import { motion } from "motion/react"
 
 export const ForSale = () => {
+
+
+    
     return (
         <div className='bg-tertiary flex flex-col lg:flex-row lg:gap-2 xl:gap-0 justify-between items-center pt-28 px-3 xl:px-20 xl:pt-32 pb-20 xl:pb-32'>
             
