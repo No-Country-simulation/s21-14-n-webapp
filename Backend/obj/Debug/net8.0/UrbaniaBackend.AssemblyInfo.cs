@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("UrbaniaBackend")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d440569d3d30a04c1638d1ec558a84ca99852b3d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+39019bc125241777cf795874d085a88fed547b34")]
 [assembly: System.Reflection.AssemblyProductAttribute("UrbaniaBackend")]
 [assembly: System.Reflection.AssemblyTitleAttribute("UrbaniaBackend")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

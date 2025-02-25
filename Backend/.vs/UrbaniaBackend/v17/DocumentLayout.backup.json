@@ -1,7 +1,36 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "F:\\NET pr\\SimulacionNoCountry\\Urbania\\Backend\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{8929E361-D54C-48DB-A843-A9B87C82640A}|UrbaniaBackend.csproj|f:\\net pr\\simulacionnocountry\\urbania\\backend\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8929E361-D54C-48DB-A843-A9B87C82640A}|UrbaniaBackend.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8929E361-D54C-48DB-A843-A9B87C82640A}|UrbaniaBackend.csproj|f:\\net pr\\simulacionnocountry\\urbania\\backend\\controllers\\inmueblescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8929E361-D54C-48DB-A843-A9B87C82640A}|UrbaniaBackend.csproj|solutionrelative:controllers\\inmueblescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8929E361-D54C-48DB-A843-A9B87C82640A}|UrbaniaBackend.csproj|f:\\net pr\\simulacionnocountry\\urbania\\backend\\dtos\\inmueble\\inmuebledto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8929E361-D54C-48DB-A843-A9B87C82640A}|UrbaniaBackend.csproj|solutionrelative:dtos\\inmueble\\inmuebledto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8929E361-D54C-48DB-A843-A9B87C82640A}|UrbaniaBackend.csproj|f:\\net pr\\simulacionnocountry\\urbania\\backend\\services\\inmueble\\inmuebleservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8929E361-D54C-48DB-A843-A9B87C82640A}|UrbaniaBackend.csproj|solutionrelative:services\\inmueble\\inmuebleservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8929E361-D54C-48DB-A843-A9B87C82640A}|UrbaniaBackend.csproj|f:\\net pr\\simulacionnocountry\\urbania\\backend\\services\\inmueble\\iinmuebleservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8929E361-D54C-48DB-A843-A9B87C82640A}|UrbaniaBackend.csproj|solutionrelative:services\\inmueble\\iinmuebleservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8929E361-D54C-48DB-A843-A9B87C82640A}|UrbaniaBackend.csproj|f:\\net pr\\simulacionnocountry\\urbania\\backend\\models\\inmuebles.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8929E361-D54C-48DB-A843-A9B87C82640A}|UrbaniaBackend.csproj|solutionrelative:models\\inmuebles.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8929E361-D54C-48DB-A843-A9B87C82640A}|UrbaniaBackend.csproj|f:\\net pr\\simulacionnocountry\\urbania\\backend\\context\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8929E361-D54C-48DB-A843-A9B87C82640A}|UrbaniaBackend.csproj|solutionrelative:context\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,7 +38,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 13,
           "Children": [
             {
               "$type": "Bookmark",
@@ -60,8 +89,89 @@
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Inmuebles.cs",
+              "DocumentMoniker": "F:\\NET pr\\SimulacionNoCountry\\Urbania\\Backend\\Models\\Inmuebles.cs",
+              "RelativeDocumentMoniker": "Models\\Inmuebles.cs",
+              "ToolTip": "F:\\NET pr\\SimulacionNoCountry\\Urbania\\Backend\\Models\\Inmuebles.cs",
+              "RelativeToolTip": "Models\\Inmuebles.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-25T00:41:02.107Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "F:\\NET pr\\SimulacionNoCountry\\Urbania\\Backend\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "F:\\NET pr\\SimulacionNoCountry\\Urbania\\Backend\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-25T00:30:16.009Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "IInmuebleService.cs",
+              "DocumentMoniker": "F:\\NET pr\\SimulacionNoCountry\\Urbania\\Backend\\Services\\Inmueble\\IInmuebleService.cs",
+              "RelativeDocumentMoniker": "Services\\Inmueble\\IInmuebleService.cs",
+              "ToolTip": "F:\\NET pr\\SimulacionNoCountry\\Urbania\\Backend\\Services\\Inmueble\\IInmuebleService.cs",
+              "RelativeToolTip": "Services\\Inmueble\\IInmuebleService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-25T00:05:46.712Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "InmuebleService.cs",
+              "DocumentMoniker": "F:\\NET pr\\SimulacionNoCountry\\Urbania\\Backend\\Services\\Inmueble\\InmuebleService.cs",
+              "RelativeDocumentMoniker": "Services\\Inmueble\\InmuebleService.cs",
+              "ToolTip": "F:\\NET pr\\SimulacionNoCountry\\Urbania\\Backend\\Services\\Inmueble\\InmuebleService.cs",
+              "RelativeToolTip": "Services\\Inmueble\\InmuebleService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-24T23:20:13.802Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "InmuebleDTO.cs",
+              "DocumentMoniker": "F:\\NET pr\\SimulacionNoCountry\\Urbania\\Backend\\Dtos\\Inmueble\\InmuebleDTO.cs",
+              "RelativeDocumentMoniker": "Dtos\\Inmueble\\InmuebleDTO.cs",
+              "ToolTip": "F:\\NET pr\\SimulacionNoCountry\\Urbania\\Backend\\Dtos\\Inmueble\\InmuebleDTO.cs",
+              "RelativeToolTip": "Dtos\\Inmueble\\InmuebleDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-25T00:05:21.524Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "InmueblesController.cs",
+              "DocumentMoniker": "F:\\NET pr\\SimulacionNoCountry\\Urbania\\Backend\\Controllers\\InmueblesController.cs",
+              "RelativeDocumentMoniker": "Controllers\\InmueblesController.cs",
+              "ToolTip": "F:\\NET pr\\SimulacionNoCountry\\Urbania\\Backend\\Controllers\\InmueblesController.cs",
+              "RelativeToolTip": "Controllers\\InmueblesController.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAgwAUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-25T00:09:21.47Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "AppDbContext.cs",
+              "DocumentMoniker": "F:\\NET pr\\SimulacionNoCountry\\Urbania\\Backend\\Context\\AppDbContext.cs",
+              "RelativeDocumentMoniker": "Context\\AppDbContext.cs",
+              "ToolTip": "F:\\NET pr\\SimulacionNoCountry\\Urbania\\Backend\\Context\\AppDbContext.cs",
+              "RelativeToolTip": "Context\\AppDbContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-24T23:21:56.531Z"
             }
           ]
         }
