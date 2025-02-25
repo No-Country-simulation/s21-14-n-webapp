@@ -1,6 +1,7 @@
 import PropertyCard from "../components/shared/PropertyCard";
-import ThemeProvider from '../components/shared/dark-theme/ThemeProvider';
-import ThemeSelect from '../components/shared/dark-theme/ThemeSelect';
+import ThemeSelect from "../components/shared/ThemeSelect";
+import ThemeProvider from '../context/ThemeProvider';
+
 
 
 const propertyImages = [
@@ -55,7 +56,7 @@ const ListOfProperties = () => {
    
     <ThemeProvider>
       <div className=" bg-white dark:bg-primary dark:text-white transition-colors duration-500 ease-in-out">
-        <ThemeSelect/>
+        <ThemeSelect displayType="icons"/>
         <h1 className="text-4xl font-semibold text-center text-secundary">Propiedades</h1>
         <form action="" className="mt-8 px-10 md:px-28 flex flex-col lg:flex-row justify-center items-center md:justify-between gap-6">
           <div className="flex items-center gap-2 ">
@@ -101,9 +102,7 @@ const ListOfProperties = () => {
         </div>
         
       </div>
-    </ThemeProvider>
-   
-    
+    </ThemeProvider>    
   )
 }
 

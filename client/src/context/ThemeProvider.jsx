@@ -1,14 +1,23 @@
-import { createContext, useContext, useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
+import ThemeContext from './ThemeContext';
 
-
-const ThemeContext = createContext();
 
 const getInitialTheme = () => 
 {
     // Handle server-side rendering scenario
     if (typeof window === 'undefined') return 'light';
     const storedTheme = localStorage.getItem('theme');
-    return storedTheme ? storedTheme : 'dark';
+    //return storedTheme ? storedTheme : 'dark';
+    if (storedTheme) return storedTheme;
+  
+  // If not in localStorage, check system preference
+  if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    return 'dark';
+  }
+  
+  // Default fallback
+  return 'light';
+
 }
 
 const ThemeProvider = ({ children }) =>
@@ -29,16 +38,4 @@ const ThemeProvider = ({ children }) =>
     )
 }
 
-export function useTheme() 
-{
-    const context = useContext(ThemeContext);
-
-    if (context === undefined) 
-    {
-        throw new Error('useTheme must be used within a ThemeProvider');
-    }
-
-    return context;
-}
-
-export default ThemeProvider
+export default ThemeProvider;

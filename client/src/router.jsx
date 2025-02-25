@@ -6,6 +6,8 @@ import ListOfProperties from "./pages/ListOfProperties";
 import AdminLayout from "./layouts/AdminLayout";
 import PropertyPage from "./pages/PropertyPage";
 import PropertiesForm from "./pages/admin/PropertiesForm";
+import { ListCrudProperty } from "./pages/admin/ListCrudProperty";
+
 
 
 //Home Templates
@@ -46,6 +48,10 @@ export const router = createBrowserRouter([
             {
                 path: "crearInmueble",
                 element: <PropertiesForm/>
+            },
+            {
+                path: "CrudPropiedad",
+                element:<ListCrudProperty/>
             }
         ]
     }

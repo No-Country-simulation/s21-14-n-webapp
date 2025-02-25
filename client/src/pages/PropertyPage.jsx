@@ -1,7 +1,6 @@
 import GalleryItem from '../components/shared/GalleryItem';
 import PropertyDetails from '../components/PropertyDetails/PropertyDetails';
-import ThemeProvider from '../components/shared/dark-theme/ThemeProvider';
-import ThemeSelect from '../components/shared/dark-theme/ThemeSelect';
+import ThemeSelect from '../components/shared/ThemeSelect';
 
 
 const mainImage = [
@@ -90,7 +89,7 @@ const PropertyPage = () =>
 {
 
   return (
-    <ThemeProvider>
+
       <div className="bg-white dark:bg-primary dark:text-white transition-colors duration-500 ease-in-out">
         <ThemeSelect displayType='toggle'/>
         <h1 className="mt-8 text-center text-xl md:text-2xl font-bold text-secundary capitalize">Hermosa Casa en Alquiler - Córdoba</h1>
@@ -121,7 +120,7 @@ const PropertyPage = () =>
             ))}
         </div>    
       </div>
-    </ThemeProvider>
+
     
   )
 }
