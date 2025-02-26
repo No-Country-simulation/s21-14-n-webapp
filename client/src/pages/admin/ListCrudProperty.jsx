@@ -5,6 +5,7 @@ import { Card } from '../../components/CrudAdmin/Card'
 export const ListCrudProperty = () => {
     return (
         <div className='w-screen h-full bg-primary flex flex-col'>
+
             <NavBar />
             <div className='flex justify-center items-center w-full py-5'> 
                 <h1 className='xl:text-4xl text-tertiary'>Control de inmuebles</h1>
