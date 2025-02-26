@@ -5,10 +5,10 @@ export default function FeaturedProperties() {
     const [hovered, setHovered] = useState(null);
 
     const featurePropeties = [
-        '/public/img/feature-properties/pexels-30nudos-adicora-164429726-13907871.jpg',
-        '/public/img/feature-properties/pexels-kate-filatova-1861817299-30707539.jpg',
-        '/public/img/feature-properties/pexels-rgsk97-1717272.jpg',
-        '/public/img/feature-properties/pexels-scottwebb-430216.jpg'
+        '/casa1.jpg',
+        '/casa2.jpg',
+        'edificio1.jpg',
+        '/edificio2.jpg'
     ];
 
     const titlesProperties = [
