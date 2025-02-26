@@ -1,10 +1,10 @@
 import React from 'react'
 import { NavBar } from '../../components/shared/NavBar'
-import { ContainerProperties } from '../../components/CrudAdmin/ContainerProperties'
-
+import { Card } from '../../components/CrudAdmin/Card'
+//mañana: hacer que las card se multipliquen con un .map, y que la informacion llegue por props
 export const ListCrudProperty = () => {
     return (
-        <div className='w-screen h-screen bg-primary flex flex-col'>
+        <div className='w-screen h-full bg-primary flex flex-col'>
             <NavBar />
             <div className='flex justify-center items-center w-full py-5'> 
                 <h1 className='xl:text-4xl text-tertiary'>Control de inmuebles</h1>
@@ -13,14 +13,15 @@ export const ListCrudProperty = () => {
             <section className='flex justify-center items-center w-full flex-grow'>
 
                 {/*tablero */}
-                <div className='w-[60%] min-h-[90%] bg-tertiary flex flex-col'>
-                    <h2 className='text-3xl mt-5 ml-5'>Agregados recientemente</h2>
-                        <ContainerProperties/>
-                    <h2 className='text-3xl mt-5 ml-5'>Mas antiguas</h2>
-                    <div className='flex flex-col gap-5'>
-                        <ContainerProperties/>
-                        <ContainerProperties/>
-                    </div>
+                <div className='w-[40%] min-h-[90%] bg-tertiary flex flex-wrap px-10 py-5 gap-4 items-center justify-center shadow-2xl shadow-black rounded-lg'>
+                    <Card />
+                    <Card />
+                    <Card />
+                    <Card />
+                    <Card />
+                    <Card />
+                    <Card />
+                    <Card />
                 </div>
             </section>
         </div>
