@@ -9,7 +9,7 @@ namespace UrbaniaBackend.Context
             : base(options) { }
 
         public DbSet<Inmobiliaria> Inmobiliarias { get; set; }
-        public DbSet<Inmuebles> Inmuebles { get; set; }
+        public DbSet<Inmuebles> Inmueble { get; set; }
         public DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

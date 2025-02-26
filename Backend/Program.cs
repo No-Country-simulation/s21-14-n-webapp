@@ -9,6 +9,9 @@ using UrbaniaBackend.Data;
 using UrbaniaBackend.Models;
 using UrbaniaBackend.Services;
 using UrbaniaBackend.Utils;
+using UrbaniaBackend.Services.Inmueble;
+
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -47,6 +50,9 @@ builder.Services.AddScoped<IPasswordHelper, PasswordHelper>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 
+builder.Services.AddScoped<IInmuebleService, InmueblesService>();
+
+
 builder.Services.AddControllers();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -67,6 +73,8 @@ builder.Services.AddSwaggerGen(c =>
     );
     c.OperationFilter<AuthorizeCheckOperationFilter>();
 });
+
+
 
 var app = builder.Build();
 
