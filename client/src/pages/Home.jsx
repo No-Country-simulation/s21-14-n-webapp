@@ -1,12 +1,12 @@
 import React from 'react'
-import { Banner } from '../components/Home/Banner'
-import { FeaturedProperties } from '../components/Home/FeaturedProperties'
-import { ForSale } from '../components/Home/ForSale'
+import { Banner } from '../components/home/Banner'
+import { ForSale } from '../components/home/ForSale'
+const FeaturedProperties = React.lazy(() => import('../components/home/FeaturedProperties'));
 
 
 const Home = () => {
     return (
-        <div className='max-w-screen bg-[#333]' >
+        <div className='max-w-screen bg-primary' >
             <header>
                 <Banner/>
             </header>
