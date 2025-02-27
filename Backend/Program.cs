@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+
 using UrbaniaBackend.Context;
 using UrbaniaBackend.Data;
 using UrbaniaBackend.Models;
@@ -49,6 +50,9 @@ builder.Services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
 builder.Services.AddScoped<IPasswordHelper, PasswordHelper>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
+// Services
+builder.Services.AddScoped<IInmobiliariaService, InmobiliariaService>();
+
 
 builder.Services.AddScoped<IInmuebleService, InmueblesService>();
 
@@ -81,8 +85,8 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+	app.UseSwagger();
+	app.UseSwaggerUI();
 }
 
 using (var scope = app.Services.CreateScope())
