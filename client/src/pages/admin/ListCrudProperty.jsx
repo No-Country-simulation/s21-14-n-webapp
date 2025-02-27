@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { NavBar } from '../../components/shared/NavBar'
 import { Card } from '../../components/CrudAdmin/Card'
-//mañana: hacer que las card se multipliquen con un .map, y que la informacion llegue por props
+
 export const ListCrudProperty = () => {
+    const [activeCardId, setActiveCardId] = useState(null);
 
     const detailsProperty = [
         {
@@ -61,23 +62,34 @@ export const ListCrudProperty = () => {
         }
 
     ]
+    const handleCardClick = (id) => {
+        setActiveCardId(activeCardId === id ? null : id);
+    };
 
     return (
         <div className='w-screen h-full bg-primary flex flex-col'>
             <NavBar />
-            <div className='flex justify-center items-center w-full py-5'> 
+            <div className='flex justify-center items-center w-full py-5'>
                 <h1 className='xl:text-4xl text-tertiary'>Control de inmuebles</h1>
             </div>
-            {/*seccion de titulo para abajo */}
             <section className='flex justify-center items-center w-full flex-grow'>
-
-                {/*tablero */}
-                <div className='w-[60%] min-h-[90%]  grid-cols-2 px-10 py-5 gap-4 items-center justify-center  rounded-lg'>
-                    {detailsProperty.map((propiedad)=>(
-                        <Card key={propiedad.id} imagen={propiedad.imagen} titulo={propiedad.titulo} descripcion={propiedad.descripcion} tipo={propiedad.tipo} ubicacion={propiedad.ubicacion} precio={propiedad.precio}/>
+                <div className='w-[80%] min-h-[90%] flex flex-wrap px-10 py-5 gap-4 items-center justify-center rounded-lg'>
+                    {detailsProperty.map((propiedad) => (
+                        <Card
+                            key={propiedad.id}
+                            id={propiedad.id}
+                            imagen={propiedad.imagen}
+                            titulo={propiedad.titulo}
+                            descripcion={propiedad.descripcion}
+                            tipo={propiedad.tipo}
+                            ubicacion={propiedad.ubicacion}
+                            precio={propiedad.precio}
+                            isActive={activeCardId === propiedad.id}
+                            onClick={() => handleCardClick(propiedad.id)}
+                        />
                     ))}
                 </div>
             </section>
         </div>
-    )
-}
+    );
+};
