@@ -6,11 +6,9 @@ function PropertyDetails({ details, children })
 {
   return (
     <>
-        <span className='text-xl'>Código: {details.codigo}</span>
-        <hr className='border-t w-1/4 mt-2 opacity-95 border-grey-50'/>
-        <div className="py-4 grid lg:grid-cols-2 lg:grid-rows-2">
+        <div className="py-4 space-y-2">
             {Object.entries(details)
-                .filter(([key]) => key !== 'codigo' && key !== 'costo')
+                .filter(([key]) => key !== 'caracteristicas' & key !== 'costo')
                 .map(([key, value]) => (
                 <div key={key} className="flex items-center gap-2">
                     <div className="flex items-center">
@@ -19,10 +17,13 @@ function PropertyDetails({ details, children })
                     <span>{value}</span>
                 </div>
             ))}
-        </div>
+        </div>        
         {children}
-        <span className='mt-1 text-2xl font-bold text-text-color '>$ {details.costo} por mes</span>
-    
+        <button type="button" className='my-4 py-1 px-6 bg-neutral-100 rounded-md text-black font-medium cursor-pointer 
+        hover:bg-orange-200 active:bg-orange-300'>
+            Comprar
+        </button>
+        <span className='block mt-2 text-2xl font-bold text-secundary '>U$D {details.costo}</span>
     </>
   )
 }
