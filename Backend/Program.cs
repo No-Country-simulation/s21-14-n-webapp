@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+
 using UrbaniaBackend.Context;
 using UrbaniaBackend.Services.Inmueble;
 
@@ -10,6 +11,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 var connectionString = builder.Configuration.GetConnectionString("ConnectionDB");
 builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(connectionString));
+
+// Services
+builder.Services.AddScoped<IInmobiliariaService, InmobiliariaService>();
 
 
 builder.Services.AddScoped<IInmuebleService, InmueblesService>();
@@ -27,8 +31,8 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+	app.UseSwagger();
+	app.UseSwaggerUI();
 }
 
 app.UseHttpsRedirection();
