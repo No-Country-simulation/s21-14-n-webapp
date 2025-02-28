@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using UrbaniaBackend.Context;
 
@@ -11,9 +12,11 @@ using UrbaniaBackend.Context;
 namespace UrbaniaBackend.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250224043437_AddUserTable")]
+    partial class AddUserTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,7 +51,7 @@ namespace UrbaniaBackend.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Inmobiliaria");
+                    b.ToTable("Inmobiliarias");
                 });
 
             modelBuilder.Entity("UrbaniaBackend.Models.Inmuebles", b =>
@@ -85,14 +88,15 @@ namespace UrbaniaBackend.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("TypeEstate")
-                        .HasColumnType("int");
+                    b.Property<string>("TypeEstate")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("InmobiliariaId");
 
-                    b.ToTable("Inmueble");
+                    b.ToTable("Inmuebles");
                 });
 
             modelBuilder.Entity("UrbaniaBackend.Models.User", b =>
