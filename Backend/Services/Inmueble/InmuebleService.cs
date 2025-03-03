@@ -22,7 +22,9 @@ public class InmueblesService : IInmuebleService
             Description = inmueble.Description,
             Price = inmueble.Price,
             Adress = inmueble.Adress,
-            TypeEstate = inmueble.TypeEstate,
+            SquareMeters = inmueble.SquareMeters,
+            TypeProperty = inmueble.TypeProperty,
+            TypeContract = inmueble.TypeContract,
             ImageUrl = inmueble.ImageUrl,
             DatePublication = inmueble.DatePublication,
             InmobiliariaId = inmueble.InmobiliariaId
@@ -45,7 +47,9 @@ public class InmueblesService : IInmuebleService
             Description = inmueble.Description,
             Price = inmueble.Price,
             Adress = inmueble.Adress,
-            TypeEstate = inmueble.TypeEstate,
+            SquareMeters = inmueble.SquareMeters,
+            TypeProperty = inmueble.TypeProperty,
+            TypeContract = inmueble.TypeContract,
             ImageUrl = inmueble.ImageUrl,
             DatePublication = inmueble.DatePublication,
             InmobiliariaId = inmueble.InmobiliariaId
@@ -60,7 +64,9 @@ public class InmueblesService : IInmuebleService
             Description = inmuebleDto.Description,
             Price = inmuebleDto.Price,
             Adress = inmuebleDto.Adress,
-            TypeEstate = inmuebleDto.TypeEstate,
+            SquareMeters = inmuebleDto.SquareMeters,
+            TypeProperty = inmuebleDto.TypeProperty,
+            TypeContract = inmuebleDto.TypeContract,
             ImageUrl = inmuebleDto.ImageUrl,
             DatePublication = inmuebleDto.DatePublication,
             InmobiliariaId = inmuebleDto.InmobiliariaId
@@ -85,7 +91,9 @@ public class InmueblesService : IInmuebleService
         inmueble.Description = inmuebleDto.Description;
         inmueble.Price = inmuebleDto.Price;
         inmueble.Adress = inmuebleDto.Adress;
-        inmueble.TypeEstate = inmuebleDto.TypeEstate;
+        inmueble.SquareMeters = inmuebleDto.SquareMeters;
+        inmueble.TypeProperty = inmuebleDto.TypeProperty;
+        inmueble.TypeContract = inmuebleDto.TypeContract;
         inmueble.ImageUrl = inmuebleDto.ImageUrl;
         inmueble.DatePublication = inmuebleDto.DatePublication;
         inmueble.InmobiliariaId = inmuebleDto.InmobiliariaId;
