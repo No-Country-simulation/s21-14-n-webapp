@@ -23,5 +23,34 @@ public static class DbSeeder
             );
             context.SaveChanges();
         }
+
+        if (!context.ContactFormTypes.Any())
+        {
+            context.ContactFormTypes.Add(
+                new ContactFormType
+                {
+                    Code = "get_property",
+                    Title = "Quiero adquirir/rentar un inmueble",
+                }
+            );
+            context.ContactFormTypes.Add(
+                new ContactFormType { Code = "get_more_info", Title = "Quiero más información" }
+            );
+            context.ContactFormTypes.Add(
+                new ContactFormType
+                {
+                    Code = "get_visit",
+                    Title = "Quiero solicitar una visita a la propiedad",
+                }
+            );
+            context.ContactFormTypes.Add(
+                new ContactFormType
+                {
+                    Code = "sell_property",
+                    Title = "Quiero vender/alquilar un inmueble",
+                }
+            );
+            context.SaveChanges();
+        }
     }
 }
