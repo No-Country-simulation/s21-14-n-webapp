@@ -1,6 +1,5 @@
-import PropertySearchForm from "../components/PropertyDetails/PropertySearchForm ";
+import PropertySearchForm from "../components/propertyDetails/PropertySearchForm ";
 import PropertyCard from "../components/shared/PropertyCard";
-import ThemeSelect from "../components/shared/ThemeSelect";
 import ThemeProvider from '../context/ThemeProvider';
 
 

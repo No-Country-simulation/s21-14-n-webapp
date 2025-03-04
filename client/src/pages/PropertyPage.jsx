@@ -1,5 +1,5 @@
 import GalleryItem from '../components/shared/GalleryItem';
-import PropertyDetails from '../components/PropertyDetails/PropertyDetails';
+import PropertyDetails from '../components/propertyDetails/PropertyDetails';
 import ThemeSelect from '../components/shared/ThemeSelect';
 
 

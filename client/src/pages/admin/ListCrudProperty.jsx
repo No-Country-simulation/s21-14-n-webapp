@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { NavBar } from '../../components/shared/NavBar'
-import { Card } from '../../components/CrudAdmin/Card'
+import { Card } from '../../components/crudAdmin/Card'
 
 export const ListCrudProperty = () => {
     const [activeCardId, setActiveCardId] = useState(null);
