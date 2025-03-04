@@ -12,7 +12,7 @@ using UrbaniaBackend.Context;
 namespace UrbaniaBackend.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250302004437_AddContactFormType")]
+    [Migration("20250304190616_AddContactFormType")]
     partial class AddContactFormType
     {
         /// <inheritdoc />
@@ -60,7 +60,7 @@ namespace UrbaniaBackend.Migrations
                     b.HasIndex("Title")
                         .IsUnique();
 
-                    b.ToTable("ContactFormTypes");
+                    b.ToTable("ContactFormType");
                 });
 
             modelBuilder.Entity("UrbaniaBackend.Models.Inmobiliaria", b =>
@@ -89,7 +89,7 @@ namespace UrbaniaBackend.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Inmobiliarias");
+                    b.ToTable("Inmobiliaria");
                 });
 
             modelBuilder.Entity("UrbaniaBackend.Models.Inmuebles", b =>

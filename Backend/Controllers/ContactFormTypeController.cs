@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using UrbaniaBackend.Dtos.ContactFormType;
 using UrbaniaBackend.Models;
-using UrbaniaBackend.Services;
+using UrbaniaBackend.Services.ContactFormTypeS;
 
 namespace UrbaniaBackend.Controllers;
 
@@ -21,7 +21,7 @@ public class ContactFormTypeController(ContactFormTypeService _service) : Contro
     [ProducesResponseType(StatusCodes.Status201Created)]
     public async Task<ActionResult<ContactFormType>> Post([FromBody] CreateContactTypeDto dto)
     {
-        await _service.SaveContactFormType(dto);
+        await _service.SaveNew(dto);
         return Ok("Creado exitosamente");
     }
 

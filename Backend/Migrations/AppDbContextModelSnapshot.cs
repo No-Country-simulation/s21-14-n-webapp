@@ -57,7 +57,7 @@ namespace UrbaniaBackend.Migrations
                     b.HasIndex("Title")
                         .IsUnique();
 
-                    b.ToTable("ContactFormTypes");
+                    b.ToTable("ContactFormType");
                 });
 
             modelBuilder.Entity("UrbaniaBackend.Models.Inmobiliaria", b =>
@@ -86,7 +86,7 @@ namespace UrbaniaBackend.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Inmobiliarias");
+                    b.ToTable("Inmobiliaria");
                 });
 
             modelBuilder.Entity("UrbaniaBackend.Models.Inmuebles", b =>
