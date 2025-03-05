@@ -4,11 +4,13 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+
 using UrbaniaBackend.Context;
 using UrbaniaBackend.Data;
 using UrbaniaBackend.Models;
 using UrbaniaBackend.Services;
 using UrbaniaBackend.Utils;
+using UrbaniaBackend.Services.Inmueble;
 
 
 
@@ -86,9 +88,6 @@ if (app.Environment.IsDevelopment())
 	app.UseSwagger();
 	app.UseSwaggerUI();
 }
-//	app.UseSwagger();
-//  app.UseSwaggerUI();
-
 
 using (var scope = app.Services.CreateScope())
 {

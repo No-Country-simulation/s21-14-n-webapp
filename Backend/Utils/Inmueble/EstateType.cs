@@ -1,13 +1,10 @@
 ﻿namespace UrbaniaBackend.Utils.Inmueble
 {
-    public enum TypeProperty
+    public enum EstateType
     {
-        departamento,
-        casa,
-        oficina,
-        ph,
-        turistico,
-        terreno,
-        deposito
+        Available,
+        Sold,
+        InProgress
     }
+
 }
