@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UrbaniaBackend.Dtos.Inmueble;
-using UrbaniaBackend.Services.Inmueble;
 
 [Route("api/[controller]")]
 [ApiController]
@@ -16,22 +15,42 @@ public class InmueblesController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<InmueblesDto>>> GetAll()
+    public async Task<ActionResult<IEnumerable<InmueblesDto>>> GetAllAsync()
     {
-        var inmuebles = await _inmueblesService.GetAllAsync();
-        return Ok(inmuebles);
+        try
+        {
+            var inmuebles = await _inmueblesService.GetAllAsync();
+            if (inmuebles == null || !inmuebles.Any())
+            {
+                return NotFound
+                    (new { message = "No hay inmuebles registrados " });
+            }
+
+            return Ok(inmuebles);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, new { message = "Error al obtener inmuebles.", error = ex.Message });
+        }
     }
 
     [HttpGet("{id}")]
     public async Task<ActionResult<InmueblesDto>> GetById(int id)
     {
-        var inmueble = await _inmueblesService.GetByIdAsync(id);
-        if (inmueble == null)
+        try
         {
-            return NotFound();
-        }
+            var inmuebles = await _inmueblesService.GetByIdAsync(id);
+            if (inmuebles == null)
+            {
+                return NotFound(new { message = $"No se encontró la inmuebles con ID {id}." });
+            }
 
-        return Ok(inmueble);
+            return Ok(inmuebles);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, new { message = "Error al obtener inmuebles.", error = ex.Message });
+        }
     }
 
     [HttpPost]

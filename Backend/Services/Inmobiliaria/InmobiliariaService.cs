@@ -16,7 +16,7 @@ public class InmobiliariaService : IInmobiliariaService
 	// 🔹 Obtener todas las inmobiliarias
 	public async Task<IEnumerable<InmobiliariaDto>> GetAllAsync()
 	{
-		return await _context.Inmobiliaria
+		return await _context.Inmobiliarias
 			.AsNoTracking()
 			.Select(inmobiliaria => new InmobiliariaDto
 			{
@@ -31,7 +31,7 @@ public class InmobiliariaService : IInmobiliariaService
 	// 🔹 Obtener una inmobiliaria por ID
 	public async Task<InmobiliariaDto?> GetByIdAsync( int id )
 	{
-		var inmobiliaria = await _context.Inmobiliaria
+		var inmobiliaria = await _context.Inmobiliarias
 			.AsNoTracking()
 			.FirstOrDefaultAsync(i => i.Id == id);
 
@@ -56,7 +56,7 @@ public class InmobiliariaService : IInmobiliariaService
 			Email = inmobiliariaDto.Email
 		};
 
-		_context.Inmobiliaria.Add(inmobiliaria);
+		_context.Inmobiliarias.Add(inmobiliaria);
 		await _context.SaveChangesAsync();
 
 		return new InmobiliariaDto
@@ -72,7 +72,7 @@ public class InmobiliariaService : IInmobiliariaService
 	// 🔹 Actualizar inmobiliaria
 	public async Task<InmobiliariaDto> UpdateAsync( int id, InmobiliariaDto inmobiliariaDto )
 	{
-		var inmobiliaria = await _context.Inmobiliaria.FindAsync(id);
+		var inmobiliaria = await _context.Inmobiliarias.FindAsync(id);
 		if (inmobiliaria == null)
 		{
 			return null;
@@ -83,7 +83,7 @@ public class InmobiliariaService : IInmobiliariaService
 		inmobiliaria.Phone = inmobiliariaDto.Phone;
 		inmobiliaria.Email = inmobiliariaDto.Email;
 
-		_context.Inmobiliaria.Update(inmobiliaria);
+		_context.Inmobiliarias.Update(inmobiliaria);
 		await _context.SaveChangesAsync();
 
 		return new InmobiliariaDto
@@ -99,13 +99,13 @@ public class InmobiliariaService : IInmobiliariaService
 	// 🔹 Eliminar inmobiliaria por ID
 	public async Task<bool> DeleteAsync( int id )
 	{
-		var inmobiliaria = await _context.Inmobiliaria.FindAsync(id);
+		var inmobiliaria = await _context.Inmobiliarias.FindAsync(id);
 		if (inmobiliaria == null)
 		{
 			return false;
 		}
 
-		_context.Inmobiliaria.Remove(inmobiliaria);
+		_context.Inmobiliarias.Remove(inmobiliaria);
 		await _context.SaveChangesAsync();
 		return true;
 	}
