@@ -1,10 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using UrbaniaBackend.Context;
 using UrbaniaBackend.Dtos.Inmueble;
-using UrbaniaBackend.Models;
-using UrbaniaBackend.Services.Inmueble;
+using UrbaniaBackend.Utils.Inmueble;
 
-public class InmueblesService : IInmuebleService
+using UrbaniaBackend.Models;
+
+
+
+ public class InmueblesService : IInmuebleService
 {
     private readonly AppDbContext _context;
 
@@ -15,103 +18,191 @@ public class InmueblesService : IInmuebleService
 
     public async Task<IEnumerable<InmueblesDto>> GetAllAsync()
     {
-        return await _context.Inmueble.Select(inmueble => new InmueblesDto
-        {
-            Id = inmueble.Id,
-            Tittle = inmueble.Tittle,
-            Description = inmueble.Description,
-            Price = inmueble.Price,
-            Adress = inmueble.Adress,
-            SquareMeters = inmueble.SquareMeters,
-            TypeProperty = inmueble.TypeProperty,
-            TypeContract = inmueble.TypeContract,
-            ImageUrl = inmueble.ImageUrl,
-            DatePublication = inmueble.DatePublication,
-            InmobiliariaId = inmueble.InmobiliariaId
-        }).ToListAsync();
+        return await _context.Inmueble
+                .AsNoTracking()
+                .Select(inmueble => new InmueblesDto
+                {
+                    Id = inmueble.Id,
+                    Title = inmueble.Title,
+                    Description = inmueble.Description,
+                    Price = inmueble.Price,
+                    Address = inmueble.Address,
+                    SquareMeters = inmueble.SquareMeters,
+                    TypeProperty = inmueble.TypeProperty,
+                    TypeContract = inmueble.TypeContract,
+                    ImageUrl = inmueble.ImageUrl,
+                    DatePublication = inmueble.DatePublication,
+                    InmobiliariaId = inmueble.InmobiliariaId
+                }).ToListAsync();
     }
 
 
-    public async Task<InmueblesDto> GetByIdAsync(int id)
+    public async Task<InmueblesDto?> GetByIdAsync(int id)
     {
-        var inmueble = await _context.Inmueble.FindAsync(id);
-        if (inmueble == null)
-        {
-            return null;
-        }
+        var Inmuebles = await _context.Inmueble
+            .AsNoTracking()
+            .FirstOrDefaultAsync(i => i.Id == id);
+            return Inmuebles is null ? null : new InmueblesDto
+            {
+                Id = Inmuebles.Id,
+                Title = Inmuebles.Title,
+                Description = Inmuebles.Description,
+                Price = Inmuebles.Price,
+                Address = Inmuebles.Address,
+                SquareMeters = Inmuebles.SquareMeters,
+                TypeProperty = Inmuebles.TypeProperty,
+                TypeContract = Inmuebles.TypeContract,
+                ImageUrl = Inmuebles.ImageUrl,
+                DatePublication = Inmuebles.DatePublication,
+                InmobiliariaId = Inmuebles.InmobiliariaId
+            };
 
-        return new InmueblesDto
-        {
-            Id = inmueble.Id,
-            Tittle = inmueble.Tittle,
-            Description = inmueble.Description,
-            Price = inmueble.Price,
-            Adress = inmueble.Adress,
-            SquareMeters = inmueble.SquareMeters,
-            TypeProperty = inmueble.TypeProperty,
-            TypeContract = inmueble.TypeContract,
-            ImageUrl = inmueble.ImageUrl,
-            DatePublication = inmueble.DatePublication,
-            InmobiliariaId = inmueble.InmobiliariaId
-        };
     }
 
     public async Task<InmueblesDto> CreateAsync(InmueblesDto inmuebleDto)
     {
-        var inmueble = new Inmuebles
+        try
         {
-            Tittle = inmuebleDto.Tittle,
-            Description = inmuebleDto.Description,
-            Price = inmuebleDto.Price,
-            Adress = inmuebleDto.Adress,
-            SquareMeters = inmuebleDto.SquareMeters,
-            TypeProperty = inmuebleDto.TypeProperty,
-            TypeContract = inmuebleDto.TypeContract,
-            ImageUrl = inmuebleDto.ImageUrl,
-            DatePublication = inmuebleDto.DatePublication,
-            InmobiliariaId = inmuebleDto.InmobiliariaId
-        };
+            var inmueble = new Inmuebles
+            {
+                Title = inmuebleDto.Title,
+                Description = inmuebleDto.Description,
+                Price = inmuebleDto.Price,
+                Address = inmuebleDto.Address,
+                SquareMeters = inmuebleDto.SquareMeters,
+                TypeProperty = inmuebleDto.TypeProperty,
+                TypeContract = inmuebleDto.TypeContract,
+                ImageUrl = inmuebleDto.ImageUrl,
+                DatePublication = inmuebleDto.DatePublication,
+                InmobiliariaId = inmuebleDto.InmobiliariaId
+                
+            };
 
-        _context.Inmueble.Add(inmueble);
-        await _context.SaveChangesAsync();
+            _context.Inmueble.Add(inmueble);
+            await _context.SaveChangesAsync();
 
-        inmuebleDto.Id = inmueble.Id;
-        return inmuebleDto;
+            return new InmueblesDto
+            {
+                Id = inmueble.Id,
+                Title = inmueble.Title,
+                Address = inmueble.Address,
+                Description = inmueble.Description,
+                Price = inmueble.Price,
+                SquareMeters = inmueble.SquareMeters,
+                TypeProperty = inmueble.TypeProperty,
+                TypeContract = inmueble.TypeContract,
+                ImageUrl = inmueble.ImageUrl,
+                DatePublication = inmueble.DatePublication,
+                InmobiliariaId = inmueble.InmobiliariaId
+            };
+        }
+        catch (Exception ex)
+        {
+            throw new ApplicationException($"An error occurred while creating the property Inmuebles. Details: {ex.Message}", ex);
+        }
     }
 
     public async Task<InmueblesDto> UpdateAsync(int id, InmueblesDto inmuebleDto)
     {
-        var inmueble = await _context.Inmueble.FindAsync(id);
-        if (inmueble == null)
+        try
         {
-            return null;
+            ValidateInmuebleDto(inmuebleDto);
+
+            var inmueble = await _context.Inmueble.FindAsync(id);
+            if (inmueble == null)
+            {
+                return null;
+            }
+
+            inmueble.Title = inmuebleDto.Title; 
+            inmueble.Description = inmuebleDto.Description;
+            inmueble.Price = inmuebleDto.Price;
+            inmueble.Address = inmuebleDto.Address; 
+            inmueble.SquareMeters = inmuebleDto.SquareMeters;
+            inmueble.TypeProperty = inmuebleDto.TypeProperty;
+            inmueble.TypeContract = inmuebleDto.TypeContract;
+            inmueble.ImageUrl = inmuebleDto.ImageUrl;
+            inmueble.DatePublication = inmuebleDto.DatePublication;
+            inmueble.InmobiliariaId = inmuebleDto.InmobiliariaId;
+
+            await _context.SaveChangesAsync();
+            return inmuebleDto;
         }
-
-        inmueble.Tittle = inmuebleDto.Tittle;
-        inmueble.Description = inmuebleDto.Description;
-        inmueble.Price = inmuebleDto.Price;
-        inmueble.Adress = inmuebleDto.Adress;
-        inmueble.SquareMeters = inmuebleDto.SquareMeters;
-        inmueble.TypeProperty = inmuebleDto.TypeProperty;
-        inmueble.TypeContract = inmuebleDto.TypeContract;
-        inmueble.ImageUrl = inmuebleDto.ImageUrl;
-        inmueble.DatePublication = inmuebleDto.DatePublication;
-        inmueble.InmobiliariaId = inmuebleDto.InmobiliariaId;
-
-        await _context.SaveChangesAsync();
-        return inmuebleDto;
+        catch (Exception ex)
+        {
+            throw new ApplicationException($"An error occurred while updating the property with ID {id}. Details: {ex.Message}", ex);
+        }
     }
 
     public async Task<bool> DeleteAsync(int id)
     {
-        var inmueble = await _context.Inmueble.FindAsync(id);
-        if (inmueble == null)
+        try
         {
-            return false;
-        }
+            // Buscar el inmueble por ID
+            var inmueble = await _context.Inmueble.FindAsync(id);
+            if (inmueble == null)
+            {
+                return false;
+            }
 
-        _context.Inmueble.Remove(inmueble);
-        await _context.SaveChangesAsync();
-        return true;
+            // Eliminar el inmueble de la base de datos
+            _context.Inmueble.Remove(inmueble);
+            await _context.SaveChangesAsync();
+            return true;
+        }
+        catch (Exception ex)
+        {
+            throw new ApplicationException($"An error occurred while deleting the property with ID {id}. Details: {ex.Message}", ex);
+        }
     }
+
+    #region Private Methods
+
+    private void ValidateInmuebleDto(InmueblesDto inmuebleDto)
+    {
+        if (string.IsNullOrWhiteSpace(inmuebleDto.Title)) 
+        {
+            throw new ArgumentException("Title is required.");
+        }
+        if (string.IsNullOrWhiteSpace(inmuebleDto.Description))
+        {
+            throw new ArgumentException("Description is required.");
+        }
+        if (string.IsNullOrWhiteSpace(inmuebleDto.Price))
+        {
+            throw new ArgumentException("Price is required.");
+        }
+        if (string.IsNullOrWhiteSpace(inmuebleDto.Address)) 
+        {
+            throw new ArgumentException("Address is required.");
+        }
+        if (inmuebleDto.SquareMeters <= 0)
+        {
+            throw new ArgumentException("SquareMeters must be greater than zero.");
+        }
+        if (!Enum.IsDefined(typeof(TypeProperty), inmuebleDto.TypeProperty))
+        {
+            throw new ArgumentException("Invalid TypeProperty value.");
+        }
+        if (!Enum.IsDefined(typeof(TypeContract), inmuebleDto.TypeContract))
+        {
+            throw new ArgumentException("Invalid TypeContract value.");
+        }
+        if (string.IsNullOrWhiteSpace(inmuebleDto.ImageUrl))
+        {
+            throw new ArgumentException("ImageUrl is required.");
+        }
+        if (inmuebleDto.DatePublication == default)
+        {
+            throw new ArgumentException("DatePublication is required.");
+        }
+        if (inmuebleDto.InmobiliariaId <= 0)
+        {
+            throw new ArgumentException("InmobiliariaId must be greater than zero.");
+        }
+    }
+
+
+
+    #endregion
 }
