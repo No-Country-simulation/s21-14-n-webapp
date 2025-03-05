@@ -48,7 +48,7 @@ namespace UrbaniaBackend.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Inmobiliaria");
+                    b.ToTable("Inmobiliarias");
                 });
 
             modelBuilder.Entity("UrbaniaBackend.Models.Inmuebles", b =>
@@ -59,7 +59,7 @@ namespace UrbaniaBackend.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Adress")
+                    b.Property<string>("Address")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -81,11 +81,17 @@ namespace UrbaniaBackend.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Tittle")
+                    b.Property<int>("SquareMeters")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("TypeEstate")
+                    b.Property<int>("TypeContract")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TypeProperty")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
