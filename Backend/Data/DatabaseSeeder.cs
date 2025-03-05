@@ -3,7 +3,6 @@ namespace UrbaniaBackend.Data;
 using Microsoft.AspNetCore.Identity;
 using UrbaniaBackend.Context;
 using UrbaniaBackend.Models;
-using UrbaniaBackend.Utils.Inmueble;
 
 public static class DbSeeder
 {
@@ -12,7 +11,7 @@ public static class DbSeeder
         if (!context.Users.Any())
         {
             var passwordHasher = new PasswordHasher<User>();
-            string hashedPassword = passwordHasher.HashPassword(new User(), "   ");
+            string hashedPassword = passwordHasher.HashPassword(new User(), "12345678");
 
             context.Users.Add(
                 new User
@@ -23,6 +22,6 @@ public static class DbSeeder
                 }
             );
             context.SaveChanges();
-        }    
+        }
     }
 }
