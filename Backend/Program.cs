@@ -8,6 +8,8 @@ using UrbaniaBackend.Context;
 using UrbaniaBackend.Data;
 using UrbaniaBackend.Models;
 using UrbaniaBackend.Services;
+using UrbaniaBackend.Services.ContactFormService;
+using UrbaniaBackend.Services.ContactFormTypeS;
 using UrbaniaBackend.Utils;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -53,7 +55,8 @@ builder.Services.AddScoped<IInmobiliariaService, InmobiliariaService>();
 builder.Services.AddScoped<IInmuebleService, InmueblesService>();
 builder.Services.AddMemoryCache();
 
-builder.Services.AddScoped<ContactFormTypeService>();
+builder.Services.AddScoped<IContactFormTypeService, ContactFormTypeService>();
+builder.Services.AddScoped<IContactFormService, ContactFormService>();
 
 builder.Services.AddControllers();
 

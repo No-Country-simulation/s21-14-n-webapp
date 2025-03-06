@@ -17,6 +17,7 @@ public class ContactFormType
     [MinLength(4)]
     public string Code { get; set; } = string.Empty;
     public bool Active { get; set; } = true;
+    public ICollection<ContactForm> ContactForms { get; set; } = [];
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
     public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
 }
