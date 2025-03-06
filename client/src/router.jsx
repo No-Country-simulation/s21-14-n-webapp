@@ -7,6 +7,7 @@ import AdminLayout from "./layouts/AdminLayout";
 import PropertyPage from "./pages/PropertyPage";
 import PropertiesForm from "./pages/admin/PropertiesForm";
 import { ListCrudProperty } from "./pages/admin/ListCrudProperty";
+import AboutUs from "./pages/AboutUs";
 
 
 
@@ -32,6 +33,10 @@ export const router = createBrowserRouter([
         {
             path: "/inmueble",
             element: <PropertyPage/>
+        },
+        {
+            path:"/nosotros",
+            element: <AboutUs/>
         }
     ],
     },
