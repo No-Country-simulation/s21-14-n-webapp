@@ -37,7 +37,7 @@ namespace UrbaniaBackend.Migrations
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Price = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Adress = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    TypeEstate = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    TypeEstate = table.Column<string>(type: "int", nullable: false),
                     ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     DatePublication = table.Column<DateTime>(type: "datetime2", nullable: false),
                     InmobiliariaId = table.Column<int>(type: "int", nullable: false)
