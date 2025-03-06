@@ -7,7 +7,7 @@ namespace UrbaniaBackend.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class ContactFormTypeController(ContactFormTypeService _service) : ControllerBase
+public class ContactFormTypeController(IContactFormTypeService _service) : ControllerBase
 {
     [HttpGet]
     [ProducesResponseType(StatusCodes.Status200OK)]
