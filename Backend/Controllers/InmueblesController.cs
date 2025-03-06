@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UrbaniaBackend.Dtos.Inmueble;
+using UrbaniaBackend.Utils.Inmueble;
 
 [Route("api/[controller]")]
 [ApiController]
@@ -83,4 +84,29 @@ public class InmueblesController : ControllerBase
 
         return NoContent();
     }
+
+    [HttpGet("orderByPrice")]
+    public async Task<ActionResult<List<InmuebleFilterPriceDto>>> OrderByPrice()
+    {
+        var result = await _inmueblesService.OrderByPrice();
+        return Ok(result);
+    }
+
+    [HttpGet("orderBySquareMeters")]
+    public async Task<ActionResult<List<InmuebleFilterSquareMetersDto>>> OrderBySquareMeters()
+    {
+        var result = await _inmueblesService.OrderBySquareMeters();
+        return Ok(result);
+    }
+    [HttpGet("filter-by-type/{typeProperty}")]
+    public async Task<ActionResult<List<InmuebleFilterTypeContractDto>>> GetByTypeProperty(TypeProperty typeProperty)
+    {
+        var result = await _inmueblesService.GetByTypePropertyAsync(typeProperty);
+
+        if (result == null || result.Count == 0)
+            return NotFound("No se encontraron inmuebles con el tipo especificado.");
+
+        return Ok(result);
+    }
+
 }
