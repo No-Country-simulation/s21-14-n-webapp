@@ -9,7 +9,6 @@ export default function FeaturedProperties() {
         '/casa2.jpg',
         'edificio1.jpg',
         '/edificio2.jpg'
-
     ];
 
     const titlesProperties = [

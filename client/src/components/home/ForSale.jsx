@@ -10,7 +10,6 @@ export const ForSale = () => {
             
             {/* Imagen con animación */}
             <motion.img 
-
                 src="/forSale.jpg" 
                 alt="" 
                 className=' lg:h-96 xl:h-[42.2%] xl:w-[42.2%] mb-10 xl:mb-0'
