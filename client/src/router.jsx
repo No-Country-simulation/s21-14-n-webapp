@@ -42,23 +42,18 @@ export const router = createBrowserRouter([
     },
     {
         path: "/admin",
-        element: (
-            <AdminLayout/>
-        ),
+        element: <AdminLayout/>,
         children: [
-            {
-                index: true,
-
-            },
             {
                 path: "crearInmueble",
                 element: <PropertiesForm/>
             },
             {
                 path: "CrudPropiedad",
-                element:<ListCrudProperty/>
+                element: <ListCrudProperty/>
             }
         ]
     }
+    
 
 ])
