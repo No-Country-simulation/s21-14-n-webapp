@@ -8,7 +8,6 @@ using UrbaniaBackend.Context;
 using UrbaniaBackend.Data;
 using UrbaniaBackend.Models;
 using UrbaniaBackend.Services;
-using UrbaniaBackend.Services.Inmueble;
 using UrbaniaBackend.Utils;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -92,6 +91,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+//	app.UseSwagger();
+//  app.UseSwaggerUI();
+
 
 using (var scope = app.Services.CreateScope())
 {

@@ -32,7 +32,7 @@ public class InmobiliariaService : IInmobiliariaService
 	public async Task<InmobiliariaDto?> GetByIdAsync( int id )
 	{
 		var inmobiliaria = await _context.Inmobiliaria
-			.AsNoTracking()
+            .AsNoTracking()
 			.FirstOrDefaultAsync(i => i.Id == id);
 
 		return inmobiliaria is null ? null : new InmobiliariaDto
