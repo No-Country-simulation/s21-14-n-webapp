@@ -156,6 +156,42 @@ using UrbaniaBackend.Models;
         }
     }
 
+    public async Task<List<InmuebleFilterPriceDto>> OrderByPrice()
+    {
+        return await _context.Inmueble
+            .OrderByDescending(i => i.Price)
+            .Select(i => new InmuebleFilterPriceDto
+            {
+                Id = i.Id,
+                Price = i.Price,
+            })
+            .ToListAsync();
+    }
+
+    public async Task<List<InmuebleFilterSquareMetersDto>> OrderBySquareMeters()
+    {
+        return await _context.Inmueble
+            .OrderByDescending(i => i.SquareMeters)
+            .Select(i => new InmuebleFilterSquareMetersDto
+            {
+                Id = i.Id,
+                SquareMeters = i.SquareMeters
+            })
+            .ToListAsync();
+    }
+    public async Task<List<InmuebleFilterTypeContractDto>> GetByTypePropertyAsync(TypeProperty typeProperty)
+    {
+        return await _context.Inmueble
+            .Where(i => i.TypeProperty == typeProperty) 
+            .Select(i => new InmuebleFilterTypeContractDto
+            {
+                Id = i.Id,
+                Title = i.Title,
+                TypeProperty = i.TypeProperty
+            })
+            .ToListAsync();
+    }
+
     #region Private Methods
 
     private void ValidateInmuebleDto(InmueblesDto inmuebleDto)
@@ -201,8 +237,6 @@ using UrbaniaBackend.Models;
             throw new ArgumentException("InmobiliariaId must be greater than zero.");
         }
     }
-
-
 
     #endregion
 }

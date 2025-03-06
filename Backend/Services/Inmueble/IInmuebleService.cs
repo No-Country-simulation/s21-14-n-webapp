@@ -1,4 +1,6 @@
-﻿using UrbaniaBackend.Dtos.Inmueble;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using UrbaniaBackend.Dtos.Inmueble;
+using UrbaniaBackend.Utils.Inmueble;
 
 public interface IInmuebleService
 {
@@ -7,12 +9,12 @@ public interface IInmuebleService
     Task<InmueblesDto> CreateAsync(InmueblesDto inmuebleDto);
     Task<InmueblesDto> UpdateAsync(int id, InmueblesDto inmuebleDto);
     Task<bool> DeleteAsync(int id);
+    //ordena por precio
+    Task<List<InmuebleFilterPriceDto>> OrderByPrice();
+    //ordena por metros cuadrados
+    Task<List<InmuebleFilterSquareMetersDto>> OrderBySquareMeters ();
 
-    // ordenar por Precio y dimensiones
     // filtrar por tipo de propiedad
-    // filtrar por contrato
-    // busqueda por ubicacion/direccion y ¿palabra clave?
-
-
+    Task<List<InmuebleFilterTypeContractDto>> GetByTypePropertyAsync(TypeProperty typeProperty);
 
 }
