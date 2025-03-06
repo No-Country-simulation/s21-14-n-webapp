@@ -8,9 +8,9 @@ using UrbaniaBackend.Context;
 using UrbaniaBackend.Data;
 using UrbaniaBackend.Models;
 using UrbaniaBackend.Services;
+using UrbaniaBackend.Services.ContactFormService;
+using UrbaniaBackend.Services.ContactFormTypeS;
 using UrbaniaBackend.Utils;
-
-
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -48,12 +48,15 @@ builder.Services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
 builder.Services.AddScoped<IPasswordHelper, PasswordHelper>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
+
 // Services
 builder.Services.AddScoped<IInmobiliariaService, InmobiliariaService>();
 
-
 builder.Services.AddScoped<IInmuebleService, InmueblesService>();
+builder.Services.AddMemoryCache();
 
+builder.Services.AddScoped<IContactFormTypeService, ContactFormTypeService>();
+builder.Services.AddScoped<IContactFormService, ContactFormService>();
 
 builder.Services.AddControllers();
 
@@ -76,15 +79,20 @@ builder.Services.AddSwaggerGen(c =>
     c.OperationFilter<AuthorizeCheckOperationFilter>();
 });
 
-
-
 var app = builder.Build();
+
+// Seeding DB
+using (var scope = app.Services.CreateScope())
+{
+    var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    DbSeeder.Seed(context);
+}
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-	app.UseSwagger();
-	app.UseSwaggerUI();
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
 //	app.UseSwagger();
 //  app.UseSwaggerUI();
