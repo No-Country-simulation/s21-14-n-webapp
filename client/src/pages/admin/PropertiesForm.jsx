@@ -4,6 +4,8 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { PropertieSchema } from "../../schemas";
 import Error from "../../ui/ErrorMessage";
+import { createInquiry } from "../../network/fetchApiInquirity";
+
 
 const PropertiesForm = () => {
   const {
@@ -13,12 +15,20 @@ const PropertiesForm = () => {
     reset,
   } = useForm({ resolver: yupResolver(PropertieSchema) });
 
-  const [imagenPrincipal, setImagenPrincipal] = useState(null);
+  // const [imagenPrincipal, setImagenPrincipal] = useState(null);
 
-  const createProperty = (data) => {
-    console.log({ ...data, imagenPrincipal });
-    reset();
-    setImagenPrincipal(null);
+  const onSubmit = async (inquirity) => {
+    try {
+      const propertyData = {
+        ...inquirity,
+        inmobiliariaId: 1, 
+      };
+      const response = await createInquiry(propertyData);
+      console.log("Propiedad creada con éxito:", response);
+      reset();
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -31,13 +41,16 @@ const PropertiesForm = () => {
         className="max-w-lg min-h-[500px] mx-auto p-6 bg-white/65 shadow-lg rounded-lg backdrop-blur-sm relative md:min-h-[600px] sm:w-11/12"
       >
         <h2 className="text-2xl font-bold text-center mb-4">Crea La Vivienda</h2>
-        <form onSubmit={handleSubmit(createProperty)}>
+        <form onSubmit={handleSubmit(onSubmit)}>
           {[
-            { name: "titulo", label: "Título", type: "text" },
-            { name: "descripcion", label: "Descripción", type: "textarea" },
-            { name: "precio", label: "Precio", type: "number" },
-            { name: "ubicacion", label: "Ubicación", type: "text" },
-            { name: "tipo", label: "Tipo", type: "text" },
+            { name: "title", label: "Título", type: "text" },
+            { name: "description", label: "Descripción", type: "textarea" },
+            { name: "price", label: "Precio", type: "number" },
+            { name: "address", label: "Ubicación", type: "text" },
+            { name: "squareMeters", label: "Metros Cuadrados", type: "number" },
+            { name: "imageUrl", label: "URL de la Imagen", type: "text" },
+            { name: "typeProperty", label: "Tipo de Propiedad", type: "number" },
+            { name: "typeContract", label: "Tipo de Contrato", type: "number" },
           ].map(({ name, label, type }, index) => (
             <div key={name} className="relative mb-4">
               <motion.label
@@ -63,33 +76,33 @@ const PropertiesForm = () => {
               {errors[name] && <Error>{errors[name].message}</Error>}
             </div>
           ))}
-          <div className="mb-6">
+
+          {/* <div className="mb-6">
             <label className="block font-semibold">Imagen Principal</label>
             {!imagenPrincipal ? (
-  <input
-    type="file"
-    className="w-full p-2 border rounded"
-    onChange={(e) => setImagenPrincipal(e.target.files[0])}
-  />
-) : (
-  <div className="relative flex justify-center items-center">
-    <img
-      src={URL.createObjectURL(imagenPrincipal)}
-      alt="Principal"
-      className="w-full max-h-40 object-cover rounded shadow-md"
-    />
-    <button
-      type="button"
-      className="absolute top-2 right-2 bg-red-500 text-white px-2 rounded"
-      onClick={() => setImagenPrincipal(null)}
-    >
-      X
-    </button>
-  </div>
-)}
-
+              <input
+                type="file"
+                className="w-full p-2 border rounded"
+                onChange={(e) => setImagenPrincipal(e.target.files[0])}
+              />
+            ) : (
+              <div className="relative flex justify-center items-center">
+                <img
+                  src={URL.createObjectURL(imagenPrincipal)}
+                  alt="Principal"
+                  className="w-full max-h-40 object-cover rounded shadow-md"
+                />
+                <button
+                  type="button"
+                  className="absolute top-2 right-2 bg-red-500 text-white px-2 rounded"
+                  onClick={() => setImagenPrincipal(null)}
+                >
+                  X
+                </button>
+              </div>
+            )}
             {errors.imagenPrincipal && <Error>{errors.imagenPrincipal.message}</Error>}
-          </div>
+          </div> */}
 
           <motion.button
             whileHover={{ scale: 1.05 }}
