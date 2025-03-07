@@ -14,6 +14,21 @@ using UrbaniaBackend.Utils;
 
 var builder = WebApplication.CreateBuilder(args);
 
+var allowedOrigins =
+    builder.Configuration.GetSection("CorsSettings:AllowedOrigins").Get<string[]>()
+    ?? throw new InvalidOperationException("AllowedOrigins not found.");
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(
+        "AllowSpecificOrigins",
+        policy =>
+        {
+            policy.WithOrigins(allowedOrigins).AllowAnyHeader().AllowAnyMethod();
+        }
+    );
+});
+
 // Add services to the container.
 
 var connectionString =
@@ -94,6 +109,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
 //	app.UseSwagger();
 //  app.UseSwaggerUI();
 
@@ -103,6 +119,8 @@ using (var scope = app.Services.CreateScope())
     var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
     DbSeeder.Seed(context);
 }
+
+app.UseCors("AllowSpecificOrigins");
 
 app.UseHttpsRedirection();
 
