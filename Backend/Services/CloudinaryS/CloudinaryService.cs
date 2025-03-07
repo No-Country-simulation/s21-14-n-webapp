@@ -8,6 +8,7 @@ public class CloudinaryService(Cloudinary _cloudinary) : ICloudinaryService
 {
     private const long MinFileSize = 2 * 1024;
     private const long MaxFileSize = 5 * 1024 * 1024;
+    private const string FolderRoot = "urbania/properties";
     private static readonly string[] AllowedExtensions = { ".jpg", ".jpeg", ".png", ".webp" };
 
     private static void PreUploadValidations(IFormFile file)
@@ -41,7 +42,7 @@ public class CloudinaryService(Cloudinary _cloudinary) : ICloudinaryService
             File = new FileDescription(file.FileName, new MemoryStream(fileBytes)),
             PublicId = Guid.NewGuid().ToString(),
             Overwrite = true,
-            Folder = folder,
+            Folder = $"{FolderRoot}/{folder}",
         };
 
         var uploadResult = await _cloudinary.UploadAsync(uploadParams);
@@ -77,5 +78,17 @@ public class CloudinaryService(Cloudinary _cloudinary) : ICloudinaryService
             }
         }
         return new() { Urls = imageUrls.ToArray(), Errors = errors.ToArray() };
+    }
+
+    public async Task DeleteFolder(int inmuebleId)
+    {
+        try
+        {
+            await _cloudinary.DeleteFolderAsync($"{FolderRoot}/{inmuebleId}");
+        }
+        catch (System.Exception)
+        {
+            Console.WriteLine("Error deleting folder");
+        }
     }
 }

@@ -179,6 +179,7 @@ public class InmueblesService : IInmuebleService
             // Eliminar el inmueble de la base de datos
             _context.Inmueble.Remove(inmueble);
             await _context.SaveChangesAsync();
+            await _cloudinaryService.DeleteFolder(id);
             return true;
         }
         catch (Exception ex)
