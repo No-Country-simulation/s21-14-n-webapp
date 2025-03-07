@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace UrbaniaBackend.Migrations
 {
     /// <inheritdoc />
-    public partial class AddContactForm : Migration
+    public partial class ContactForm : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

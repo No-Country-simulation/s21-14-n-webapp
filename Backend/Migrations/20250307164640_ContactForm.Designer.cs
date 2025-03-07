@@ -12,8 +12,8 @@ using UrbaniaBackend.Context;
 namespace UrbaniaBackend.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250304192227_AddContactForm")]
-    partial class AddContactForm
+    [Migration("20250307164640_ContactForm")]
+    partial class ContactForm
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -144,7 +144,7 @@ namespace UrbaniaBackend.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Adress")
+                    b.Property<string>("Address")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -166,11 +166,17 @@ namespace UrbaniaBackend.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Tittle")
+                    b.Property<int>("SquareMeters")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("TypeEstate")
+                    b.Property<int>("TypeContract")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TypeProperty")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -223,7 +229,7 @@ namespace UrbaniaBackend.Migrations
             modelBuilder.Entity("UrbaniaBackend.Models.ContactForm", b =>
                 {
                     b.HasOne("UrbaniaBackend.Models.ContactFormType", "Type")
-                        .WithMany()
+                        .WithMany("ContactForms")
                         .HasForeignKey("ContactFormTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -240,6 +246,11 @@ namespace UrbaniaBackend.Migrations
                         .IsRequired();
 
                     b.Navigation("Inmobiliaria");
+                });
+
+            modelBuilder.Entity("UrbaniaBackend.Models.ContactFormType", b =>
+                {
+                    b.Navigation("ContactForms");
                 });
 
             modelBuilder.Entity("UrbaniaBackend.Models.Inmobiliaria", b =>
