@@ -10,10 +10,10 @@ namespace UrbaniaBackend.Dtos.Inmueble
         public string Price { get; set; }
         public string Address { get; set; }
         public int SquareMeters { get; set; }
-        public string ImageUrl { get; set; }
         public DateTime DatePublication { get; set; }
         public TypeProperty TypeProperty { get; set; }
         public TypeContract TypeContract { get; set; }
         public int InmobiliariaId { get; set; }
+        public IFormFile[] Images { get; set; }
     }
 }

@@ -15,7 +15,7 @@ public class InmueblesController : ControllerBase
 	}
 
 	[HttpGet]
-	public async Task<ActionResult<IEnumerable<InmueblesDto>>> GetAllAsync()
+	public async Task<ActionResult<IEnumerable<ReturnInmuebleDto>>> GetAllAsync()
 	{
 		try
 		{
@@ -61,7 +61,7 @@ public class InmueblesController : ControllerBase
 	}
 
 	[HttpPut("{id}")]
-	public async Task<IActionResult> Update( int id, InmueblesDto inmuebleDto )
+	public async Task<IActionResult> Update( int id, UpdateInmueblesDto inmuebleDto )
 	{
 		var updatedInmueble = await _inmueblesService.UpdateAsync(id, inmuebleDto);
 		if (updatedInmueble == null)
