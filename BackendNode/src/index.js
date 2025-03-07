@@ -1,11 +1,11 @@
-import express from "express"
-import mongoose from "mongoose"
-import dotenv from "dotenv"
-import indexRoute from "./routes";
-
+const express = require("express");
+const mongoose = require( "mongoose")
+require( "dotenv").config()
+const indexRoute = require("./routes");
+const cors = require("cors")
 const server = express()
 
-dotenv.config();
+
 
 PORT = process.env.port
 
@@ -14,9 +14,10 @@ const corsOptions = {
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
   };
-  
+
+
   //Security Config
-  server.use(cors(corsOptions));
+server.use(cors(corsOptions));
   
 //Routes in Server
 server.use("/api", indexRoute);
@@ -27,7 +28,10 @@ server.get("/", (req, res) => {
 });
 
 
-mongoose.connect()
+mongoose.connect( process.env.MONGO_CONNECTION , {
+  useNewUrlParser: true, 
+  useUnifiedTopology: true 
+})
     .then(()=>{
         console.log("Connected to Mongoose server");
         server.listen(PORT, ()=> {
