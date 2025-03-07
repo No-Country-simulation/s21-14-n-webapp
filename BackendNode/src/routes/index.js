@@ -6,7 +6,7 @@ const indexRoute = express();
 const rootRouter = express.Router();
 
 
-indexRoute.use("/properties", propertyRouter)
+indexRoute.use("/Inmuebles", propertyRouter)
 
 
 module.exports = indexRoute;

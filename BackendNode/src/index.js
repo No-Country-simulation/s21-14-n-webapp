@@ -4,10 +4,11 @@ require( "dotenv").config()
 const indexRoute = require("./routes");
 const cors = require("cors")
 const server = express()
-
+const morgan = require("morgan");
 
 
 PORT = process.env.port
+MONGO = process.env.MONGO_CONNECTION
 
 const corsOptions = {
     origin: "*",
@@ -15,10 +16,10 @@ const corsOptions = {
     allowedHeaders: ["Content-Type", "Authorization"],
   };
 
+  server.use(morgan('tiny'));
 
   //Security Config
 server.use(cors(corsOptions));
-  
 //Routes in Server
 server.use("/api", indexRoute);
 
@@ -28,7 +29,8 @@ server.get("/", (req, res) => {
 });
 
 
-mongoose.connect( process.env.MONGO_CONNECTION , {
+
+mongoose.connect( MONGO , {
   useNewUrlParser: true, 
   useUnifiedTopology: true 
 })

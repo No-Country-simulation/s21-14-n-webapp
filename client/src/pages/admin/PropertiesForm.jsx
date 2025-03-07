@@ -6,7 +6,6 @@ import { PropertieSchema } from "../../schemas";
 import Error from "../../ui/ErrorMessage";
 import { createInquiry } from "../../network/fetchApiInquirity";
 
-
 const PropertiesForm = () => {
   const {
     register,
@@ -15,17 +14,27 @@ const PropertiesForm = () => {
     reset,
   } = useForm({ resolver: yupResolver(PropertieSchema) });
 
-  // const [imagenPrincipal, setImagenPrincipal] = useState(null);
+  const [imagenPrincipal, setImagenPrincipal] = useState(null);
 
   const onSubmit = async (inquirity) => {
     try {
-      const propertyData = {
-        ...inquirity,
-        inmobiliariaId: 1, 
-      };
-      const response = await createInquiry(propertyData);
+      const formData = new FormData();
+      formData.append("title", inquirity.title);
+      formData.append("description", inquirity.description);
+      formData.append("price", inquirity.price);
+      formData.append("address", inquirity.address);
+      formData.append("squareMeters", inquirity.squareMeters);
+      formData.append("typeProperty", inquirity.typeProperty);
+      formData.append("typeContract", inquirity.typeContract);
+
+      if (imagenPrincipal) {
+        formData.append("imagePrincipal", imagenPrincipal);
+      }
+
+      const response = await createInquiry(formData);
       console.log("Propiedad creada con éxito:", response);
       reset();
+      setImagenPrincipal(null);
     } catch (error) {
       console.log(error);
     }
@@ -41,16 +50,15 @@ const PropertiesForm = () => {
         className="max-w-lg min-h-[500px] mx-auto p-6 bg-white/65 shadow-lg rounded-lg backdrop-blur-sm relative md:min-h-[600px] sm:w-11/12"
       >
         <h2 className="text-2xl font-bold text-center mb-4">Crea La Vivienda</h2>
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit(onSubmit)} encType="multipart/form-data">
           {[
             { name: "title", label: "Título", type: "text" },
             { name: "description", label: "Descripción", type: "textarea" },
             { name: "price", label: "Precio", type: "number" },
             { name: "address", label: "Ubicación", type: "text" },
             { name: "squareMeters", label: "Metros Cuadrados", type: "number" },
-            { name: "imageUrl", label: "URL de la Imagen", type: "text" },
-            { name: "typeProperty", label: "Tipo de Propiedad", type: "number" },
-            { name: "typeContract", label: "Tipo de Contrato", type: "number" },
+            { name: "typeProperty", label: "Tipo de Propiedad", type: "text" },
+            { name: "typeContract", label: "Tipo de Contrato", type: "text" },
           ].map(({ name, label, type }, index) => (
             <div key={name} className="relative mb-4">
               <motion.label
@@ -77,11 +85,12 @@ const PropertiesForm = () => {
             </div>
           ))}
 
-          {/* <div className="mb-6">
+          <div className="mb-6">
             <label className="block font-semibold">Imagen Principal</label>
             {!imagenPrincipal ? (
               <input
                 type="file"
+                accept="image/*"
                 className="w-full p-2 border rounded"
                 onChange={(e) => setImagenPrincipal(e.target.files[0])}
               />
@@ -101,8 +110,7 @@ const PropertiesForm = () => {
                 </button>
               </div>
             )}
-            {errors.imagenPrincipal && <Error>{errors.imagenPrincipal.message}</Error>}
-          </div> */}
+          </div>
 
           <motion.button
             whileHover={{ scale: 1.05 }}

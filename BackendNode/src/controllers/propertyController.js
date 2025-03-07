@@ -31,4 +31,19 @@ const createProperty = async (req, res) => {
   }
 };
 
-module.exports = { createProperty };
+
+const getAllProperties = async (req, res) => {
+  try {
+    const properties = await Property.find();
+    res.status(200).json(properties);
+  } catch (error) {
+    res.status(500).json({ message: "Error fetching properties", error });
+  }
+};
+
+module.exports = {
+  getAllProperties
+};
+
+
+module.exports = { createProperty, getAllProperties };

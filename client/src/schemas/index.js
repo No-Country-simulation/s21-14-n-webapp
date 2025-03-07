@@ -1,9 +1,9 @@
-import * as yup from "yup"
+import * as yup from "yup";
 
 export const PropertieSchema = yup.object().shape({
   title: yup
     .string()
-    .min(3, "Mínimo 5 caracteres")
+    .min(3, "Mínimo 3 caracteres")
     .max(100, "Máximo 100 caracteres")
     .required("El título es necesario"),
   description: yup
@@ -19,7 +19,6 @@ export const PropertieSchema = yup.object().shape({
     .number()
     .positive("Debe ser un número positivo")
     .required("Los metros cuadrados son necesarios"),
-  imageUrl: yup.string().url("Debe ser una URL válida"),
   typeProperty: yup
     .number()
     .integer("Debe ser un número entero")
@@ -28,5 +27,16 @@ export const PropertieSchema = yup.object().shape({
     .number()
     .integer("Debe ser un número entero")
     .required("El tipo de contrato es necesario"),
-  // imagenPrincipal: yup.mixed().required("La imagen principal es necesaria"),
+  imagenPrincipal: yup
+    .mixed()
+    .test("fileRequired", "La imagen principal es obligatoria", (value) => {
+      return value && value.length > 0;
+    })
+    .test("fileType", "Solo se permiten imágenes (jpg, png, jpeg)", (value) => {
+      return (
+        value &&
+        value.length > 0 &&
+        ["image/jpeg", "image/png", "image/jpg"].includes(value[0].type)
+      );
+    }),
 });
