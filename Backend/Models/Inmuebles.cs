@@ -12,12 +12,9 @@ namespace UrbaniaBackend.Models
         public int SquareMeters { get; set; }
         public TypeProperty TypeProperty { get; set; }
         public TypeContract TypeContract { get; set; }
-        public string ImageUrl { get; set; }
+        public ICollection<EstateImage>? Images { get; set; }
         public DateTime DatePublication { get; set; } = DateTime.UtcNow;
         public int InmobiliariaId { get; set; }
         public Inmobiliaria Inmobiliaria { get; set; } = null!;
-
     }
-
 }
-
