@@ -3,10 +3,10 @@ using UrbaniaBackend.Utils.Inmueble;
 
 public interface IInmuebleService
 {
-	Task<IEnumerable<InmueblesDto>> GetAllAsync();
+	Task<IEnumerable<ReturnInmuebleDto>> GetAllAsync();
 	Task<InmueblesDto> GetByIdAsync( int id );
 	Task<InmueblesDto> CreateAsync( InmueblesDto inmuebleDto );
-	Task<InmueblesDto> UpdateAsync( int id, InmueblesDto inmuebleDto );
+	Task<UpdateInmueblesDto> UpdateAsync( int id, UpdateInmueblesDto inmuebleDto );
 	Task<bool> DeleteAsync( int id );
 	//ordena por precio
 	Task<List<InmuebleFilterPriceDto>> OrderByPrice();

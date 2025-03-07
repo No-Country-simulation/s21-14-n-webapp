@@ -1,8 +1,9 @@
-﻿using UrbaniaBackend.Utils.Inmueble;
+using UrbaniaBackend.Dtos.EstateImage;
+using UrbaniaBackend.Utils.Inmueble;
 
 namespace UrbaniaBackend.Dtos.Inmueble
 {
-    public class InmueblesDto
+    public class ReturnInmuebleDto
     {
         public int Id { get; set; }
         public string Title { get; set; }
@@ -14,6 +15,6 @@ namespace UrbaniaBackend.Dtos.Inmueble
         public TypeProperty TypeProperty { get; set; }
         public TypeContract TypeContract { get; set; }
         public int InmobiliariaId { get; set; }
-        public IFormFile[] Images { get; set; }
+        public ReturnEstateImageDto[] Images { get; set; }
     }
 }

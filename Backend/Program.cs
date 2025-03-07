@@ -1,4 +1,5 @@
 using System.Text;
+using CloudinaryDotNet;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -8,8 +9,11 @@ using UrbaniaBackend.Context;
 using UrbaniaBackend.Data;
 using UrbaniaBackend.Models;
 using UrbaniaBackend.Services;
+using UrbaniaBackend.Services.CloudinaryS;
 using UrbaniaBackend.Services.ContactFormService;
 using UrbaniaBackend.Services.ContactFormTypeS;
+using UrbaniaBackend.Services.EstateImageS;
+using UrbaniaBackend.Services.Inmueble;
 using UrbaniaBackend.Utils;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -35,6 +39,16 @@ var connectionString =
     builder.Configuration.GetConnectionString("ConnectionDB")
     ?? throw new InvalidOperationException("Connection string 'ConnectionDB' not found.");
 
+var cloudinaryString =
+    builder.Configuration["Cloudinary:Url"]
+    ?? throw new InvalidOperationException("Cloudinary Url not found");
+
+Cloudinary cloudinary = new(cloudinaryString);
+cloudinary.Api.Secure = true;
+
+builder.Services.AddSingleton(cloudinary);
+
+builder.Services.AddScoped<ICloudinaryService, CloudinaryService>();
 builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(connectionString));
 builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection("JwtSettings"));
 
@@ -72,6 +86,7 @@ builder.Services.AddMemoryCache();
 
 builder.Services.AddScoped<IContactFormTypeService, ContactFormTypeService>();
 builder.Services.AddScoped<IContactFormService, ContactFormService>();
+builder.Services.AddScoped<IEstateImageService, EstateImageService>();
 
 builder.Services.AddControllers();
 
