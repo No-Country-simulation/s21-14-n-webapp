@@ -30,13 +30,13 @@ export const PropertieSchema = yup.object().shape({
   imagenPrincipal: yup
     .mixed()
     .test("fileRequired", "La imagen principal es obligatoria", (value) => {
-      return value && value.length > 0;
+      return value && value.length > 0; 
     })
     .test("fileType", "Solo se permiten imágenes (jpg, png, jpeg)", (value) => {
       return (
         value &&
         value.length > 0 &&
-        ["image/jpeg", "image/png", "image/jpg"].includes(value[0].type)
+        ["image/jpeg", "image/png", "image/jpg"].includes(value[0].type) 
       );
     }),
 });

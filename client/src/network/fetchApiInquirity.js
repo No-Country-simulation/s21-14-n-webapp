@@ -4,16 +4,13 @@ import { fetchData } from "./util/fetchFunction";
 import SummaryApi from "./util/SummaryApi";
 
 
-export async function createInquiry(inquirity){
-    const response = await fetchData(SummaryApi.createInquiry.url,{
+export async function createInquiry(inquirity) {
+    const response = await fetchData(SummaryApi.createInquiry.url, {
         method: SummaryApi.createInquiry.method,
-        headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(inquirity),
+        body: inquirity,  
     });
-    return response
-};
+    return response;
+}
 
 export async function getAllInquiries(){
     return fetchData(SummaryApi.getAllInquiries.url,{
