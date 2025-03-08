@@ -1,4 +1,3 @@
-
 import { createBrowserRouter } from "react-router-dom";
 import HomeLayout from "./layouts/HomeLayout";
 import Home from "./pages/Home";
@@ -8,8 +7,6 @@ import PropertyPage from "./pages/PropertyPage";
 import PropertiesForm from "./pages/admin/PropertiesForm";
 import { ListCrudProperty } from "./pages/admin/ListCrudProperty";
 import AboutUs from "./pages/AboutUs";
-
-
 
 //Home Templates
 

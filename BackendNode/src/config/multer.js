@@ -1,15 +1,12 @@
-const multer = require('multer')
-const { CloudinaryStorage } = require( 'multer-storage-cloudinary');
-const cloudinary = require( './cloudinaryConfig');
-
+const multer = require('multer');
+const { CloudinaryStorage } = require('multer-storage-cloudinary');
+const cloudinary = require('../config/cloudinaryConfig');
 
 const storage = new CloudinaryStorage({
   cloudinary,
-  params: async (req, file) => {
-    return {
-      folder: 'real-estate',
-      allowed_formats: ['jpg', 'png', 'jpeg'],
-    };
+  params: {
+    folder: 'real-estate',
+    allowed_formats: ['jpg', 'png', 'jpeg'],
   },
 });
 

@@ -1,16 +1,31 @@
-const Property = require('../models/Property')
+require('dotenv').config();
+const Property = require('../models/Property');
+const cloudinary = require('../config/cloudinaryConfig');
 
 const createProperty = async (req, res) => {
   try {
     const { title, description, price, address, squareMeters, typeProperty, typeContract } = req.body;
+    const { files } = req;
 
-    if (!req.files || !req.files['imagePrincipal'] || !req.files['images']) {
+    if (!files || !files['imagePrincipal'] || !files['images']) {
       return res.status(400).json({ error: 'Main image and at least one additional image are required' });
-    }
+    }    
 
-    const imagePrincipal = req.files['imagePrincipal'][0].path;
-    const images = req.files['images'].map(file => file.path);
+    // Subir imagen principal a Cloudinary
+    const imagePrincipalUpload = await cloudinary.uploader.upload(files.imagePrincipal[0].path, {
+      folder: 'real-estate',
+    });
 
+    // Subir imágenes adicionales a Cloudinary en paralelo
+    const imagesUpload = await Promise.all(
+      files.images.map(file => cloudinary.uploader.upload(file.path, { folder: 'real-estate' }))
+    );
+
+    // Obtener las URLs de las imágenes
+    const imagePrincipal = imagePrincipalUpload.secure_url;
+    const images = imagesUpload.map(image => image.secure_url);
+
+    // Crear la propiedad en la base de datos
     const newProperty = new Property({
       title,
       description,
@@ -25,25 +40,21 @@ const createProperty = async (req, res) => {
 
     await newProperty.save();
     res.status(201).json({ message: 'Property created successfully', property: newProperty });
+
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Server error' });
+    console.error('Error creating property:', error);
+    res.status(500).json({ error: 'Server error', details: error.message });
   }
 };
-
 
 const getAllProperties = async (req, res) => {
   try {
     const properties = await Property.find();
     res.status(200).json(properties);
   } catch (error) {
-    res.status(500).json({ message: "Error fetching properties", error });
+    console.error('Error fetching properties:', error);
+    res.status(500).json({ error: 'Error fetching properties', details: error.message });
   }
 };
-
-module.exports = {
-  getAllProperties
-};
-
 
 module.exports = { createProperty, getAllProperties };

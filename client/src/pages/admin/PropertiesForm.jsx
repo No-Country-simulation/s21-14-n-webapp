@@ -7,27 +7,39 @@ import Error from "../../ui/ErrorMessage";
 import { createInquiry } from "../../network/fetchApiInquirity";
 
 const PropertiesForm = () => {
-  const {
-    register,
-    handleSubmit,
-    setValue,
-    formState: { errors },
-    reset,
-  } = useForm({ resolver: yupResolver(PropertieSchema) });
+  const { register, handleSubmit, setValue, formState: { errors }, reset } = useForm({ resolver: yupResolver(PropertieSchema) });
 
   const [imagenesAdicionales, setImagenesAdicionales] = useState([]);
+  const [previewImage, setPreviewImage] = useState(null);
+  const [previewAdditionalImages, setPreviewAdditionalImages] = useState([]);
 
-
+  // Imagen principal
   const handleImagenPrincipalChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      setValue("imagenPrincipal", file);
+      setValue("imagenPrincipal", file, { shouldValidate: true });
+
+      // Generar vista previa
+      const reader = new FileReader();
+      reader.onloadend = () => setPreviewImage(reader.result);
+      reader.readAsDataURL(file);
     }
   };
 
- 
+  // Imágenes adicionales
   const handleImagenesAdicionalesChange = (e) => {
-    setImagenesAdicionales([...e.target.files]);
+    const files = Array.from(e.target.files);
+    setImagenesAdicionales(files);
+    setValue("imagenesAdicionales", files, { shouldValidate: true });
+
+    // Generar vistas previas
+    Promise.all(files.map(file => {
+      return new Promise((resolve) => {
+        const reader = new FileReader();
+        reader.onloadend = () => resolve(reader.result);
+        reader.readAsDataURL(file);
+      });
+    })).then(setPreviewAdditionalImages);
   };
 
   const onSubmit = async (property) => {
@@ -42,28 +54,29 @@ const PropertiesForm = () => {
       formData.append("squareMeters", property.squareMeters);
       formData.append("typeProperty", property.typeProperty);
       formData.append("typeContract", property.typeContract);
-
-      if (property.imagenPrincipal) {
-        formData.append("imagePrincipal", property.imagenPrincipal);
-      }
+      formData.append("imagenPrincipal", property.imagenPrincipal);
 
       imagenesAdicionales.forEach((image) => {
         formData.append("images", image);
       });
 
-      console.log("Datos enviados:", Object.fromEntries(formData.entries()));
+      console.log("Contenido de FormData:");
+      for (let pair of formData.entries()) {
+        console.log(pair[0], pair[1]);
+        console.log(pair[0], pair[1]); 
+      }
 
       const response = await createInquiry(formData);
       console.log("Propiedad creada con éxito:", response);
 
       reset();
+      setPreviewImage(null);
+      setPreviewAdditionalImages([]);
       setImagenesAdicionales([]);
     } catch (error) {
       console.error("Error al crear propiedad:", error);
     }
   };
-
-  console.log("Errores del formulario:", errors);
 
   return (
     <div className="relative w-full h-screen flex items-center justify-center">
@@ -153,28 +166,26 @@ const PropertiesForm = () => {
             {errors.typeContract && <Error>{errors.typeContract.message}</Error>}
           </div>
 
-          {/* Imagen Principal */}
-          <div className="mb-6">
-            <label className="block font-semibold">Imagen Principal</label>
-            <input
-              type="file"
-              accept="image/*"
-              className="w-full p-2 border rounded"
-              onChange={handleImagenPrincipalChange}
-            />
+           {/* Imagen Principal */}
+           <div className="mb-6">
+            <label className="block text-sm font-medium text-gray-700">Imagen Principal</label>
+            <input type="file" accept="image/*" className="mt-1 p-2 border rounded w-full" onChange={handleImagenPrincipalChange} />
             {errors.imagenPrincipal && <Error>{errors.imagenPrincipal.message}</Error>}
+            {previewImage && <img src={previewImage} alt="Vista previa" className="w-full max-w-xs border rounded shadow mt-2" />}
           </div>
 
           {/* Imágenes Adicionales */}
           <div className="mb-6">
             <label className="block font-semibold">Imágenes Adicionales</label>
-            <input
-              type="file"
-              accept="image/*"
-              multiple
-              className="w-full p-2 border rounded"
-              onChange={handleImagenesAdicionalesChange}
-            />
+            <input type="file" accept="image/*" multiple className="w-full p-2 border rounded" onChange={handleImagenesAdicionalesChange} />
+            {errors.imagenesAdicionales && <Error>{errors.imagenesAdicionales.message}</Error>}
+            {previewAdditionalImages.length > 0 && (
+              <div className="mt-4 grid grid-cols-3 gap-2">
+                {previewAdditionalImages.map((src, index) => (
+                  <img key={index} src={src} alt={`Imagen ${index + 1}`} className="w-full h-auto border rounded shadow" />
+                ))}
+              </div>
+            )}
           </div>
 
           {/* Botón de Envío */}

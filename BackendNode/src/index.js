@@ -1,10 +1,14 @@
 const express = require("express");
 const mongoose = require( "mongoose")
-require( "dotenv").config()
+
 const indexRoute = require("./routes");
 const cors = require("cors")
-const server = express()
 const morgan = require("morgan");
+
+require( "dotenv").config()
+
+const server = express()
+
 
 
 PORT = process.env.port
@@ -18,6 +22,7 @@ const corsOptions = {
 
   server.use(morgan('tiny'));
 
+
   //Security Config
 server.use(cors(corsOptions));
 //Routes in Server
@@ -30,10 +35,7 @@ server.get("/", (req, res) => {
 
 
 
-mongoose.connect( MONGO , {
-  useNewUrlParser: true, 
-  useUnifiedTopology: true 
-})
+mongoose.connect( MONGO)
     .then(()=>{
         console.log("Connected to Mongoose server");
         server.listen(PORT, ()=> {

@@ -14,7 +14,7 @@ export async function createInquiry(inquirity) {
 
 export async function getAllInquiries(){
     return fetchData(SummaryApi.getAllInquiries.url,{
-        method: SummaryApi.getAllInquiries.url
+        method: SummaryApi.getAllInquiries.method
     });
 };
 

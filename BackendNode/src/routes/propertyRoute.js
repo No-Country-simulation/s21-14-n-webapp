@@ -1,17 +1,20 @@
 const express = require('express');
-const upload = require('../config/multer');
+const upload = require("../config/multer")
 const { createProperty, getAllProperties } = require('../controllers/propertyController');
 
-const propertyRouter = express.Router();
+const router = express.Router();
 
-propertyRouter.post('/', 
+// Ruta para crear una propiedad
+router.post(
+  '/',
   upload.fields([
-    { name: 'imagePrincipal', maxCount: 1 }, 
+    { name: 'imagePrincipal', maxCount: 1 },
     { name: 'images', maxCount: 10 }
-  ]), 
+  ]),
   createProperty
-)
-propertyRouter.get('/' ,getAllProperties);
+);
 
+// Ruta para obtener todas las propiedades
+router.get('/', getAllProperties);
 
-module.exports = propertyRouter;
+module.exports = router;
