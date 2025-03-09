@@ -8,7 +8,6 @@ export const NavBar = () => {
         { name: 'Inicio', path: '/' },
         { name: 'Propiedades', path: '/inmuebles' },
         { name: 'Nosotros', path: '/nosotros' },
-        { name: 'Contacto', path: '/contacto' }
     ];
 
     const itemsAdmin = [
@@ -16,10 +15,10 @@ export const NavBar = () => {
         { name: "Editar Propiedades", path: "/" }
     ];
 
-    const menuItems = isAdmin === 0 ? items : itemsAdmin
+    const menuItems = isAdmin === 0 ? items : itemsAdmin;
 
     return (
-        <nav className='w-full h-10 lg:h-20 flex justify-between items-center p-2 lg:px-20 bg-opacity-50 bg-primary'>
+        <nav className='w-full h-10 lg:h-20 flex justify-between items-center p-2 lg:px-20 bg-opacity-50 bg-primary fixed top-0 left-0 z-50'>
             <div>
                 <img src="/logo_Urbania-03.png" className='w-40' alt="Urbania Logo" />
             </div>
