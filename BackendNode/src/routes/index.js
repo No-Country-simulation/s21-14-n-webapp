@@ -1,6 +1,6 @@
 const express = require("express");
 const propertyRouter = require("./propertyRoute");
-const consultaRouter = require('./consulta')
+const consultaRouter = require('./contacto')
 const indexRoute = express();
 
 const rootRouter = express.Router();

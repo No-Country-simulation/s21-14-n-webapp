@@ -6,7 +6,7 @@ const crearConsulta = async (req, res) => {
     const { nombreApellido, email, telefono, tipoConsulta, mensaje, titulo } = req.body;
 
     if (!nombreApellido || !email || !telefono || !tipoConsulta || !mensaje) {
-      return res.status(400).json({ error: 'Todos los campos son obligatorios excepto el título.' });
+      return res.status(400).json({ error: 'Todos los campos son obligatorios' });
     }
 
     const nuevaConsulta = new Contacto({
