@@ -1,6 +1,6 @@
 const express = require('express');
 const upload = require("../config/multer")
-const { createProperty, getAllProperties } = require('../controllers/propertyController');
+const { createProperty, getAllProperties, getPropertyById, deleteProperty } = require('../controllers/propertyController');
 
 const router = express.Router();
 
@@ -16,5 +16,10 @@ router.post(
 
 // Ruta para obtener todas las propiedades
 router.get('/', getAllProperties);
+
+router.get('/:id', getPropertyById);
+
+router.delete('/:id', deleteProperty)
+
 
 module.exports = router;
