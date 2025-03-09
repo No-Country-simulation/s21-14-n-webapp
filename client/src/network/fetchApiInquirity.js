@@ -28,12 +28,9 @@ export async function getInquiryById(id){
 export async function editInquiry(inquirity, id){
     const response = await fetchData(`${SummaryApi.editInquiry.url}/${id}`,{
         method: SummaryApi.editInquiry.method,
-        headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(inquirity),
+        body: inquirity,  
     });
-    return response
+    return response;
 };
 
 export async function deleteInquiry(id){

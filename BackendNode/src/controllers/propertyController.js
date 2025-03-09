@@ -57,4 +57,31 @@ const getAllProperties = async (req, res) => {
   }
 };
 
-module.exports = { createProperty, getAllProperties };
+
+
+const getPropertyById = async (req, res) => {
+  try {
+    const property = await Property.findById(req.params.id);
+    if (!property) return res.status(404).json({ error: 'Property not found' });
+    res.status(200).json(property);
+  } catch (error) {
+    console.error('Error fetching property:', error);
+    res.status(500).json({ error: 'Server error', details: error.message });
+  }
+};
+
+
+const deleteProperty = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const deletedProperty = await Property.findByIdAndDelete(id);
+    if (!deletedProperty) return res.status(404).json({ error: 'Property not found' });
+    res.status(200).json({ message: 'Property deleted successfully' });
+  } catch (error) {
+    console.error('Error deleting property:', error);
+    res.status(500).json({ error: 'Server error', details: error.message });
+  }
+};
+
+module.exports = { createProperty, getAllProperties, getPropertyById, deleteProperty };
+

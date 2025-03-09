@@ -17,7 +17,7 @@ const PropertiesForm = () => {
   const handleImagenPrincipalChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      setValue("imagenPrincipal", file, { shouldValidate: true });
+      setValue("imagePrincipal", file, { shouldValidate: true });
 
       // Generar vista previa
       const reader = new FileReader();
@@ -44,7 +44,7 @@ const PropertiesForm = () => {
 
   const onSubmit = async (property) => {
     console.log("Datos del formulario:", property);
-
+  
     try {
       const formData = new FormData();
       formData.append("title", property.title);
@@ -54,21 +54,31 @@ const PropertiesForm = () => {
       formData.append("squareMeters", property.squareMeters);
       formData.append("typeProperty", property.typeProperty);
       formData.append("typeContract", property.typeContract);
-      formData.append("imagenPrincipal", property.imagenPrincipal);
-
-      imagenesAdicionales.forEach((image) => {
-        formData.append("images", image);
+  
+      // Renombrar imagen principal antes de enviarla
+      if (property.imagenPrincipal) {
+        const imagenPrincipalRenombrada = new File(
+          [property.imagenPrincipal],
+          "imagen_principal.jpg", 
+          { type: property.imagenPrincipal.type }
+        );
+        formData.append("imagePrincipal", imagenPrincipalRenombrada);
+      }
+  
+      // Renombrar imágenes adicionales antes de enviarlas
+      imagenesAdicionales.forEach((image, index) => {
+        const renamedImage = new File([image], `imagen_adicional_${index + 1}.jpg`, { type: image.type });
+        formData.append("images", renamedImage);
       });
-
+  
       console.log("Contenido de FormData:");
       for (let pair of formData.entries()) {
-        console.log(pair[0], pair[1]);
-        console.log(pair[0], pair[1]); 
+        console.log(pair[0], pair[1].name); 
       }
-
+  
       const response = await createInquiry(formData);
       console.log("Propiedad creada con éxito:", response);
-
+  
       reset();
       setPreviewImage(null);
       setPreviewAdditionalImages([]);
@@ -77,6 +87,7 @@ const PropertiesForm = () => {
       console.error("Error al crear propiedad:", error);
     }
   };
+  
 
   return (
     <div className="relative w-full h-screen flex items-center justify-center">

@@ -9,6 +9,7 @@ require( "dotenv").config()
 
 const server = express()
 
+server.use(express.json());
 
 
 PORT = process.env.port
