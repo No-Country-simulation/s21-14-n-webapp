@@ -17,7 +17,7 @@ const PropertiesForm = () => {
   const handleImagenPrincipalChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      setValue("imagePrincipal", file, { shouldValidate: true });
+      setValue("imagenPrincipal", file, { shouldValidate: true });
 
       // Generar vista previa
       const reader = new FileReader();
