@@ -20,12 +20,12 @@ namespace UrbaniaBackend.Data
 
 			if (!string.IsNullOrEmpty(address))
 			{
-				query = query.Where(p => p.Adress.Contains(address));
+				query = query.Where(p => p.Address.Contains(address));
 			}
 
 			if (!string.IsNullOrEmpty(keyword))
 			{
-				query = query.Where(p => p.Tittle.Contains(keyword) || p.Description.Contains(keyword));
+				query = query.Where(p => p.Title.Contains(keyword) || p.Description.Contains(keyword));
 			}
 
 			return await query.ToListAsync();
