@@ -12,10 +12,21 @@ namespace UrbaniaBackend.Context
 		public DbSet<Inmobiliaria> Inmobiliaria { get; set; }
 		public DbSet<Inmuebles> Inmueble { get; set; }
 		public DbSet<User> Users { get; set; }
+		public DbSet<ContactFormType> ContactFormType { get; set; }
+		public DbSet<ContactForm> ContactForm { get; set; }
 
 		protected override void OnModelCreating( ModelBuilder modelBuilder )
 		{
 			modelBuilder.Entity<User>().HasIndex(u => u.Email).IsUnique();
+
+			modelBuilder.Entity<ContactFormType>().HasIndex(u => u.Title).IsUnique();
+			modelBuilder.Entity<ContactFormType>().HasIndex(u => u.Code).IsUnique();
+
+			modelBuilder
+				.Entity<ContactForm>()
+				.HasOne(p => p.Type)
+				.WithMany(i => i.ContactForms)
+				.HasForeignKey(p => p.ContactFormTypeId);
 		}
 	}
 }
