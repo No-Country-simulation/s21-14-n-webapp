@@ -10,6 +10,7 @@ const PropertySchema = new mongoose.Schema({
   images: { type: [String], required: true }, 
   typeProperty: { type: String, required: true },
   typeContract: { type: String, required: true },
+  isSelected: { type: Boolean, default: false } 
 }, { timestamps: true });
 
 module.exports = mongoose.model('Property', PropertySchema);
