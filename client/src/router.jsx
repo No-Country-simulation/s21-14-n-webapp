@@ -8,7 +8,7 @@ import PropertiesForm from "./pages/admin/PropertiesForm";
 import { ListCrudProperty } from "./pages/admin/ListCrudProperty";
 import AboutUs from "./pages/AboutUs";
 import { HomeAdmin } from "./components/HomeAdmin/HomeAdmin";
-import { Login } from "./components/Login/Login";
+import { Login } from "./components/login/Login";
 
 //Home Templates
 
