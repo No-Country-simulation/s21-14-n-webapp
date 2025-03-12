@@ -36,6 +36,11 @@ const contactoSchema = new mongoose.Schema({
   fecha: {
     type: Date,
     default: Date.now
+  },
+  state: {
+    type: String,
+    enum: ['pendiente', 'finalizado'],
+    default: 'pendiente'
   }
 });
 

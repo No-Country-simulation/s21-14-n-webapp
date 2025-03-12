@@ -41,6 +41,22 @@ const SummaryApi = {
         url: `${backendDomain}/contacto`,//funciona
         method: 'delete'
     },
+    getAllUsers: {
+        url: `${backendDomain}/users`,//funciona
+        method: 'get'
+    },
+    registerUsers: {
+        url: `${backendDomain}/users/register`,//funciona
+        method: 'post'
+    },
+    loginUsers: {
+        url: `${backendDomain}/users/register`,//funciona
+        method: 'post'
+    },
+    deleteUsers: {
+        url: `${backendDomain}/users`,//funciona
+        method: 'delete'
+    },
 }
 
 
