@@ -58,4 +58,24 @@ const getAllUsers = async (req, res) => {
   }
 };
 
-module.exports = { registerUser, loginUser, getAllUsers };
+const deleteUser = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    // Verificar si el usuario existe
+    const user = await User.findById(id);
+    if (!user) return res.status(404).json({ error: 'User not found' });
+
+    // Eliminar el usuario
+    await User.findByIdAndDelete(id);
+
+    res.status(200).json({ message: 'User deleted successfully' });
+  } catch (error) {
+    console.error('Error deleting user:', error);
+    res.status(500).json({ error: 'Server error' });
+  }
+};
+
+
+module.exports = { registerUser, loginUser, getAllUsers, deleteUser };
+

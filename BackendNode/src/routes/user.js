@@ -1,5 +1,5 @@
 const express = require('express');
-const { registerUser, loginUser, getAllUsers } = require('../controllers/authController');
+const { registerUser, loginUser, getAllUsers, deleteUser } = require('../controllers/userController');
 
 const router = express.Router();
 
@@ -10,6 +10,7 @@ router.post('/register', registerUser);
 router.post('/login', loginUser);
 
 // Ruta para obtener todos los usuarios
-router.get('/users', getAllUsers);
+router.get('/', getAllUsers);
+router.delete('/:id', deleteUser);
 
 module.exports = router;

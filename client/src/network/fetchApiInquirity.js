@@ -21,7 +21,7 @@ export async function getAllInquiries(){
 
 export async function getInquiryById(id){
     return fetchData(`${SummaryApi.getInquiryById.url}/${id}`,{
-        method: SummaryApi.getInquiryById.url
+        method: SummaryApi.getInquiryById.method
     });
 };
 
