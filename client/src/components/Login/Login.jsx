@@ -1,15 +1,23 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import { loginUser } from '../../network/fetchApiUsers';
+import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 
 export const Login = () => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log('Email:', email);
-        console.log('Password:', password);
+    const navigate = useNavigate();
+    const { register, handleSubmit, reset } = useForm();
+    const onSubmit = async (data) => {
+        const response= await loginUser (data);
+        const token = response.token
+        localStorage.setItem("token", token)
+        reset();
+        navigate("/admin")
     };
+
+    
+
+
 
     return (
         <motion.div 
@@ -34,41 +42,29 @@ export const Login = () => {
                         <h2 className="text-4xl font-bold text-primary">¡Bienvenido!</h2>
                         <p className="text-4xl font-semibold max-w-96 text-tertiary">Inicie sesion con su cuenta empresarial</p>
                     </div>
-                    <form onSubmit={handleSubmit} className='max-w-96'>
-                        <div className="mb-4">
-                            <label htmlFor="email" className="y">
-                                Correo Electrónico
-                            </label>
-                            <input
-                                type="email"
-                                id="email"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                                className=" pl-5 mt-1 p-2 w-full border  rounded-md focus:outline-none focus:ring-2 focus:ring-secundary"
-                                placeholder="Ingresa tu correo electrónico"
-                                required
-                            />
-                        </div>
-                        <div className="mb-6">
-                            <label htmlFor="password" className="block text-sm font-medium">
-                                Contraseña
-                            </label>
-                            <input
-                                type="password"
-                                id="password"
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
-                                className=" pl-5 mt-1 p-2 w-full border  rounded-md focus:outline-none focus:ring-2 focus:ring-secundary"
-                                placeholder="Ingresa tu contraseña"
-                                required
-                            />
-                        </div>
-                        <button
+                    <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+                        <motion.input
+                            {...register("email", { required: true })}
+                            type="email"
+                            placeholder="Email"
+                            className="w-full p-3 bg-gray-800/60 border border-white/50 rounded-md focus:outline-none focus:ring-2 focus:ring-cyan-500 text-white placeholder-gray-300"
+                            whileFocus={{ scale: 1.05 }}
+                        />
+                        <motion.input
+                            {...register("password", { required: true })}
+                            type="password"
+                            placeholder="Contraseña"
+                            className="w-full p-3 bg-gray-800/60 border border-white/50 rounded-md focus:outline-none focus:ring-2 focus:ring-cyan-500 text-white placeholder-gray-300"
+                            whileFocus={{ scale: 1.05 }}
+                        />
+                        <motion.button
                             type="submit"
-                            className="w-full bg-primary cursor-pointer text-tertiary py-2 px-4 rounded-md hover:bg-secundary hover:text-primary transition duration-300"
+                            className="w-full bg-cyan-500/80 text-white py-2 rounded-md hover:bg-cyan-500 transition shadow-md"
+                            whileHover={{ scale: 1.05 }}    
+                            whileTap={{ scale: 0.95 }}
                         >
-                            Iniciar Sesión
-                        </button>
+                            Iniciar Sesion
+                        </motion.button>
                     </form>
                 </motion.div>
             </motion.div>

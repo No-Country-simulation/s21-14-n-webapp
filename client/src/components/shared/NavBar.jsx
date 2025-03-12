@@ -2,13 +2,15 @@ import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
 export const NavBar = () => {
-    const [isAdmin, setIsAdmin] = useState(1);
+    const [isAdmin, setIsAdmin] = useState(0);
+    const token=localStorage.getItem("token")
+    
 
     const items = [
         { name: 'Inicio', path: '/' },
         { name: 'Propiedades', path: '/inmuebles' },
         { name: 'Nosotros', path: '/nosotros' },
-        {name: "Iniciar Sesion", path:"/inicioSesion"}
+        
     ];
 
     const itemsAdmin = [
@@ -41,3 +43,6 @@ export const NavBar = () => {
         </nav>
     );
 };
+
+
+
