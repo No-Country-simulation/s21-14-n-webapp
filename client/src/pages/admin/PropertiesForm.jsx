@@ -1,33 +1,135 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useState } from "react";
 import { motion } from "framer-motion";
 import { PropertieSchema } from "../../schemas";
 import Error from "../../ui/ErrorMessage";
-import { createInquiry } from "../../network/fetchApiInquirity";
-
+import { createInquiry, editInquiry, getInquiryById } from "../../network/fetchApiInquirity";
+import { useEffect, useState } from "react";
 
 const PropertiesForm = () => {
+  const [isEditing, setIsEditing] = useState(false);
+  const [idInmueble, setIdInmueble] = useState(null);
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
     reset,
   } = useForm({ resolver: yupResolver(PropertieSchema) });
+  useEffect(() => {
+    const storedId = localStorage.getItem("idInmueble");
 
-  // const [imagenPrincipal, setImagenPrincipal] = useState(null);
+    if (storedId) {
+      setIsEditing(true);
+      setIdInmueble(storedId);
 
-  const onSubmit = async (inquirity) => {
+      // Cargar los datos del inmueble
+      getInquiryById(storedId).then((data) => {
+        setValue("title", data.title);
+        setValue("description", data.description);
+        setValue("price", data.price);
+        setValue("address", data.address);
+        setValue("squareMeters", data.squareMeters);
+        setValue("typeProperty", data.typeProperty);
+        setValue("typeContract", data.typeContract);
+
+        if (data.imagePrincipal) {
+          setPreviewImage(data.imagePrincipal);
+        }
+        if (data.images) {
+          setPreviewAdditionalImages(data.images);
+        }
+      });
+    }
+  }, [setValue]);
+
+  const [imagenesAdicionales, setImagenesAdicionales] = useState([]);
+  const [previewImage, setPreviewImage] = useState(null);
+  const [previewAdditionalImages, setPreviewAdditionalImages] = useState([]);
+
+  // Imagen principal
+  const handleImagenPrincipalChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setValue("imagenPrincipal", file, { shouldValidate: true });
+
+      // Generar vista previa
+      const reader = new FileReader();
+      reader.onloadend = () => setPreviewImage(reader.result);
+      reader.readAsDataURL(file);
+    }
+  };
+
+  // Imágenes adicionales
+  const handleImagenesAdicionalesChange = (e) => {
+    const files = Array.from(e.target.files);
+    setImagenesAdicionales(files);
+    setValue("imagenesAdicionales", files, { shouldValidate: true });
+
+    // Generar vistas previas
+    Promise.all(
+      files.map((file) => {
+        return new Promise((resolve) => {
+          const reader = new FileReader();
+          reader.onloadend = () => resolve(reader.result);
+          reader.readAsDataURL(file);
+        });
+      })
+    ).then(setPreviewAdditionalImages);
+  };
+
+  const onSubmit = async (property) => {
+    console.log("Datos del formulario:", property);
+
     try {
-      const propertyData = {
-        ...inquirity,
-        inmobiliariaId: 1, 
-      };
-      const response = await createInquiry(propertyData);
-      console.log("Propiedad creada con éxito:", response);
+      const formData = new FormData();
+      formData.append("title", property.title);
+      formData.append("description", property.description);
+      formData.append("price", property.price);
+      formData.append("address", property.address);
+      formData.append("squareMeters", property.squareMeters);
+      formData.append("typeProperty", property.typeProperty);
+      formData.append("typeContract", property.typeContract);
+
+      if (property.imagenPrincipal) {
+        const imagenPrincipalRenombrada = new File(
+          [property.imagenPrincipal],
+          "imagen_principal.jpg",
+          { type: property.imagenPrincipal.type }
+        );
+        formData.append("imagePrincipal", imagenPrincipalRenombrada);
+      }
+
+      imagenesAdicionales.forEach((image, index) => {
+        const renamedImage = new File(
+          [image],
+          `imagen_adicional_${index + 1}.jpg`,
+          { type: image.type }
+        );
+        formData.append("images", renamedImage);
+      });
+
+      console.log("Contenido de FormData:");
+      for (let pair of formData.entries()) {
+        console.log(pair[0], pair[1].name);
+      }
+
+      let response;
+      if (isEditing) {
+        response = await editInquiry(formData, idInmueble);
+        console.log("Propiedad editada con éxito:", response);
+      } else {
+        response = await createInquiry(formData);
+        console.log("Propiedad creada con éxito:", response);
+      }
+
       reset();
+      setPreviewImage(null);
+      setPreviewAdditionalImages([]);
+      setImagenesAdicionales([]);
+      localStorage.removeItem("idInmueble");
     } catch (error) {
-      console.log(error);
+      console.error("Error al guardar propiedad:", error);
     }
   };
 
@@ -40,77 +142,156 @@ const PropertiesForm = () => {
         transition={{ duration: 0.8, ease: "easeOut" }}
         className="max-w-lg min-h-[500px] mx-auto p-6 bg-white/65 shadow-lg rounded-lg backdrop-blur-sm relative md:min-h-[600px] sm:w-11/12"
       >
-        <h2 className="text-2xl font-bold text-center mb-4">Crea La Vivienda</h2>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          {[
-            { name: "title", label: "Título", type: "text" },
-            { name: "description", label: "Descripción", type: "textarea" },
-            { name: "price", label: "Precio", type: "number" },
-            { name: "address", label: "Ubicación", type: "text" },
-            { name: "squareMeters", label: "Metros Cuadrados", type: "number" },
-            { name: "imageUrl", label: "URL de la Imagen", type: "text" },
-            { name: "typeProperty", label: "Tipo de Propiedad", type: "number" },
-            { name: "typeContract", label: "Tipo de Contrato", type: "number" },
-          ].map(({ name, label, type }, index) => (
-            <div key={name} className="relative mb-4">
-              <motion.label
-                initial={{ y: 10, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.3, delay: index * 0.1 }}
-                className="absolute top-2 left-2 text-gray-600 text-sm"
-              >
-                {label}
-              </motion.label>
-              {type === "textarea" ? (
-                <textarea
-                  className="w-full p-3 pt-6 border rounded focus:outline-none focus:ring-2 focus:ring-indigo-400"
-                  {...register(name)}
-                />
-              ) : (
-                <input
-                  type={type}
-                  className="w-full p-3 pt-6 border rounded focus:outline-none focus:ring-2 focus:ring-indigo-400"
-                  {...register(name)}
-                />
-              )}
-              {errors[name] && <Error>{errors[name].message}</Error>}
-            </div>
-          ))}
+        <h2 className="text-2xl font-bold text-center mb-4">
+          Crea La Vivienda
+        </h2>
+        <form onSubmit={handleSubmit(onSubmit)} encType="multipart/form-data">
+          {/* Input Title */}
+          <div className="relative mb-4">
+            <label className="block text-sm text-gray-600">Título</label>
+            <input
+              type="text"
+              className="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-indigo-400"
+              {...register("title")}
+            />
+            {errors.title && <Error>{errors.title.message}</Error>}
+          </div>
 
-          {/* <div className="mb-6">
-            <label className="block font-semibold">Imagen Principal</label>
-            {!imagenPrincipal ? (
-              <input
-                type="file"
-                className="w-full p-2 border rounded"
-                onChange={(e) => setImagenPrincipal(e.target.files[0])}
+          {/* Input Description */}
+          <div className="relative mb-4">
+            <label className="block text-sm text-gray-600">Descripción</label>
+            <textarea
+              className="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-indigo-400"
+              {...register("description")}
+            ></textarea>
+            {errors.description && <Error>{errors.description.message}</Error>}
+          </div>
+
+          {/* Input Price */}
+          <div className="relative mb-4">
+            <label className="block text-sm text-gray-600">Precio</label>
+            <input
+              type="number"
+              className="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-indigo-400"
+              {...register("price")}
+            />
+            {errors.price && <Error>{errors.price.message}</Error>}
+          </div>
+
+          {/* Input Address */}
+          <div className="relative mb-4">
+            <label className="block text-sm text-gray-600">Dirección</label>
+            <input
+              type="text"
+              className="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-indigo-400"
+              {...register("address")}
+            />
+            {errors.address && <Error>{errors.address.message}</Error>}
+          </div>
+
+          {/* Input Square Meters */}
+          <div className="relative mb-4">
+            <label className="block text-sm text-gray-600">
+              Metros Cuadrados
+            </label>
+            <input
+              type="number"
+              className="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-indigo-400"
+              {...register("squareMeters")}
+            />
+            {errors.squareMeters && (
+              <Error>{errors.squareMeters.message}</Error>
+            )}
+          </div>
+
+          {/* Input Type Property */}
+          <div className="relative mb-4">
+            <label className="block text-sm text-gray-600">
+              Tipo de Propiedad
+            </label>
+            <input
+              type="text"
+              className="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-indigo-400"
+              {...register("typeProperty")}
+            />
+            {errors.typeProperty && (
+              <Error>{errors.typeProperty.message}</Error>
+            )}
+          </div>
+
+          {/* Input Type Contract */}
+          <div className="relative mb-4">
+            <label className="block text-sm text-gray-600">
+              Tipo de Contrato
+            </label>
+            <input
+              type="text"
+              className="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-indigo-400"
+              {...register("typeContract")}
+            />
+            {errors.typeContract && (
+              <Error>{errors.typeContract.message}</Error>
+            )}
+          </div>
+
+          {/* Imagen Principal */}
+          <div className="mb-6">
+            <label className="block text-sm font-medium text-gray-700">
+              Imagen Principal
+            </label>
+            <input
+              type="file"
+              accept="image/*"
+              className="mt-1 p-2 border rounded w-full"
+              onChange={handleImagenPrincipalChange}
+            />
+            {errors.imagenPrincipal && (
+              <Error>{errors.imagenPrincipal.message}</Error>
+            )}
+            {previewImage && (
+              <img
+                src={previewImage}
+                alt="Vista previa"
+                className="w-full max-w-xs border rounded shadow mt-2"
               />
-            ) : (
-              <div className="relative flex justify-center items-center">
-                <img
-                  src={URL.createObjectURL(imagenPrincipal)}
-                  alt="Principal"
-                  className="w-full max-h-40 object-cover rounded shadow-md"
-                />
-                <button
-                  type="button"
-                  className="absolute top-2 right-2 bg-red-500 text-white px-2 rounded"
-                  onClick={() => setImagenPrincipal(null)}
-                >
-                  X
-                </button>
+            )}
+          </div>
+
+          {/* Imágenes Adicionales */}
+          <div className="mb-6">
+            <label className="block font-semibold">Imágenes Adicionales</label>
+            <input
+              type="file"
+              accept="image/*"
+              multiple
+              className="w-full p-2 border rounded"
+              onChange={handleImagenesAdicionalesChange}
+            />
+            {errors.imagenesAdicionales && (
+              <Error>{errors.imagenesAdicionales.message}</Error>
+            )}
+            {previewAdditionalImages.length > 0 && (
+              <div className="mt-4 grid grid-cols-3 gap-2">
+                {previewAdditionalImages.map((src, index) => (
+                  <img
+                    key={index}
+                    src={src}
+                    alt={`Imagen ${index + 1}`}
+                    className="w-full h-auto border rounded shadow"
+                  />
+                ))}
               </div>
             )}
-            {errors.imagenPrincipal && <Error>{errors.imagenPrincipal.message}</Error>}
-          </div> */}
+          </div>
 
+          {/* Botón de Envío */}
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             type="submit"
             className="w-full p-3 bg-indigo-600 text-white font-bold rounded hover:bg-indigo-700"
           >
-            Guardar Propiedad
+            {isEditing ? "Editar Propiedad" : "Guardar Propiedad"}
           </motion.button>
         </form>
       </motion.div>

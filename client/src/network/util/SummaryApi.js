@@ -6,39 +6,55 @@ if (!backendDomain) {
 
 const SummaryApi = {
     createInquiry: {
-        url: `${backendDomain}/Inmuebles`,
+        url: `${backendDomain}/Inmuebles`,//funciona
         method: 'post'
     },
     getInquiryById: {
-        url: `${backendDomain}/Inmuebles`,//Add id 
+        url: `${backendDomain}/Inmuebles`,//Add id //funciona
         method: 'get'
     },
     getAllInquiries: {
-        url: `${backendDomain}/Inmuebles`,
+        url: `${backendDomain}/Inmuebles`,//funciona
         method: 'get'
     },
     editInquiry: {
-        url: `${backendDomain}/Inmuebles`,//Add id 
+        url: `${backendDomain}/Inmuebles`,//Add id //no funciona
         method: 'put'
     },
     deleteInquiry: {
-        url: `${backendDomain}/Inmuebles`,//Add id 
+        url: `${backendDomain}/Inmuebles`,//Add id //funciona
         method: 'delete'
     },
-    createRealEstate: {
-        url: `${backendDomain}/Inmobiliaria`,
+    createContacto: {
+        url: `${backendDomain}/contacto`,//funciona
         method: 'post'
     },
-    getAllRealEstate: {
-        url: `${backendDomain}/Inmobiliaria`,
+    getAllContacto: {
+        url: `${backendDomain}/contacto`,//funciona
         method: 'get'
     },
-    editRealEstate: {
-        url: `${backendDomain}/Inmobiliaria`,//Add id 
-        method: 'put'
+    getContactoById: {
+        url: `${backendDomain}/contacto`,//funciona
+        method: 'get'
     },
-    deleteRealEstate: {
-        url: `${backendDomain}/Inmobiliaria`,//Add id 
+    deleteContacto: {
+        url: `${backendDomain}/contacto`,//funciona
+        method: 'delete'
+    },
+    getAllUsers: {
+        url: `${backendDomain}/users`,//funciona
+        method: 'get'
+    },
+    registerUsers: {
+        url: `${backendDomain}/users/register`,//funciona
+        method: 'post'
+    },
+    loginUsers: {
+        url: `${backendDomain}/users/register`,//funciona
+        method: 'post'
+    },
+    deleteUsers: {
+        url: `${backendDomain}/users`,//funciona
         method: 'delete'
     },
 }
