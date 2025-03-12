@@ -17,10 +17,11 @@ export const NavBar = () => {
     const itemsAdmin = [
         { name:'inicio', path:'/admin'},
         { name: "Subir Propiedad", path: "/admin/crearInmueble" },
-        { name: "Editar Propiedades", path: "/admin/CrudPropiedad" }
+        { name: "Editar Propiedades", path: "/admin/CrudPropiedad" },
+        { name: "Gestiona Usuarios", path: "/admin/GestionUsuarios" }
     ];
 
-    const menuItems = isAdmin === 0 ? items : itemsAdmin;
+    const menuItems = isAdmin === 1 ? items : itemsAdmin;
 
     return (
         <nav className='w-full h-10 lg:h-20 flex justify-between items-center p-2 lg:px-20 bg-opacity-50 bg-primary fixed top-0 left-0 z-50'>
