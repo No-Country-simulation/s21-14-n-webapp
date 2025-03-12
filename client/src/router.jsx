@@ -8,6 +8,7 @@ import PropertiesForm from "./pages/admin/PropertiesForm";
 import { ListCrudProperty } from "./pages/admin/ListCrudProperty";
 import AboutUs from "./pages/AboutUs";
 import { HomeAdmin } from "./components/HomeAdmin/HomeAdmin";
+import AdminUsers from "./pages/admin/Users";
 
 //Home Templates
 
@@ -30,7 +31,8 @@ export const router = createHashRouter([
         children: [
             { index: true , element: <HomeAdmin/>},
             { path: "crearInmueble", element: <PropertiesForm /> },
-            { path: "CrudPropiedad", element: <ListCrudProperty /> }
+            { path: "CrudPropiedad", element: <ListCrudProperty /> },
+            { path: "Usuarios", element: <AdminUsers />}
         ]
     }
 

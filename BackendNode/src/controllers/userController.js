@@ -65,7 +65,6 @@ const deleteUser = async (req, res) => {
     // Verificar si el usuario existe
     const user = await User.findById(id);
     if (!user) return res.status(404).json({ error: 'User not found' });
-
     // Eliminar el usuario
     await User.findByIdAndDelete(id);
 
