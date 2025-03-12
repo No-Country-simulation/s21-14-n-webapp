@@ -1,13 +1,14 @@
 import React from 'react';
 import { motion } from "framer-motion";
+import './aboutUs.css';
 
 const AboutUs = () => {
     return (
         <div className='bg-primary flex flex-col items-center text-center'>
-            <div className='bg-[url(/casa2.jpg)] bg-cover bg-center relative w-full h-[500px] flex items-center justify-center text-white text-center px-6 xl:px-20'>
-                <div className='absolute inset-0 bg-black bg-opacity-50'></div>
+            <div className='custom-bg bg-cover bg-center relative w-full h-[500px] flex items-center justify-center text-white text-center px-6 xl:px-20'>
+                <div className='absolute inset-0  bg-opacity-50'></div>
                 <motion.div 
-                    className='relative z-10'
+                    className='relative z-10 backdrop-blur-2xl p-10'
                     initial={{ opacity: 0, y: -50 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 1, ease: "easeOut" }}
