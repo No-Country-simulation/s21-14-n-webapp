@@ -90,18 +90,19 @@ const PropertiesForm = () => {
   
 
   return (
-    <div className="relative w-full h-full flex items-center justify-center pb-5 pt-28 bg-[url(/banner.jpg)] bg-cover bg-center before:absolute before:inset-0 before:bg-black before:opacity-50">
+    <div className="relative w-full  bg-[url(/banner.jpg)] bg-cover h-screen flex items-center justify-center">
+      <div className="absolute top-0 left-0 w-full h-full bg-black/50"></div>
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
         className="max-w-lg min-h-[500px] mx-auto p-6 bg-white/65 shadow-lg rounded-lg backdrop-blur-sm relative md:min-h-[600px] sm:w-11/12"
       >
-        <h2 className="text-2xl font-bold text-center">Crea La Vivienda</h2>
-        <form onSubmit={handleSubmit(onSubmit)} encType="multipart/form-data" className="flex flex-col gap-2 mt-20" >
+        <h2 className="text-2xl font-bold text-center mb-4">Crea La Vivienda</h2>
+        <form onSubmit={handleSubmit(onSubmit)} encType="multipart/form-data">
           
           {/* Input Title */}
-          <div className="relative ">
+          <div className="relative mb-4">
             <label className="block text-sm text-gray-600">Título</label>
             <input
               type="text"
@@ -112,7 +113,7 @@ const PropertiesForm = () => {
           </div>
 
           {/* Input Description */}
-          <div className="relative ">
+          <div className="relative mb-4">
             <label className="block text-sm text-gray-600">Descripción</label>
             <textarea
               className="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-indigo-400"
@@ -122,7 +123,7 @@ const PropertiesForm = () => {
           </div>
 
           {/* Input Price */}
-          <div className="relative ">
+          <div className="relative mb-4">
             <label className="block text-sm text-gray-600">Precio</label>
             <input
               type="number"
@@ -133,7 +134,7 @@ const PropertiesForm = () => {
           </div>
 
           {/* Input Address */}
-          <div className="relative ">
+          <div className="relative mb-4">
             <label className="block text-sm text-gray-600">Dirección</label>
             <input
               type="text"
@@ -144,7 +145,7 @@ const PropertiesForm = () => {
           </div>
 
           {/* Input Square Meters */}
-          <div className="relative ">
+          <div className="relative mb-4">
             <label className="block text-sm text-gray-600">Metros Cuadrados</label>
             <input
               type="number"
@@ -155,7 +156,7 @@ const PropertiesForm = () => {
           </div>
 
           {/* Input Type Property */}
-          <div className="relative ">
+          <div className="relative mb-4">
             <label className="block text-sm text-gray-600">Tipo de Propiedad</label>
             <input
               type="text"
@@ -166,7 +167,7 @@ const PropertiesForm = () => {
           </div>
 
           {/* Input Type Contract */}
-          <div className="relative ">
+          <div className="relative mb-4">
             <label className="block text-sm text-gray-600">Tipo de Contrato</label>
             <input
               type="text"
@@ -177,7 +178,7 @@ const PropertiesForm = () => {
           </div>
 
            {/* Imagen Principal */}
-           <div className="">
+           <div className="mb-6">
             <label className="block text-sm font-medium text-gray-700">Imagen Principal</label>
             <input type="file" accept="image/*" className="mt-1 p-2 border rounded w-full" onChange={handleImagenPrincipalChange} />
             {errors.imagenPrincipal && <Error>{errors.imagenPrincipal.message}</Error>}
@@ -185,7 +186,7 @@ const PropertiesForm = () => {
           </div>
 
           {/* Imágenes Adicionales */}
-          <div className="">
+          <div className="mb-6">
             <label className="block font-semibold">Imágenes Adicionales</label>
             <input type="file" accept="image/*" multiple className="w-full p-2 border rounded" onChange={handleImagenesAdicionalesChange} />
             {errors.imagenesAdicionales && <Error>{errors.imagenesAdicionales.message}</Error>}
