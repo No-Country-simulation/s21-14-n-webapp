@@ -50,7 +50,7 @@ const SummaryApi = {
         method: 'post'
     },
     loginUsers: {
-        url: `${backendDomain}/users/register`,//funciona
+        url: `${backendDomain}/users/login`,//funciona
         method: 'post'
     },
     deleteUsers: {
