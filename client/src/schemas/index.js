@@ -13,3 +13,32 @@ export const PropertieSchema = yup.object().shape({
     value && ["image/jpeg", "image/png", "image/jpg"].includes(value.type)
   )),
 });
+
+export const ConsultSchema = yup.object().shape({
+    nombreApellido: yup
+        .string()
+        .min(3, "Mínimo 3 caracteres")
+        .max(100, "Máximo 100 caracteres")
+        .required("El nombre y apellido son obligatorios"),
+    email: yup
+        .string()
+        .email("Debe ser un correo electrónico válido")
+        .required("El correo electrónico es obligatorio"),
+    telefono: yup
+        .string()
+        .matches(/^\d+$/, "Solo se permiten números en el teléfono")
+        .required("El tipo de consulta es obligatorio"),
+    tipoConsulta: yup
+        .string()
+        .oneOf(['General', 'Soporte', 'Ventas', 'Otro'], "Tipo de consulta no válido")
+        .required("El tipo de consulta es obligatorio"),
+    mensaje: yup
+        .string()
+        .min(10, "Mínimo 10 caracteres")
+        .required("El mensaje es obligatorio"),
+    titulo: yup
+        .string()
+        .min(5, "Mínimo 5 caracteres")
+        .max(100, "Máximo 100 caracteres")
+        .required("El título es obligatorio"),
+});

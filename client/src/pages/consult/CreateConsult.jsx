@@ -2,10 +2,11 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { ConsultSchema } from "../../schemas/ConsultSchema"
+
 import ProgressIndicator from "./ProgressIndicator";
 import SupportForm from "./ConsultForm";
 import { createContact } from "../../network/fetchContact";
+import { ConsultSchema } from "../../schemas";
 
 const CreateConsult = () => 
 {

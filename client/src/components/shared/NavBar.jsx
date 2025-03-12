@@ -10,6 +10,7 @@ export const NavBar = () => {
         { name: 'Inicio', path: '/' },
         { name: 'Propiedades', path: '/inmuebles' },
         { name: 'Nosotros', path: '/nosotros' },
+        { name: 'Contacto', path: '/contacto'}
         
     ];
 
