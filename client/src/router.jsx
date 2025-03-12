@@ -33,6 +33,7 @@ export const router = createHashRouter([
             { path: "crearInmueble", element: <PropertiesForm /> },
             { path: "CrudPropiedad", element: <ListCrudProperty /> },
             { path: "Usuarios", element: <AdminUsers />}
+
         ]
     }
 
