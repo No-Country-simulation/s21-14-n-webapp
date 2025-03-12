@@ -2,17 +2,19 @@ import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
 export const NavBar = () => {
-    const [isAdmin, setIsAdmin] = useState(0);
+    const [isAdmin, setIsAdmin] = useState(1);
 
     const items = [
         { name: 'Inicio', path: '/' },
         { name: 'Propiedades', path: '/inmuebles' },
         { name: 'Nosotros', path: '/nosotros' },
+        {name: "Iniciar Sesion", path:"/inicioSesion"}
     ];
 
     const itemsAdmin = [
-        { name: "Subir Propiedad", path: "/" },
-        { name: "Editar Propiedades", path: "/" }
+        { name:'inicio', path:'/admin'},
+        { name: "Subir Propiedad", path: "/admin/crearInmueble" },
+        { name: "Editar Propiedades", path: "/admin/CrudPropiedad" }
     ];
 
     const menuItems = isAdmin === 0 ? items : itemsAdmin;
