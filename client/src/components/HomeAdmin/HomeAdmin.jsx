@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { CgCloseR } from "react-icons/cg";
 import './HomeAdmin.css';
 import { Card } from './Card';
+import { getAllContact } from '../../network/fetchContact';
 
 export const HomeAdmin = () => {
     const [showCards, setShowCards] = useState({});
+ const [allContact, setAllContact] = useState([]);
 
     const todoTitle = [
         { name: "Consultas de propiedades", id: 1 },
@@ -13,98 +15,22 @@ export const HomeAdmin = () => {
         { name: "Otras consultas atendidas", id: 4 }
     ];
 
-    const consultas = [
-        {
-            telefono: "555-1234",
-            nombre: "Juan",
-            apellido: "González",
-            tipoConsulta: "inmuebles",
-            email: "juan.gonzalez@example.com",
-            mensaje: "Estoy interesado en la casa en venta en el centro.",
-            estado:"pendiente"
-        },
-        {
-            telefono: "555-2345",
-            nombre: "María",
-            apellido: "Rodríguez",
-            tipoConsulta: "inmuebles",
-            email: "maria.rodriguez@example.com",
-            mensaje: "¿Podrían darme información sobre el departamento en alquiler?",
-            estado:"pendiente"
-        },
-        {
-            telefono: "555-3456",
-            nombre: "Carlos",
-            apellido: "Pérez",
-            tipoConsulta: "inmuebles",
-            email: "carlos.perez@example.com",
-            mensaje: "Necesito detalles sobre la propiedad en la zona norte.",
-            estado:"pendiente"
-        },
-        {
-            telefono: "555-4567",
-            nombre: "Ana",
-            apellido: "López",
-            tipoConsulta: "inmuebles",
-            email: "ana.lopez@example.com",
-            mensaje: "Me interesa saber si hay propiedades con opción a financiamiento.",
-            estado:"pendiente"
-        },
-        {
-            telefono: "555-5678",
-            nombre: "Luis",
-            apellido: "Martínez",
-            tipoConsulta: "inmuebles",
-            email: "luis.martinez@example.com",
-            mensaje: "Quiero agendar una visita a la casa que vi en el anuncio.",
-            estado:"pendiente"
-        },
-        {
-            telefono: "555-6789",
-            nombre: "Sofía",
-            apellido: "García",
-            tipoConsulta: "otros",
-            email: "sofia.garcia@example.com",
-            mensaje: "Necesito información sobre los plazos de pago.",
-            estado:"pendiente"
-        },
-        {
-            telefono: "555-7890",
-            nombre: "Diego",
-            apellido: "Hernández",
-            tipoConsulta: "otros",
-            email: "diego.hernandez@example.com",
-            mensaje: "¿Cómo puedo obtener una factura electrónica?",
-            estado:"pendiente"
-        },
-        {
-            telefono: "555-8901",
-            nombre: "Elena",
-            apellido: "Sánchez",
-            tipoConsulta: "otros",
-            email: "elena.sanchez@example.com",
-            mensaje: "Tengo problemas para iniciar sesión en mi cuenta.",
-            estado:"pendiente"
-        },
-        {
-            telefono: "555-9012",
-            nombre: "Miguel",
-            apellido: "Ramírez",
-            tipoConsulta: "otros",
-            email: "walter.azariel.moreno@gmail.com",
-            mensaje: "¿Existen descuentos por pago anticipado?",
-            estado:"pendiente"
-        },
-        {
-            telefono: "555-0123",
-            nombre: "Laura",
-            apellido: "Torres",
-            tipoConsulta: "otros",
-            email: "laura.torres@example.com",
-            mensaje: "Me gustaría saber si ofrecen atención personalizada para resolver dudas.",
-            estado:"pendiente"
-        }
-    ];
+      useEffect(() => {
+           const fetchData = async () => {
+             try {
+               const data = await getAllContact();
+               if (!data) {
+                setAllContact([]);
+                 return;
+               }
+               setAllContact(data);
+             } catch (error) {
+               console.log(error);
+             }
+           };
+       
+           fetchData();
+         }, []);
 
     const handleClick = (id) => {
         setShowCards(prevState => ({
@@ -120,7 +46,7 @@ export const HomeAdmin = () => {
             </h1>
             <section className='w-[86%] h-[80%] flex gap-5 justify-center custom-bg p-5'>
                 {todoTitle.map((item) => {
-                    const filteredConsultas = consultas.filter(consulta => {
+                    const filteredConsultas = allContact.filter(consulta => {
                         if (item.name === "Consultas de propiedades") {
                             return consulta.tipoConsulta === "inmuebles";
                         } else if (item.name === "Otras consultas") {
@@ -144,16 +70,15 @@ export const HomeAdmin = () => {
                                     <button onClick={() => handleClick(item.id)} className='mt-5 mb-5'>
                                         <CgCloseR className='text-tertiary h-10 w-10 hover:scale-105 cursor-pointer' />
                                     </button>
-                                {filteredConsultas.map((consulta, index) => (
+                                {filteredConsultas.map((consulta) => (
                                     <Card 
-                                        key={index}
-                                        onClick={() => handleClick(item.id)} 
-                                        name={consulta.nombre} 
-                                        subname={consulta.apellido} 
+                                        key={item._id}
+                                        onClick={() => handleClick(item._id)} 
+                                        name={consulta.nombreApellido} 
                                         typeConsult={consulta.tipoConsulta} 
                                         email={consulta.email} 
                                         message={consulta.mensaje}
-                                        state={consulta.estado}
+                                        state={consulta.state}
                                     />
                                 ))}
                             </div>
