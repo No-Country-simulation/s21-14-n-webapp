@@ -55,10 +55,10 @@ const PropertyPage = () => {
               <span className="font-semibold">Metros cuadrados:</span> {property.squareMeters} m²
             </p>
             <p>
-              <span className="font-semibold">Tipo de propiedad:</span> {property.propertyType}
+              <span className="font-semibold">Tipo de propiedad:</span> {property.typeProperty}
             </p>
             <p>
-              <span className="font-semibold">Tipo de contrato:</span> {property.contractType}
+              <span className="font-semibold">Tipo de contrato:</span> {property.typeContract}
             </p>
           </div>
         </section>

@@ -12,7 +12,7 @@ const HomeLayout = () => {
             <header>
                 <NavBar/>
             </header>
-            <main className="pt-10">
+            <main className="pt-12">
                 <Outlet/>
                 <ButtonContact/>
             </main>
