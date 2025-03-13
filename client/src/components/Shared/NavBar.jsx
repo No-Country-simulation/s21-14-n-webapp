@@ -3,16 +3,20 @@ import { NavLink } from 'react-router-dom';
 
 export const NavBar = () => {
     const [isAdmin, setIsAdmin] = useState(0);
+    const token=localStorage.getItem("token")
+    
 
     const items = [
         { name: 'Inicio', path: '/' },
         { name: 'Propiedades', path: '/inmuebles' },
         { name: 'Nosotros', path: '/nosotros' },
+        
     ];
 
     const itemsAdmin = [
-        { name: "Subir Propiedad", path: "/" },
-        { name: "Editar Propiedades", path: "/" }
+        { name:'inicio', path:'/admin'},
+        { name: "Subir Propiedad", path: "/admin/crearInmueble" },
+        { name: "Editar Propiedades", path: "/admin/CrudPropiedad" }
     ];
 
     const menuItems = isAdmin === 0 ? items : itemsAdmin;
@@ -39,3 +43,6 @@ export const NavBar = () => {
         </nav>
     );
 };
+
+
+

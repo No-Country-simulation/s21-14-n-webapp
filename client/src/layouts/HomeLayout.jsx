@@ -5,6 +5,7 @@ import { Footer } from "../components/shared/Footer";
 import { ButtonContact } from "../components/shared/ButtonContract";
 
 
+
 const HomeLayout = () => {
     return (
         <div>

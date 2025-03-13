@@ -1,0 +1,45 @@
+.custom-bg {
+    background-image: url('/Ventana.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+}
+
+.card-enter {
+    animation: slideUp 0.5s ease-out forwards;
+}
+
+.card-exit {
+    animation: slideDown 0.5s ease-out forwards;
+}
+
+
+.scroll-invisible {
+    scrollbar-width: none; 
+    -ms-overflow-style: none; 
+}
+
+.scroll-invisible::-webkit-scrollbar {
+    display: none;
+}
