@@ -36,9 +36,9 @@ export async function editInquiry(inquirity, id){
 export async function togglePropertySelection(id, isSelected) {
     return await fetchData(`${SummaryApi.editInquiryStar.url}/${id}`, {
         method: SummaryApi.editInquiryStar.method,
-        body: { isSelected },
+        headers: { "Content-Type": "application/json" }, 
+        body: JSON.stringify({ isSelected }),  
     });
-   
 };
 
 

@@ -30,7 +30,7 @@ router.get('/:id', getPropertyById);
 router.delete('/:id', deleteProperty);
 
 //Ruta para actualizar el Destacado
-router.patch('/selected/:id', toggleIsSelected)
+router.patch('/:id', toggleIsSelected)
 
 // Ruta para actualizar una propiedad por ID
 router.put(
