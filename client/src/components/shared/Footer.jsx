@@ -28,11 +28,17 @@ export const Footer = () => {
             </div>
             <div>
                 {isAdmin ? (
-                    <button onClick={handleDeleteSesion} className="text-red-500">
-                        Cerrar Sesión
+                    <button onClick={handleDeleteSesion} className="text-red-500 ">
+                        <p className="hover:scale-105 cursor-pointer">
+                            Cerrar Sesión
+                        </p>
                     </button>
                 ) : (
-                    <NavLink to="/inicioSesion">¿Usted es administrador?</NavLink>
+                    <NavLink to="/inicioSesion">
+                        <p className="hover:scale-105 cursor-pointer">
+                            ¿Usted es administrador?
+                        </p>
+                    </NavLink>
                 )}
             </div>
             <div className='flex gap-2 lg:gap-10 text-2xl lg:text-5xl xl:text-7xl'>
