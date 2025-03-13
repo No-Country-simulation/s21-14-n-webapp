@@ -22,7 +22,7 @@ export const Card = ({ id, titulo, descripcion, tipo, ubicacion, precio, imagen,
             <div className="w-80 h-full flex flex-col justify-center items-start">
                 <div className='w-full md:w-[480px] h-[700px] flex flex-col'>
                     <motion.img
-                        src={`/${imagen}`}
+                        src={`${imagen}`}
                         className='w-full h-full aspect-[16/9] object-cover cursor-pointer shadow-2xl shadow-black'
                         alt="Imagen de la propiedad"
                         onMouseDown={handleMouseDown}
