@@ -24,7 +24,7 @@ export const router = createHashRouter([
         children: [
             { index: true, element: <Home /> },
             { path: "inmuebles", element: <ListOfProperties /> },
-            { path: "inmueble", element: <PropertyPage /> },
+            { path: "inmueble/:id", element: <PropertyPage /> },
             { path: "nosotros", element: <AboutUs /> },
             { path: "inicioSesion", element: <Login/>},
             { path: "contacto", element: <CreateConsult/>},

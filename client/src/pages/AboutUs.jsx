@@ -13,8 +13,8 @@ const AboutUs = () => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 1, ease: "easeOut" }}
                 >
-                    <h1 className='text-4xl xl:text-6xl font-bold text-[#C8A25F]'>Sobre Nosotros</h1>
-                    <p className='text-lg xl:text-2xl mt-4'>Conectamos sueños con hogares perfectos, facilitando información y asesoramiento inmobiliario.</p>
+                    <h1 className='text-4xl xl:text-6xl font-bold text-primary'>Sobre Nosotros</h1>
+                    <p className='text-lg xl:text-2xl mt-4 text-primary'>Conectamos sueños con hogares perfectos, facilitando información y asesoramiento inmobiliario.</p>
                 </motion.div>
             </div>
       
