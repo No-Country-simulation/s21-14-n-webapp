@@ -41,7 +41,7 @@ export const Footer = () => {
                     </NavLink>
                 )}
             </div>
-            <div className='flex gap-2 lg:gap-10 text-2xl lg:text-5xl xl:text-7xl hover:scale-105'>
+            <div className='flex gap-2 lg:gap-10 text-2xl lg:text-5xl xl:text-7xl'>
                 <PiFacebookLogoLight className='rounded-3xl' />
                 <PiInstagramLogoLight />
                 <PiWhatsappLogoLight />
