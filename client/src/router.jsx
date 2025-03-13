@@ -10,6 +10,7 @@ import AboutUs from "./pages/AboutUs";
 import { HomeAdmin } from "./components/HomeAdmin/HomeAdmin";
 import { Login } from "./components/login/Login";
 import AdminUsers from "./pages/admin/Users";
+import CreateConsult from "./pages/consult/CreateConsult";
 
 
 //Home Templates
@@ -25,7 +26,8 @@ export const router = createHashRouter([
             { path: "inmuebles", element: <ListOfProperties /> },
             { path: "inmueble", element: <PropertyPage /> },
             { path: "nosotros", element: <AboutUs /> },
-            { path: "inicioSesion", element: <Login/>}
+            { path: "inicioSesion", element: <Login/>},
+            { path: "contacto", element: <CreateConsult/>},
         ],
     },
     {

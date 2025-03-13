@@ -1,15 +1,20 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
 export const NavBar = () => {
     const [isAdmin, setIsAdmin] = useState(0);
-    const token=localStorage.getItem("token")
-    
 
+    useEffect(() => {
+        const token = localStorage.getItem("token");
+        if (token) {
+            setIsAdmin(1);
+        }
+    }, []);
     const items = [
         { name: 'Inicio', path: '/' },
         { name: 'Propiedades', path: '/inmuebles' },
         { name: 'Nosotros', path: '/nosotros' },
+        { name: 'Contacto', path: '/contacto' },
         
     ];
 
