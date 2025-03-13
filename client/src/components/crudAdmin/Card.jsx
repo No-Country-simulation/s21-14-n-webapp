@@ -45,7 +45,7 @@ export const Card = ({ id, titulo, descripcion, tipo, ubicacion, precio, imagen,
                 isActive ? 'w-[930px]' : 'w-[488px]'
             }`}
         >
-            <div className="w-80 h-full flex flex-col justify-center items-start relative">
+            <div className="w-full h-full flex flex-col justify-center items-start relative">
                 
                 <motion.img
                     src={`${imagen}`}
