@@ -33,8 +33,17 @@ export async function editInquiry(inquirity, id){
     return response;
 };
 
+export async function togglePropertySelection(id, isSelected) {
+    return await fetchData(`${SummaryApi.editInquiryStar.url}/${id}`, {
+        method: SummaryApi.editInquiryStar.method,
+        body: { isSelected },
+    });
+   
+};
+
+
 export async function deleteInquiry(id){
     return fetchData(`${SummaryApi.deleteInquiry.url}/${id}`,{
-        method: SummaryApi.deleteInquiry.url
+        method: SummaryApi.deleteInquiry.method
     });
 };

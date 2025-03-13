@@ -49,6 +49,7 @@ export const ListCrudProperty = () => {
                             tipo={propiedad.typeProperty}
                             ubicacion={propiedad.address}
                             precio={propiedad.price}
+                            destacado={propiedad.isSelected}
                             isActive={activeCardId === propiedad._id}
                             onClick={() => handleCardClick(propiedad._id)}
                         />

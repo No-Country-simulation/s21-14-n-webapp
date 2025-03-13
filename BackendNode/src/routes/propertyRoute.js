@@ -1,6 +1,6 @@
 const express = require('express');
 const upload = require("../config/multer");
-const { createProperty, getAllProperties, getPropertyById, deleteProperty, updateProperty } = require('../controllers/propertyController');
+const { createProperty, getAllProperties, getPropertyById, deleteProperty, updateProperty, toggleIsSelected } = require('../controllers/propertyController');
 
 const router = express.Router();
 
@@ -28,6 +28,9 @@ router.get('/:id', getPropertyById);
 
 // Ruta para eliminar una propiedad por ID
 router.delete('/:id', deleteProperty);
+
+//Ruta para actualizar el Destacado
+router.patch('/selected/:id', toggleIsSelected)
 
 // Ruta para actualizar una propiedad por ID
 router.put(

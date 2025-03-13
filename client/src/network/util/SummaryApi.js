@@ -21,6 +21,10 @@ const SummaryApi = {
         url: `${backendDomain}/Inmuebles`,//Add id //no funciona
         method: 'put'
     },
+    editInquiryStar: {
+        url: `${backendDomain}/Inmuebles/selected`,//Add id //no funciona
+        method: 'put'
+    },
     deleteInquiry: {
         url: `${backendDomain}/Inmuebles`,//Add id //funciona
         method: 'delete'

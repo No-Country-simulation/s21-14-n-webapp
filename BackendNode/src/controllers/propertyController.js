@@ -115,4 +115,22 @@ const updateProperty = async (req, res) => {
   }
 };
 
-module.exports = { createProperty, getAllProperties, getPropertyById, deleteProperty, updateProperty };
+const toggleIsSelected = async (req, res) => {
+  try {
+    const { id } = req.params;
+    
+    const property = await Property.findById(id);
+    if (!property) return res.status(404).json({ error: 'Property not found' });
+    
+    // Cambiar el estado de isSelected
+    property.isSelected = !property.isSelected;
+    await property.save();
+    
+    res.status(200).json({ message: 'Property updated successfully', property });
+  } catch (error) {
+    console.error('Error updating property:', error);
+    res.status(500).json({ error: 'Server error', details: error.message });
+  }
+};
+
+module.exports = { createProperty,toggleIsSelected,  getAllProperties, getPropertyById, deleteProperty, updateProperty };
