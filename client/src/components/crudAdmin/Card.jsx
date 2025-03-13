@@ -41,7 +41,7 @@ export const Card = ({ id, titulo, descripcion, tipo, ubicacion, precio, imagen,
 
     return (
         <motion.section
-            className={`bg-primary gap-52 h-[700px] mt-10 border-r-8 border-r-secundary duration-500 flex md:flex-row items-center relative transition-all ${
+            className={`bg-primary gap-10 h-[700px] mt-10 border-r-8 border-r-secundary duration-500 flex md:flex-row items-center relative transition-all ${
                 isActive ? 'w-[930px]' : 'w-[488px]'
             }`}
         >
@@ -80,21 +80,21 @@ export const Card = ({ id, titulo, descripcion, tipo, ubicacion, precio, imagen,
                                 <p><span className='text-secundary'>Precio:</span>{precio}</p>
                             </section>
 
-                            <section className="absolute -bottom-10 right-0 flex space-x-10 mr-3 mb-10">
+                            <section className="absolute -bottom-10 right-0 flex space-x-10 mr-6 mb-10">
                                 <button
-                                    className="bg-yellow-500 text-white px-4 py-2 rounded-sm hover:bg-yellow-600 duration-300"
+                                    className="bg-yellow-500 text-white px-2 py-2 rounded-sm hover:bg-yellow-600 duration-300"
                                     onClick={handleChangeStar}
                                 >
                                     {isStar ? "Quitar Destacado" : "Destacar"}
                                 </button>
                                 <button
-                                    className="bg-red-500 text-white px-4 py-2 rounded-sm hover:bg-red-600 duration-300"
+                                    className="bg-red-500 text-white px-2 py-2 rounded-sm hover:bg-red-600 duration-300"
                                     onClick={handleDelete}
                                 >
                                     Eliminar
                                 </button>
                                 <button
-                                    className="bg-blue-500 text-white px-4 py-2 rounded-sm hover:bg-blue-600 duration-300"
+                                    className="bg-blue-500 text-white px-2 py-2 rounded-sm hover:bg-blue-600 duration-300"
                                     onClick={handleUpdate}
                                 >
                                     Editar
