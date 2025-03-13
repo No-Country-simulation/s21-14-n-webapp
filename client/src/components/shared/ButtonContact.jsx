@@ -122,7 +122,7 @@ export const ButtonContact = () => {
 
             <motion.button
               type="submit"
-              className="w-full bg-blue-700 text-white font-bold py-4 px-6 rounded-lg hover:bg-blue-800 transition-all shadow-lg border-2 border-white"
+              className="w-full bg-primary text-tertiary font-bold py-4 px-6 rounded-lg hover:bg-secundary hover:text-tertiary transition-all shadow-lg border-2 border-white"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
             >

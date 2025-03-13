@@ -56,7 +56,7 @@ export const ButtonContact = () => {
         {isActive && (
           <motion.form
             onSubmit={handleSubmit(onSubmit)}
-            className="w-full p-4 space-y-4 text-tertiary flex flex-col gap-5"
+            className="w-full p-4 space-y-4 text-tertiary flex flex-col gap-2"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
@@ -122,9 +122,9 @@ export const ButtonContact = () => {
 
             <motion.button
               type="submit"
-              className="w-full bg-blue-700 text-white font-bold py-4 px-6 rounded-lg hover:bg-blue-800 transition-all shadow-lg border-2 border-white"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
+              className="w-full bg-primary text-tertiary font-bold py-4 px-6 rounded-lg hover:bg-secundary hover:text-tertiary transition-all shadow-lg border-2 border-white"
+              whileHover={{ scale: 0.95 }}
+              whileTap={{ scale: 1 }}
             >
               Enviar
             </motion.button>
