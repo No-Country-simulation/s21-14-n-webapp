@@ -20,32 +20,36 @@ export default function FeaturedProperties() {
 
     const infoProperties = [
     {
+        "titulo":"Casa ecologica",
         "precio": 245000,
         "direccion" : "Direccion 123",
         "m2": 500,
         "tipo": "Casa",
-        "descripcion": "Casa grande en esquina que linda con una calle importante de la ciudad"
+        "descripcion": "Casa ecológica, diseñada para ofrecer confort y sostenibilidad rodeada por entorno natural "
     },
     {
+        "titulo":"Historica casa en esquina Rivadavia",
         "precio": 500000,
         "direccion" : "direccion 456",
         "m2": 400,
         "tipo": "Casa",
-        "descripcion": "Casa hubicada estrategicamente en pleno centro de la ciudad"
+        "descripcion": "Casa ubicada en esquina Rivadavia a dos cuadras de importante avenida"
     },
     {
+        "titulo":"Departamento en pleno centro a estrenar",
         "precio": 452447,
         "direccion" : "direccion 789",
         "m2": 300,
         "tipo": "apartamento",
-        "descripcion": "Apartamento en pleno centro a 2 cuadras de la costa"
+        "descripcion": "Apartamento a estrenar en centro de la ciudad con vista privilegiada a la costa"
     },
     {
-        "precio": 1000000,
-        "direccion" : "direccion 101112",
+        "titulo":"Departamento frente a la costa",
+        "precio": 658712,
+        "direccion" : "direccion 1012",
         "m2": 200,
         "tipo": "apartamento",
-        "descripcion": "Apartamento en zona de barrios privados a estrenar"
+        "descripcion": "Apartamento en zona de barrios privados frente a la costa preparado para turismo"
     },
     ]
 
@@ -117,7 +121,10 @@ export default function FeaturedProperties() {
                                     exit={{ opacity: 0, y: 20 }}
                                     transition={transition}
                                 >
-                                    <div className='text-xs lg:text-xl flex flex-col gap-2 lg:gap-5  [&_p]:text-tertiary   [&_span]:text-secundary [&_span]:font-semibold'>
+                                    <div className='text-xs lg:text-lg flex flex-col gap-2 lg:gap-5  [&_p]:text-tertiary   [&_span]:text-secundary [&_span]:font-semibold'>
+                                        <p>
+                                            <span>Titulo:</span> {infoProperties[index].titulo}
+                                        </p>
                                         <p>
                                             <span>Precio:</span> ${infoProperties[index].precio.toLocaleString('es-ES')}
                                         </p>
