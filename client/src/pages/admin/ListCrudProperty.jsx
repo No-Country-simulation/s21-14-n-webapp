@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { NavBar } from '../../components/shared/NavBar'
 import { Card } from '../../components/crudAdmin/Card'
+import { getAllInquiries } from '../../network/fetchApiInquirity';
 
 export const ListCrudProperty = () => {
     const [activeCardId, setActiveCardId] = useState(null);
@@ -63,8 +64,29 @@ export const ListCrudProperty = () => {
 
     ]
     const handleCardClick = (id) => {
+
+
         setActiveCardId(activeCardId === id ? null : id);
     };
+     const [allProperties, setAllProperties] = useState([]);
+    
+    
+      useEffect(() => {
+        const fetchData = async () => {
+          try {
+            const data = await getAllInquiries();
+            if (!data) {
+              setAllProperties([]);
+              return;
+            }
+            setAllProperties(data);
+          } catch (error) {
+            console.log(error);
+          }
+        };
+    
+        fetchData();
+      }, []);
 
     return (
         <div className='w-screen h-full bg-primary flex flex-col'>
@@ -74,7 +96,7 @@ export const ListCrudProperty = () => {
             </div>
             <section className='flex justify-center items-center w-full flex-grow'>
                 <div className='w-[80%] min-h-[90%] flex flex-wrap px-10 py-5 gap-4 items-center justify-center rounded-lg'>
-                    {detailsProperty.map((propiedad) => (
+                    {allProperties.map((propiedad) => (
                         <Card
                             key={propiedad.id}
                             id={propiedad.id}
