@@ -28,12 +28,12 @@ export const Login = () => {
                 transition={{ duration: 1, delay: 0.5 }} 
             >
                 <motion.div
-                    className="backdrop-blur-3xl shadow-[10px_0_15px_0_rgba(0,0,0,0.5)] p-10 h-full w-[40%] flex flex-col justify-center items-center gap-6 [&_input]:text-lg [&_input]:text-tertiary [&_input]:border-tertiary [&_label]:text-tertiary [&_label]:text-lg [&_label]:font-semibold"
+                    className="backdrop-blur-3xl shadow-[10px_0_15px_0_rgba(0,0,0,0.5)] p-10 h-full w-[40%] flex flex-col justify-center items-center gap-10 [&_input]:text-lg [&_input]:text-tertiary [&_input]:border-tertiary [&_label]:text-tertiary [&_label]:text-lg [&_label]:font-semibold"
                     initial={{ x: -100, opacity: 0 }}  
                     animate={{ x: 0, opacity: 1 }}   
                     transition={{ duration: 1 }}
                 >
-                    <div className='flex flex-col gap-5'>
+                    <div className='flex flex-col gap-5 w-full'>
                         <h2 className="text-4xl font-bold text-primary">¡Bienvenido!</h2>
                         <p className="text-4xl font-semibold max-w-96 text-tertiary">Inicie sesion con su cuenta empresarial</p>
                     </div>
@@ -54,7 +54,7 @@ export const Login = () => {
                         />
                         <motion.button
                             type="submit"
-                            className="w-full bg-cyan-500/80 text-white py-2 rounded-md hover:bg-cyan-500 transition shadow-md"
+                            className="w-full bg-primary text-white py-2 rounded-md hover:bg-secundary hover:text-primary transition shadow-md"
                             whileHover={{ scale: 1.05 }}    
                             whileTap={{ scale: 0.95 }}
                         >

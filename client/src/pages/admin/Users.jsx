@@ -29,7 +29,7 @@ export default function AdminUsers() {
     
     return (
         <motion.div
-            className="max-w-2xl mx-auto p-6 bg-gray-900/80 shadow-2xl rounded-lg backdrop-blur-md text-white"
+            className="max-w-2xl mx-auto p-28   shadow-2xl rounded-lg bg-backdrop-blur-md text-tertiary h-[500px] flex flex-col w-[50%] justify-center"
             initial={{ opacity: 0, y: -50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
@@ -42,19 +42,19 @@ export default function AdminUsers() {
                     {...register("email", { required: true })}
                     type="email"
                     placeholder="Email"
-                    className="w-full p-3 bg-gray-800/60 border border-white/50 rounded-md focus:outline-none focus:ring-2 focus:ring-cyan-500 text-white placeholder-gray-300"
+                    className="w-full p-3 bg-gray-800/60 border border-white/50 rounded-md focus:outline-none focus:ring-2 focus:ring-secundary text-white placeholder-gray-300"
                     whileFocus={{ scale: 1.05 }}
                 />
                 <motion.input
                     {...register("password", { required: true })}
                     type="password"
                     placeholder="Contraseña"
-                    className="w-full p-3 bg-gray-800/60 border border-white/50 rounded-md focus:outline-none focus:ring-2 focus:ring-cyan-500 text-white placeholder-gray-300"
+                    className="w-full p-3 bg-gray-800/60 border border-white/50 rounded-md focus:outline-none focus:ring-2 focus:ring-secundary text-white placeholder-gray-300"
                     whileFocus={{ scale: 1.05 }}
                 />
                 <motion.button
                     type="submit"
-                    className="w-full bg-cyan-500/80 text-white py-2 rounded-md hover:bg-cyan-500 transition shadow-md"
+                    className="w-full bg-secundary text-primary  py-2 rounded-md hover:bg-tertiary transition shadow-md cursor-pointer"
                     whileHover={{ scale: 1.05 }}    
                     whileTap={{ scale: 0.95 }}
                 >
@@ -68,7 +68,7 @@ export default function AdminUsers() {
                     {users.map((user) => (
                         <motion.li
                             key={user._id}
-                            className="flex justify-between items-center p-3 bg-gray-800/70 rounded-md shadow-md"
+                            className="flex justify-between items-center p-3  rounded-md"
                             initial={{ opacity: 0, y: -20 }}
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, x: -50 }}
