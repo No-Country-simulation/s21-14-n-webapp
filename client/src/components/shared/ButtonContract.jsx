@@ -1,107 +1,136 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { motion, AnimatePresence } from "framer-motion";
 import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
 import { CgCloseR } from "react-icons/cg";
-import { motion, AnimatePresence } from 'framer-motion';
+import { ConsultSchema } from "../../schemas";
+import { createContact } from "../../network/fetchContact";
+import Error from "../../ui/ErrorMessage";
 
 export const ButtonContact = () => {
-    const [isActive, setIsActive] = useState(false);
+  const [isActive, setIsActive] = useState(false);
 
-    const handleClick = () => {
-        setIsActive(prevState => !prevState);
-    };
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm({ resolver: yupResolver(ConsultSchema) });
 
-    // Animaciones
-    const containerVariants = {
-        hidden: { width: 128, height: 80 },
-        visible: { width: 384, height: 600 }, 
-    };
+  const handleClick = () => {
+    setIsActive((prevState) => !prevState);
+  };
 
-    const formVariants = {
-        hidden: { opacity: 0, y: -20 },
-        visible: { opacity: 1, y: 0, transition: { delay: 0.3 } },
-    };
+  const onSubmit = async (data) => {
+    try {
+      await createContact(data);
+      reset();
+      setIsActive(false);
+    } catch (error) {
+      console.error("Error al enviar la consulta", error);
+    }
+  };
 
-    return (
-        <motion.div
-            className="z-100 rounded-4xl bg-primary flex flex-col justify-center items-center bottom-9 right-10 fixed border-4 border-secundary shadow-2xl overflow-hidden"
-            variants={containerVariants}
-            initial="hidden"
-            animate={isActive ? "visible" : "hidden"}
-            transition={{ type: "spring", stiffness: 100 }}
-        >
-            <button
-                className={`hover:scale-105 cursor-pointer p-4 ${isActive ? "self-start" : ""}`}
-                onClick={handleClick}
+  return (
+    <motion.div
+      className="z-50 rounded-4xl bg-primary flex flex-col justify-center items-center bottom-9 right-10 fixed border-4 border-secundary shadow-2xl overflow-hidden"
+      initial={{ width: 128, height: 80 }}
+      animate={
+        isActive ? { width: 400, height: 800 } : { width: 128, height: 80 }
+      }
+      transition={{ type: "spring", stiffness: 100 }}
+    >
+      <button
+        className="hover:scale-105 cursor-pointer p-4"
+        onClick={handleClick}
+      >
+        {!isActive ? (
+          <IoChatbubbleEllipsesOutline className="w-12 h-12 text-tertiary shadow-2xl" />
+        ) : (
+          <CgCloseR className="w-12 h-12 text-tertiary shadow-2xl" />
+        )}
+      </button>
+
+      <AnimatePresence>
+        {isActive && (
+          <motion.form
+            onSubmit={handleSubmit(onSubmit)}
+            className="w-full p-4 space-y-4 text-tertiary flex flex-col gap-5"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+          >
+            <div>
+              <input
+                {...register("nombreApellido")}
+                placeholder="Nombre y Apellido"
+                className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+              {errors.nombreApellido && (
+                <Error>{errors.nombreApellido.message}</Error>
+              )}
+            </div>
+
+            <div>
+              <input
+                {...register("email")}
+                placeholder="Email"
+                className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+              {errors.email && <Error>{errors.email.message}</Error>}
+            </div>
+
+            <div>
+              <input
+                {...register("telefono")}
+                placeholder="Teléfono"
+                className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+              {errors.telefono && <Error>{errors.telefono.message}</Error>}
+            </div>
+
+            <div>
+              <select
+                {...register("tipoConsulta")}
+                className="w-full p-3 border border-gray-300 rounded-lg bg-blue-100 text-blue-800 font-bold focus:outline-none focus:ring-2 focus:ring-blue-500"
+              >
+                <option value="General">General</option>
+                <option value="Soporte">Soporte</option>
+                <option value="Ventas">Ventas</option>
+                <option value="Otro">Otro</option>
+              </select>
+            </div>
+
+            <div>
+              <input
+                {...register("titulo")}
+                placeholder="Título"
+                className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+              {errors.titulo && <Error>{errors.titulo.message}</Error>}
+            </div>
+
+            <div>
+              <textarea
+                {...register("mensaje")}
+                placeholder="Mensaje"
+                className="w-full p-3 border border-gray-300 rounded-lg h-24 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+              {errors.mensaje && <Error>{errors.mensaje.message}</Error>}
+            </div>
+
+            <motion.button
+              type="submit"
+              className="w-full bg-blue-700 text-white font-bold py-4 px-6 rounded-lg hover:bg-blue-800 transition-all shadow-lg border-2 border-white"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
             >
-                {!isActive ? (
-                    <IoChatbubbleEllipsesOutline className="w-12 h-12 text-tertiary shadow-2xl" />
-                ) : (
-                    <CgCloseR className="w-12 h-12 text-tertiary shadow-2xl" />
-                )}
-            </button>
-
-            <AnimatePresence>
-                {isActive && (
-                    <motion.form
-                        className="w-full p-4 space-y-4 text-tertiary flex flex-col gap-7"
-                        variants={formVariants}
-                        initial="hidden"
-                        animate="visible"
-                        exit="hidden"
-                    >
-                        <div>
-                            <label htmlFor="email" className="block text-sm font-medium">
-                                Email del interesado
-                            </label>
-                            <input
-                                type="email"
-                                id="email"
-                                name="email"
-                                className="mt-1 bg-tertiary block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-tertiary focus:border-tertiary"
-                                placeholder="Ingresa tu email"
-                                required
-                            />
-                        </div>
-
-                        <div>
-                            <label htmlFor="propertyTitle" className="block text-sm font-medium">
-                                Título de la propiedad de interés
-                            </label>
-                            <input
-                                type="text"
-                                id="propertyTitle"
-                                name="propertyTitle"
-                                className="mt-1 bg-tertiary block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-tertiary focus:border-tertiary"
-                                placeholder="Ingresa el título de la propiedad"
-                                required
-                            />
-                        </div>
-
-                        <div>
-                            <label htmlFor="message" className="block text-sm font-medium">
-                                Mensaje
-                            </label>
-                            <textarea
-                                id="message"
-                                name="message"
-                                rows="4"
-                                className="mt-1 bg-tertiary block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-tertiary focus:border-tertiary"
-                                placeholder="Escribe tu mensaje aquí"
-                                required
-                            ></textarea>
-                        </div>
-
-                        <motion.button
-                            type="submit"
-                            className="w-full px-4 py-2 bg-secundary text-primary text-xl rounded-md hover:bg-tertiary-dark focus:outline-none focus:ring-2 focus:ring-tertiary focus:ring-opacity-50"
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                        >
-                            Enviar
-                        </motion.button>
-                    </motion.form>
-                )}
-            </AnimatePresence>
-        </motion.div>
-    );
+              Enviar
+            </motion.button>
+          </motion.form>
+        )}
+      </AnimatePresence>
+    </motion.div>
+  );
 };

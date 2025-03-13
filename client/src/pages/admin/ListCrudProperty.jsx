@@ -45,7 +45,7 @@ export const ListCrudProperty = () => {
                             id={propiedad._id}
                             imagen={propiedad.imagePrincipal}
                             titulo={propiedad.title}
-                            descripcion={propiedad.title}
+                            descripcion={propiedad.description}
                             tipo={propiedad.typeProperty}
                             ubicacion={propiedad.address}
                             precio={propiedad.price}
