@@ -21,7 +21,8 @@ export const NavBar = () => {
     const itemsAdmin = [
         { name:'inicio', path:'/admin'},
         { name: "Subir Propiedad", path: "/admin/crearInmueble" },
-        { name: "Editar Propiedades", path: "/admin/CrudPropiedad" }
+        { name: "Editar Propiedades", path: "/admin/CrudPropiedad" },
+        { name: "Gestionar Usuarios", path: "/admin/Usuarios" },
     ];
 
     const menuItems = isAdmin === 0 ? items : itemsAdmin;
