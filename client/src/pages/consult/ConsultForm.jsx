@@ -1,123 +1,89 @@
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { motion } from "framer-motion";
+import { ConsultSchema } from "../../schemas";
+import { createContact } from "../../network/fetchContact";
 import Error from "../../ui/ErrorMessage";
 
-const ConsultForm = ({ currentSection, nextSection, prevSection, onSubmit, errors, register }) => 
-{
+const ContactForm = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm({ resolver: yupResolver(ConsultSchema) });
+
+  const onSubmit = async (data) => {
+    try {
+      await createContact(data);
+      reset();
+    } catch (error) {
+      console.error("Error al enviar la consulta", error);
+    }
+  };
+
   return (
-    <form onSubmit={onSubmit} className="mt-4 flex gap-4 justify-center items-center" >
-      <motion.div
-        initial={{ opacity: 0, x: -50 }}
-        animate={{ opacity: currentSection === 1 ? 1 : 0, x: currentSection === 1 ? 0 : -50 }}
+    <div className="flex items-center justify-center min-h-screen bg-cover bg-center" style={{ backgroundImage: "url('/path-to-your-image.jpg')" }}>
+      <motion.div 
+        initial={{ opacity: 0, y: -20 }} 
+        animate={{ opacity: 1, y: 0 }} 
         transition={{ duration: 0.5 }}
-        className={` ${currentSection === 1 ? 'grid grid-cols-2 gap-8 w-8/12' : 'hidden'}`}
+        className="p-10 bg-white bg-opacity-80 backdrop-blur-lg shadow-2xl rounded-3xl w-full max-w-lg text-gray-800 border border-gray-300"
       >
-        {/* Form fields for Section 1 */}
-        <div className="relative mb-4">
-          <label className="block text-sm text-gray-600">Nombre y Apellido</label>
-          <input
-            type="text"
-            className="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-indigo-400"
-            {...register("nombreApellido")}
-          />
-          {errors.nombreApellido && <Error>{errors.nombreApellido.message}</Error>}
-          
-        </div>
-
-        <div className="relative mb-4">
-          <label className="block text-sm text-gray-600">Email</label>
-          <input
-            type="email"
-            className="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-indigo-400"
-            {...register("email")}
-          />
-          {errors.email && <Error>{errors.email.message}</Error>}
-        </div>
-
-        <div className="relative mb-4">
-          <label className="block text-sm text-gray-600">Teléfono</label>
-          <input
-            type="text"
-            className="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-indigo-400"
-            {...register("telefono")}
-          />
-          {errors.telefono && <Error>{errors.telefono.message}</Error>}
-        </div>
-
-        <div className="relative mb-4">
-          <label className="block text-sm text-gray-600">Tipo de Consulta</label>
-          <select
-            className="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-indigo-400"
-            {...register("tipoConsulta")}
-          >
-            <option value="General">General</option>
-            <option value="Soporte">Soporte</option>
-            <option value="Ventas">Ventas</option>
-            <option value="Otro">Otro</option>
-          </select>
-          {errors.tipoConsulta && <Error>{errors.tipoConsulta.message}</Error>}
-        </div>
-        
-        <motion.button
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 1 }}
-          type="button"
-          className="w-2/5 mx-auto p-2 col-span-2 bg-primary hover:bg-slate-700 focus:bg-slate-600 border-2 border-orange-300/90 text-white font-bold rounded-lg hover:bg-indigo-700 cursor-pointer"
-          onClick={nextSection}
+        <h2 className="text-4xl font-bold text-center mb-8">Contacto</h2>
+        <motion.form 
+          onSubmit={handleSubmit(onSubmit)} 
+          className="w-full space-y-6"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.3 }}
         >
-          Siguiente
-        </motion.button>
-      </motion.div>
+          <div>
+            <input {...register("nombreApellido")} placeholder="Nombre y Apellido" className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            {errors.nombreApellido && <Error>{errors.nombreApellido.message}</Error>}
+          </div>
 
-      <motion.div
-        initial={{ opacity: 0, x: -50 }}
-        animate={{ opacity: currentSection === 2 ? 1 : 0, x: currentSection === 2 ? 0 : -50 }}
-        transition={{ duration: 1 }}
-        className={`${currentSection === 2 ? 'block w-8/12' : 'hidden'}`}
-      >
-        {/* Form fields for Section 2 */}
-        <div className="relative mb-4">
-          <label className="block text-sm text-gray-600">Título</label>
-          <input
-            type="text"
-            className="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-indigo-400"
-            {...register("titulo")}
-          />
-          {errors.titulo && <Error>{errors.titulo.message}</Error>}
-        </div>
+          <div>
+            <input {...register("email")} placeholder="Email" className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            {errors.email && <Error>{errors.email.message}</Error>}
+          </div>
 
-        <div className="relative mb-4">
-          <label className="block text-sm text-gray-600">Mensaje</label>
-          <textarea
-            className="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-indigo-400"
-            {...register("mensaje")}
-          ></textarea>
-          {errors.mensaje && <Error>{errors.mensaje.message}</Error>}
-        </div>
+          <div>
+            <input {...register("telefono")} placeholder="Teléfono" className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            {errors.telefono && <Error>{errors.telefono.message}</Error>}
+          </div>
 
-        <div className="flex justify-around gap-4">
-          <motion.button
+          <div>
+            <select {...register("tipoConsulta")} className="w-full p-3 border border-gray-300 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-blue-500">
+              <option value="General">General</option>
+              <option value="Soporte">Soporte</option>
+              <option value="Ventas">Ventas</option>
+              <option value="Otro">Otro</option>
+            </select>
+          </div>
+
+          <div>
+            <input {...register("titulo")} placeholder="Título" className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            {errors.titulo && <Error>{errors.titulo.message}</Error>}
+          </div>
+
+          <div>
+            <textarea {...register("mensaje")} placeholder="Mensaje" className="w-full p-3 border border-gray-300 rounded-lg h-32 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            {errors.mensaje && <Error>{errors.mensaje.message}</Error>}
+          </div>
+
+          <motion.button 
+            type="submit" 
+            className="w-full bg-blue-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-blue-700 transition-all shadow-md"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            type="button"
-            className="w-3/12 p-2 bg-primary hover:bg-slate-700 focus:bg-slate-600 border-2 border-orange-300/90 text-white font-bold rounded-lg hover:bg-indigo-700 cursor-pointer"
-            onClick={prevSection}
           >
-            Atrás
-          </motion.button>  
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            type="submit"
-            className="realtive w-2/5 p-2 bg-primary hover:bg-slate-700 focus:bg-slate-600  text-white font-bold rounded cursor-pointer
-            hover:bg-primary hover:ring-2 hover:ring-offset-1 hover:ring-secundary "
-          >   
-            <span>Enviar Formulario</span>
-          </motion.button>  
-        </div>        
+            Enviar
+          </motion.button>
+        </motion.form>
       </motion.div>
-    </form>
+    </div>
   );
-
 };
 
-export default ConsultForm;
+export default ContactForm;
