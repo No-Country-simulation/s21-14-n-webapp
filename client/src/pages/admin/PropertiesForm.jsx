@@ -285,7 +285,7 @@ const PropertiesForm = () => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             type="submit"
-            className="w-full p-3 bg-indigo-600 text-white font-bold rounded hover:bg-indigo-700"
+            className="w-full p-3 bg-primary text-white font-bold rounded hover:bg-secundary hover:text-primary"
           >
             {isEditing ? "Editar Propiedad" : "Guardar Propiedad"}
           </motion.button>
