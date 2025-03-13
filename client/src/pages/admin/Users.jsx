@@ -54,7 +54,7 @@ export default function AdminUsers() {
                 />
                 <motion.button
                     type="submit"
-                    className="w-full bg-secundary text-white py-2 rounded-md hover:bg-tertiary hover:text-primary transition shadow-md"
+                    className="w-full bg-cyan-500/80 text-white py-2 rounded-md hover:bg-cyan-500 transition shadow-md"
                     whileHover={{ scale: 1.05 }}    
                     whileTap={{ scale: 0.95 }}
                 >

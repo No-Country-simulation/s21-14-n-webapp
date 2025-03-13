@@ -31,7 +31,7 @@ export default function FeaturedProperties() {
         "direccion" : "direccion 456",
         "m2": 400,
         "tipo": "Casa",
-        "descripcion": "Casa ubicada estrategicamente en pleno centro de la ciudad"
+        "descripcion": "Casa hubicada estrategicamente en pleno centro de la ciudad"
     },
     {
         "precio": 452447,
