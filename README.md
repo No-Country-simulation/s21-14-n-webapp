@@ -27,9 +27,8 @@ Urbania brinda a los usuarios una navegación fluida y acceso a un catálogo pre
 - React Toastify
 
 ### Backend
-- .Net
-- Entity Framework
-- JWT
+- Nodejs
+- Express
 
 ### QA (Quality Assurance)
 - Postman
