@@ -56,7 +56,7 @@ Este proyecto forma parte de una simulación laboral, desarrollado con el objeti
 
 | Nombre              | Rol          |
 |---------------------|--------------|
-| Azariel Avila       | Front End    |
+| Azariel Moreno      | Front End    |
 | Tomas Friz          | Front End    |
 | Alejandro Perren    | Front End    |
 | Luis Asmat          | Front End    |
